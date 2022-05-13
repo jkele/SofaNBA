@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -30,6 +31,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    buildFeatures{
+        viewBinding true
     }
 }
 
@@ -59,9 +63,18 @@ dependencies {
     //Room
     implementation 'androidx.room:room-runtime:2.4.2'
     implementation 'androidx.preference:preference:1.1.1'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
     kapt 'androidx.room:room-compiler:2.4.2'
     annotationProcessor 'androidx.room:room-compiler:2.4.2'
     implementation 'androidx.room:room-ktx:2.4.2'
+
+    //Firebase
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'jp.wasabeef:picasso-transformations:2.4.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

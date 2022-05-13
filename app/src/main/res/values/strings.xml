@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">SofaNBA</string>
+    <string name="web_client_id">656238360806-k352q7qdmv52qct1fs1t5ast3fh9livi.apps.googleusercontent.com</string>
+    <string name="try_without_an_account">Try without an account</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="discover_all_about_nba">Discover all about NBA</string>
+    <string name="search_players_and_teams">Search players and teams to get all the inside stats.</string>
 </resources>
