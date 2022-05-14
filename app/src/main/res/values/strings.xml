@@ -5,4 +5,19 @@
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="discover_all_about_nba">Discover all about NBA</string>
     <string name="search_players_and_teams">Search players and teams to get all the inside stats.</string>
+    <string name="explore">EXPLORE</string>
+    <string name="favorites">FAVORITES</string>
+    <string name="seasons">SEASONS</string>
+    <string name="settings">SETTINGS</string>
+    <string name="players">Players</string>
+    <string name="teams">Teams</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_players">All players</string>
+    <string name="all_teams">All teams</string>
+
+    <string-array name="SpinnerItems">
+        <item>Players</item>
+        <item>Teams</item>
+    </string-array>
 </resources>
