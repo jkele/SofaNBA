@@ -14,7 +14,10 @@ import hr.algebra.sofanba.network.model.Player
 
 class PlayerPagingAdapter(
     private val context: Context,
-    diffCallback: DiffUtil.ItemCallback<Player>) :
+    private val favouritePlayers: ArrayList<Player>?,
+    diffCallback: DiffUtil.ItemCallback<Player>,
+    private val insertCallback: (Player) -> Unit
+) :
     PagingDataAdapter<Player, PlayerPagingAdapter.PlayerViewHolder>(diffCallback) {
 
     class PlayerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,6 +31,22 @@ class PlayerPagingAdapter(
         holder.binding.tvPlayerName.text = player?.firstName + " " + player?.lastName
         holder.binding.tvPlayerTeam.text = player?.team?.abbreviation
 
+        val exists = isPlayerFavorite(player!!.id)
+
+        if (exists){
+            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+        } else {
+            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
+        }
+
+        holder.binding.btnFavorite.setOnClickListener {
+            if (!exists) {
+                holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+                insertCallback.invoke(player)
+            } else {
+                holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
@@ -35,7 +54,15 @@ class PlayerPagingAdapter(
         return PlayerViewHolder(view)
     }
 
-    fun loadPlayerImage(){
+    fun loadPlayerImage() {
 
+    }
+
+    fun isPlayerFavorite(playerId: Int): Boolean {
+        var exists = false
+        favouritePlayers?.forEach {
+            if (it.id.equals(playerId)) exists = true
+        }
+        return exists
     }
 }

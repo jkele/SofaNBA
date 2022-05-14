@@ -1,6 +1,7 @@
 package hr.algebra.sofanba.network.model
 
 import com.google.gson.annotations.SerializedName
+import hr.algebra.sofanba.database.model.FavoritePlayer
 import java.io.Serializable
 
 data class Player(
@@ -15,4 +16,18 @@ data class Player(
     val team: Team,
     val weightPounds: Int?
 ): Serializable {
+
+    fun convertToFavoritePlayer(): FavoritePlayer {
+        return FavoritePlayer(
+            this.id,
+            this.firstName,
+            this.height_feet,
+            this.height_inches,
+            this.lastName,
+            this.position,
+            this.team,
+            this.weightPounds
+        )
+    }
+
 }

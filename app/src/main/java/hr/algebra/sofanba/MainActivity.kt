@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import hr.algebra.sofanba.databinding.ActivityMainBinding
 import hr.algebra.sofanba.fragments.ExploreFragment
+import hr.algebra.sofanba.fragments.FavoritesFragment
 
 class MainActivity : AppCompatActivity() {
 
     private val exploreFragment = ExploreFragment()
+    private val favoritesFragment = FavoritesFragment()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -19,13 +21,14 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         replaceFragment(exploreFragment)
+        setupBottomNavigationListeners()
     }
 
     private fun setupBottomNavigationListeners(){
         binding.bottomNavigation.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.icon_explore -> replaceFragment(exploreFragment)
-                //R.id.icon_favorites -> replaceFragment(citiesFragment)
+                R.id.icon_favorites -> replaceFragment(favoritesFragment)
                 //R.id.icon_seasons -> replaceFragment(citiesFragment)
                 //R.id.icon_settings -> replaceFragment(settingsFragment)
             }

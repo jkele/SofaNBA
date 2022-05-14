@@ -1,21 +1,32 @@
 package hr.algebra.sofanba.viewmodels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import hr.algebra.sofanba.database.NbaDatabase
+import hr.algebra.sofanba.database.NbaRepository
 import hr.algebra.sofanba.network.Network
+import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.PlayerImage
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.network.paging.PlayerPagingSource
 import kotlinx.coroutines.launch
 
-class ExploreViewModel: ViewModel() {
+class ExploreViewModel(application: Application): AndroidViewModel(application) {
 
     val playerImages = MutableLiveData<ArrayList<PlayerImage>>()
     val teamsList = MutableLiveData<ArrayList<Team>>()
+    val favoritePlayers = MutableLiveData<ArrayList<Player>>()
+    private val repository: NbaRepository
+
+    init {
+        val nbaDao = NbaDatabase.getDatabase(application).nbaDao()
+        repository = NbaRepository(nbaDao)
+    }
 
     val flow = Pager(PagingConfig(pageSize = 20)){
         PlayerPagingSource(Network().getNbaService())
@@ -29,5 +40,21 @@ class ExploreViewModel: ViewModel() {
 
     fun getPlayerImages(playerId: Int): ArrayList<PlayerImage> {
         return Network().getSofaService().getPlayerImages(playerId).data
+    }
+
+    fun insertFavoritePlayer(player: Player) {
+        repository.insertFavoritePlayer(player.convertToFavoritePlayer())
+    }
+
+    fun deleteFavoritePlayer(player: Player) {
+        repository.deleteFavoritePlayer(player.convertToFavoritePlayer())
+    }
+
+    fun getFavoritePlayers() {
+        val players = ArrayList<Player>()
+        repository.getFavoritePlayers().forEach {
+            players.add(it.convertToPlayer())
+        }
+        favoritePlayers.value = players
     }
 }
