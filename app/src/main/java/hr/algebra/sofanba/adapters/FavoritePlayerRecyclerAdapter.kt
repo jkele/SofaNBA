@@ -11,7 +11,8 @@ import hr.algebra.sofanba.network.model.Player
 
 class FavoritePlayerRecyclerAdapter(
     private val context: Context,
-    private val favoritesList: ArrayList<Player>
+    private val favoritesList: ArrayList<Player>,
+    private val deleteCallback: (Player) -> Unit
 ): RecyclerView.Adapter<FavoritePlayerRecyclerAdapter.FavoritePlayerViewHolder>() {
 
     class FavoritePlayerViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -28,6 +29,12 @@ class FavoritePlayerRecyclerAdapter(
 
         holder.binding.tvPlayerName.text = player.firstName + " " + player.lastName
 
+        holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+        holder.binding.btnFavorite.setOnClickListener {
+            deleteCallback.invoke(player)
+            favoritesList.remove(player)
+            notifyDataSetChanged()
+        }
     }
 
     override fun getItemCount(): Int {

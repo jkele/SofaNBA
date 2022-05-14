@@ -28,7 +28,9 @@ class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
         binding.rvFavoritePlayers.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.favoritePlayers.observe(viewLifecycleOwner) {
-            val adapter = FavoritePlayerRecyclerAdapter(requireContext(), it)
+            val adapter = FavoritePlayerRecyclerAdapter(requireContext(), it){ player ->
+                viewModel.deleteFavoritePlayer(player)
+            }
             binding.rvFavoritePlayers.adapter = adapter
         }
 

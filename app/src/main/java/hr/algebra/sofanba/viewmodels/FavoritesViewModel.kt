@@ -30,4 +30,8 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
             favoritePlayers.value = players
         }
     }
+
+    fun deleteFavoritePlayer(player: Player) {
+        repository.deleteFavoritePlayer(player.convertToFavoritePlayer())
+    }
 }
