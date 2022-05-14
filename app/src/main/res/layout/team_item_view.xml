@@ -7,15 +7,24 @@
     android:layout_marginBottom="8dp"
     android:background="@drawable/background_player_item_view">
 
-    <ImageView
-        android:id="@+id/ivTeamImage"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageContainer"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        app:cardCornerRadius="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivTeamImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"/>
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvTeamName"
@@ -24,7 +33,7 @@
         android:layout_marginStart="16dp"
         android:theme="@style/BodyLargeNLv1Left"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ivTeamImage"
+        app:layout_constraintStart_toEndOf="@+id/imageContainer"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Los Angeles Lakers" />
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.TeamItemViewBinding
+import hr.algebra.sofanba.helpers.loadTeamImage
 import hr.algebra.sofanba.network.model.Team
 
 class TeamRecyclerAdapter(
@@ -27,6 +28,7 @@ class TeamRecyclerAdapter(
         val team = teamsList[position]
 
         holder.binding.tvTeamName.text = team.fullName
+        loadTeamImage(context, team.abbreviation, holder.binding.ivTeamImage, holder.binding.imageContainer)
 
     }
 
