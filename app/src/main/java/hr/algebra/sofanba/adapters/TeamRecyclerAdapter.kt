@@ -1,14 +1,19 @@
 package hr.algebra.sofanba.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import hr.algebra.sofanba.R
+import hr.algebra.sofanba.TeamActivity
 import hr.algebra.sofanba.databinding.TeamItemViewBinding
 import hr.algebra.sofanba.helpers.loadTeamImage
 import hr.algebra.sofanba.network.model.Team
+
+const val EXTRA_TEAM = "hr.algebra.sofanba.extraTeam"
+const val EXTRA_TEAM_IS_FAVORITE = "hr.algebra.sofanba.teamIsFavorite"
 
 class TeamRecyclerAdapter(
     private val context: Context,
@@ -48,6 +53,12 @@ class TeamRecyclerAdapter(
             }
         }
 
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, TeamActivity::class.java).apply {
+                putExtra(EXTRA_TEAM, team)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

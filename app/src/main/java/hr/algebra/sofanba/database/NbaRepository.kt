@@ -33,6 +33,10 @@ class NbaRepository(private val nbaDao: NbaDao) {
         return nbaDao.getFavoriteTeamsAsync()
     }
 
+    fun isTeamFavorite(id: Int): Boolean {
+        return nbaDao.isTeamFavorite(id)
+    }
+
     fun insertFavoriteTeam(team: FavoriteTeam) {
         nbaDao.insertFavoriteTeam(team)
     }

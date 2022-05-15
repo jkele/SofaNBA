@@ -18,6 +18,9 @@ interface NbaDao {
     @Query("SELECT * FROM favoritePlayers")
     suspend fun getFavoritePlayersAsync(): List<FavoritePlayer>
 
+    @Query("SELECT * FROM favoritePlayers WHERE id = :id")
+    fun isPlayerFavorite(id: Int): Boolean
+
     @Delete
     fun deleteFavoritePlayer(player: FavoritePlayer)
 
@@ -32,6 +35,9 @@ interface NbaDao {
 
     @Query("SELECT * FROM favoriteTeams")
     suspend fun getFavoriteTeamsAsync(): List<FavoriteTeam>
+
+    @Query("SELECT * FROM favoriteTeams WHERE id = :id")
+    fun isTeamFavorite(id: Int): Boolean
 
     @Delete
     fun deleteFavoriteTeam(team: FavoriteTeam)

@@ -21,4 +21,10 @@
         <item>Players</item>
         <item>Teams</item>
     </string-array>
+
+    <string name="title_activity_team">TeamActivity</string>
+    <string name="conference">CONFERENCE</string>
+    <string name="division">DIVISION</string>
+    <string name="teams_in_division">Other teams in the division</string>
+    <string name="home_arena">Home Arena</string>
 </resources>
