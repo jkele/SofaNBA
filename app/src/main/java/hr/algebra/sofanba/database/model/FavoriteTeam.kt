@@ -1,22 +1,24 @@
-package hr.algebra.sofanba.network.model
+package hr.algebra.sofanba.database.model
 
-import com.google.gson.annotations.SerializedName
-import hr.algebra.sofanba.database.model.FavoriteTeam
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import hr.algebra.sofanba.network.model.Team
 import java.io.Serializable
 
-data class Team(
+@Entity(tableName = "favoriteTeams")
+data class FavoriteTeam(
+    @PrimaryKey
     val id: Int,
     val abbreviation: String,
     val city: String,
     val conference: String,
     val division: String,
-    @SerializedName("full_name")
     val fullName: String,
     val name: String
 ) : Serializable {
 
-    fun convertToFavoriteTeam(): FavoriteTeam {
-        return FavoriteTeam(
+    fun convertToTeam(): Team {
+        return Team(
             this.id,
             this.abbreviation,
             this.city,

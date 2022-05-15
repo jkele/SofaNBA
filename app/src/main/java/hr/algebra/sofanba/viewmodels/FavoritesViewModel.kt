@@ -8,11 +8,13 @@ import hr.algebra.sofanba.database.NbaDatabase
 import hr.algebra.sofanba.database.NbaRepository
 import hr.algebra.sofanba.database.model.FavoritePlayer
 import hr.algebra.sofanba.network.model.Player
+import hr.algebra.sofanba.network.model.Team
 import kotlinx.coroutines.launch
 
 class FavoritesViewModel(application: Application): AndroidViewModel(application) {
 
     val favoritePlayers = MutableLiveData<ArrayList<Player>>()
+    val favoriteTeams = MutableLiveData<ArrayList<Team>>()
 
     private val repository: NbaRepository
 
@@ -33,5 +35,19 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
 
     fun deleteFavoritePlayer(player: Player) {
         repository.deleteFavoritePlayer(player.convertToFavoritePlayer())
+    }
+
+    fun getFavoriteTeams() {
+        viewModelScope.launch {
+            val teams = ArrayList<Team>()
+            repository.getFavoriteTeamsAsync().forEach {
+                teams.add(it.convertToTeam())
+            }
+            favoriteTeams.value = teams
+        }
+    }
+
+    fun deleteFavoriteTeam(team: Team) {
+        repository.deleteFavoriteTeam(team.convertToFavoriteTeam())
     }
 }

@@ -12,7 +12,11 @@ import hr.algebra.sofanba.network.model.Team
 
 class TeamRecyclerAdapter(
     private val context: Context,
-    private val teamsList: ArrayList<Team>
+    private val teamsList: ArrayList<Team>,
+    private val favoriteTeams: ArrayList<Team>?,
+    private val usedForFavorites: Boolean,
+    private val insertCallback: ((Team) -> Unit)?,
+    private val deleteCallback: ((Team) -> Unit)?
 ): RecyclerView.Adapter<TeamRecyclerAdapter.TeamViewHolder>() {
 
     class TeamViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -30,10 +34,52 @@ class TeamRecyclerAdapter(
         holder.binding.tvTeamName.text = team.fullName
         loadTeamImage(context, team.abbreviation, holder.binding.ivTeamImage, holder.binding.imageContainer)
 
+        val exists = isTeamFavorite(team.id)
+
+        if (usedForFavorites){
+            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+            holder.binding.btnFavorite.setOnClickListener {
+                onFavoriteTeamButtonClick(exists, holder, team)
+            }
+        } else {
+            if (exists){
+                holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+            } else {
+                holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
+            }
+            holder.binding.btnFavorite.setOnClickListener {
+                onRegularTeamButtonClick(exists, holder, team)
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
         return teamsList.size
     }
 
+    fun isTeamFavorite(teamId: Int): Boolean {
+        var exists = false
+        favoriteTeams?.forEach {
+            if (it.id.equals(teamId)) exists = true
+        }
+        return exists
+    }
+
+    fun onFavoriteTeamButtonClick(exists: Boolean, holder: TeamViewHolder, team: Team) {
+        holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
+        deleteCallback?.invoke(team)
+        teamsList.remove(team)
+        notifyDataSetChanged()
+    }
+
+    fun onRegularTeamButtonClick(exists: Boolean, holder: TeamViewHolder, team: Team) {
+        if (!exists) {
+            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+            insertCallback?.invoke(team)
+        } else {
+            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
+            deleteCallback?.invoke(team)
+        }
+    }
 }

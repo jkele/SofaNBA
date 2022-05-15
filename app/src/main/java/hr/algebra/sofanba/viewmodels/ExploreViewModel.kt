@@ -21,6 +21,8 @@ class ExploreViewModel(application: Application): AndroidViewModel(application) 
     val playerImages = MutableLiveData<ArrayList<PlayerImage>>()
     val teamsList = MutableLiveData<ArrayList<Team>>()
     val favoritePlayers = MutableLiveData<ArrayList<Player>>()
+    val favoriteTeams = MutableLiveData<ArrayList<Team>>()
+
     private val repository: NbaRepository
 
     init {
@@ -56,5 +58,21 @@ class ExploreViewModel(application: Application): AndroidViewModel(application) 
             players.add(it.convertToPlayer())
         }
         favoritePlayers.value = players
+    }
+
+    fun getFavoriteTeams() {
+        val teams = ArrayList<Team>()
+        repository.getFavoriteTeams().forEach {
+            teams.add(it.convertToTeam())
+        }
+        favoriteTeams.value = teams
+    }
+
+    fun insertFavoriteTeam(team: Team) {
+        repository.insertFavoriteTeam(team.convertToFavoriteTeam())
+    }
+
+    fun deleteFavoriteTeam(team: Team) {
+        repository.deleteFavoriteTeam(team.convertToFavoriteTeam())
     }
 }

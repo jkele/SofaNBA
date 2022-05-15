@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.FavoritePlayerRecyclerAdapter
+import hr.algebra.sofanba.adapters.TeamRecyclerAdapter
 import hr.algebra.sofanba.databinding.FragmentFavoritesBinding
 import hr.algebra.sofanba.viewmodels.FavoritesViewModel
 
@@ -26,17 +27,33 @@ class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
         binding.rvFavoritePlayers.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvFavoriteTeams.layoutManager = LinearLayoutManager(requireContext())
 
+        loadFavoritePlayers()
+        loadFavoriteTeams()
+
+        viewModel.getFavoritePlayers()
+        viewModel.getFavoriteTeams()
+
+        return binding.root
+    }
+
+    private fun loadFavoritePlayers(){
         viewModel.favoritePlayers.observe(viewLifecycleOwner) {
             val adapter = FavoritePlayerRecyclerAdapter(requireContext(), it){ player ->
                 viewModel.deleteFavoritePlayer(player)
             }
             binding.rvFavoritePlayers.adapter = adapter
         }
-
-        viewModel.getFavoritePlayers()
-
-        return binding.root
     }
 
+    private fun loadFavoriteTeams() {
+        viewModel.favoriteTeams.observe(viewLifecycleOwner) {
+            val adapter = TeamRecyclerAdapter(requireContext(), it, null, true,
+                null) { team ->
+                viewModel.deleteFavoriteTeam(team)
+            }
+            binding.rvFavoriteTeams.adapter = adapter
+        }
+    }
 }

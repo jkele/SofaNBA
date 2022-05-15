@@ -47,6 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/color_secondary"
-        tools:src="@drawable/ic_star_filled" />
+        android:src="@drawable/ic_star_outline"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

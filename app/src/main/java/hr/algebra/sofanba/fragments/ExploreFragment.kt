@@ -16,6 +16,7 @@ import hr.algebra.sofanba.adapters.PlayerPagingAdapter
 import hr.algebra.sofanba.adapters.TeamRecyclerAdapter
 import hr.algebra.sofanba.databinding.FragmentExploreBinding
 import hr.algebra.sofanba.network.model.Player
+import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.network.paging.PlayerDiff
 import hr.algebra.sofanba.viewmodels.ExploreViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -82,11 +83,18 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         binding.progressBar.visibility = ProgressBar.GONE
     }
 
+    var insertFavoriteTeam = fun(it: Team) { viewModel.insertFavoriteTeam(it) }
+    var deleteFavoriteTeam = fun(it: Team) { viewModel.deleteFavoriteTeam(it) }
+
     fun getTeamsList(){
+        viewModel.getFavoriteTeams()
+        val favoriteTeams = viewModel.favoriteTeams.value
+
         binding.tvAll.text = getString(R.string.all_teams)
         viewModel.teamsList.observe(viewLifecycleOwner) {
             binding.progressBar.visibility = ProgressBar.VISIBLE
-            val adapter = TeamRecyclerAdapter(requireContext(), it)
+            val adapter = TeamRecyclerAdapter(requireContext(), it, favoriteTeams, false
+            , insertFavoriteTeam, deleteFavoriteTeam)
             binding.rvPlayers.adapter = adapter
             binding.progressBar.visibility = ProgressBar.GONE
         }
