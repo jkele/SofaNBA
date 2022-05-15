@@ -47,6 +47,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/color_secondary"
-        android:src="@drawable/ic_star_outline"/>
+        android:src="@drawable/favorite_button_selector"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

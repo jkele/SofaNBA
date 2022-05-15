@@ -37,16 +37,12 @@ class TeamRecyclerAdapter(
         val exists = isTeamFavorite(team.id)
 
         if (usedForFavorites){
-            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+            holder.binding.btnFavorite.isActivated = true
             holder.binding.btnFavorite.setOnClickListener {
-                onFavoriteTeamButtonClick(exists, holder, team)
+                onFavoriteTeamButtonClick(team)
             }
         } else {
-            if (exists){
-                holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
-            } else {
-                holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
-            }
+            holder.binding.btnFavorite.isActivated = exists
             holder.binding.btnFavorite.setOnClickListener {
                 onRegularTeamButtonClick(exists, holder, team)
             }
@@ -58,27 +54,26 @@ class TeamRecyclerAdapter(
         return teamsList.size
     }
 
-    fun isTeamFavorite(teamId: Int): Boolean {
+    private fun isTeamFavorite(teamId: Int): Boolean {
         var exists = false
         favoriteTeams?.forEach {
-            if (it.id.equals(teamId)) exists = true
+            if (it.id == teamId) exists = true
         }
         return exists
     }
 
-    fun onFavoriteTeamButtonClick(exists: Boolean, holder: TeamViewHolder, team: Team) {
-        holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
+    private fun onFavoriteTeamButtonClick(team: Team) {
         deleteCallback?.invoke(team)
         teamsList.remove(team)
         notifyDataSetChanged()
     }
 
-    fun onRegularTeamButtonClick(exists: Boolean, holder: TeamViewHolder, team: Team) {
+    private fun onRegularTeamButtonClick(exists: Boolean, holder: TeamViewHolder, team: Team) {
         if (!exists) {
-            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+            holder.binding.btnFavorite.isActivated = true
             insertCallback?.invoke(team)
         } else {
-            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
+            holder.binding.btnFavorite.isActivated = false
             deleteCallback?.invoke(team)
         }
     }

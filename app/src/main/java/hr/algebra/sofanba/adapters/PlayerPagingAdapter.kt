@@ -33,18 +33,14 @@ class PlayerPagingAdapter(
 
         val exists = isPlayerFavorite(player!!.id)
 
-        if (exists){
-            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
-        } else {
-            holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
-        }
+        holder.binding.btnFavorite.isActivated = exists
 
         holder.binding.btnFavorite.setOnClickListener {
             if (!exists) {
-                holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
+                holder.binding.btnFavorite.isActivated = true
                 insertCallback.invoke(player)
             } else {
-                holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_outline)
+                holder.binding.btnFavorite.isActivated = false
             }
         }
     }
@@ -58,10 +54,10 @@ class PlayerPagingAdapter(
 
     }
 
-    fun isPlayerFavorite(playerId: Int): Boolean {
+    private fun isPlayerFavorite(playerId: Int): Boolean {
         var exists = false
         favouritePlayers?.forEach {
-            if (it.id.equals(playerId)) exists = true
+            if (it.id == playerId) exists = true
         }
         return exists
     }
