@@ -1,10 +1,11 @@
-package hr.algebra.sofanba.adapters
+package hr.algebra.sofanba.adapters.sectionPager
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import hr.algebra.sofanba.fragments.TeamDetailsFragment
+import hr.algebra.sofanba.fragments.TeamMatchesFragment
 
 class TeamSectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
@@ -19,12 +20,12 @@ class TeamSectionsPagerAdapter(private val context: Context, fm: FragmentManager
                 TeamDetailsFragment()
             }
             else -> {
-                TeamDetailsFragment()
+                TeamMatchesFragment()
             }
         }
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return when (position) {
             0 -> "Details"
             else -> {

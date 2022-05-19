@@ -42,6 +42,41 @@ fun loadTeamImage(context: Context, team_abbr: String, imageView: ImageView, ima
     }
 }
 
+fun loadTeamMatchImage(team_abbr: String, imageView: ImageView){
+    when(team_abbr){
+        "ATL" -> imageView.load(R.drawable.ic_hawks)
+        "BOS" -> imageView.load(R.drawable.ic_celtics)
+        "BKN" -> imageView.load(R.drawable.ic_nets)
+        "CHA" -> imageView.load(R.drawable.ic_hornets)
+        "CHI" -> imageView.load(R.drawable.ic_bulls)
+        "CLE" -> imageView.load(R.drawable.ic_cavaliers)
+        "DAL" -> imageView.load(R.drawable.ic_mavericks)
+        "DEN" -> imageView.load(R.drawable.ic_nuggets)
+        "DET" -> imageView.load(R.drawable.ic_pistons)
+        "GSW" -> imageView.load(R.drawable.ic_warriors)
+        "HOU" -> imageView.load(R.drawable.ic_rockets)
+        "IND" -> imageView.load(R.drawable.ic_pacers)
+        "LAC" -> imageView.load(R.drawable.ic_clippers)
+        "LAL" -> imageView.load(R.drawable.ic_lakers)
+        "MEM" -> imageView.load(R.drawable.ic_grizzlies)
+        "MIA" -> imageView.load(R.drawable.ic_heat)
+        "MIL" -> imageView.load(R.drawable.ic_bucks)
+        "MIN" -> imageView.load(R.drawable.ic_timberwolves)
+        "NOP" -> imageView.load(R.drawable.ic_pelicans)
+        "NYK" -> imageView.load(R.drawable.ic_knicks)
+        "OKC" -> imageView.load(R.drawable.ic_thunder)
+        "ORL" -> imageView.load(R.drawable.ic_magic)
+        "PHI" -> imageView.load(R.drawable.ic_76ers)
+        "PHX" -> imageView.load(R.drawable.ic_suns)
+        "POR" -> imageView.load(R.drawable.ic_trailblazers)
+        "SAC" -> imageView.load(R.drawable.ic_kings)
+        "SAS" -> imageView.load(R.drawable.ic_spurs)
+        "TOR" -> imageView.load(R.drawable.ic_raptors)
+        "UTA" -> imageView.load(R.drawable.ic_jazz)
+        "WAS" -> imageView.load(R.drawable.ic_wizards)
+    }
+}
+
 fun getStadiumLocation(team_abbr: String): LatLng {
     when(team_abbr){
         "ATL" -> return LatLng(33.757222, -84.396389)

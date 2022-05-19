@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 
 import com.google.android.material.tabs.TabLayout
 import hr.algebra.sofanba.adapters.EXTRA_TEAM
-import hr.algebra.sofanba.adapters.TeamSectionsPagerAdapter
+import hr.algebra.sofanba.adapters.sectionPager.TeamSectionsPagerAdapter
 import hr.algebra.sofanba.databinding.ActivityTeamBinding
 import hr.algebra.sofanba.helpers.getTeamColor
 import hr.algebra.sofanba.network.model.Team

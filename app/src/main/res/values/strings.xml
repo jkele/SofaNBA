@@ -27,4 +27,9 @@
     <string name="division">DIVISION</string>
     <string name="teams_in_division">Other teams in the division</string>
     <string name="home_arena">Home Arena</string>
+    <string name="at">\@</string>
+    <string name="points_divider">-</string>
+    <string name="versus">vs</string>
+    <string name="regular_season">Regular season</string>
+    <string name="playoffs">Playoffs</string>
 </resources>

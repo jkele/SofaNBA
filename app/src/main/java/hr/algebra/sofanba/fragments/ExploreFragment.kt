@@ -17,7 +17,7 @@ import hr.algebra.sofanba.adapters.TeamRecyclerAdapter
 import hr.algebra.sofanba.databinding.FragmentExploreBinding
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.Team
-import hr.algebra.sofanba.network.paging.PlayerDiff
+import hr.algebra.sofanba.network.paging.player.PlayerDiff
 import hr.algebra.sofanba.viewmodels.ExploreViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

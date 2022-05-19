@@ -56,8 +56,9 @@ class TeamDetailsFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
         val location = getStadiumLocation(selectedTeam.abbreviation)
+        val zoomLevel = 15f
         googleMap.addMarker(MarkerOptions().position(location))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(location))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, zoomLevel))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

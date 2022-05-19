@@ -1,4 +1,4 @@
-package hr.algebra.sofanba.network.paging
+package hr.algebra.sofanba.network.paging.player
 
 import androidx.recyclerview.widget.DiffUtil
 import hr.algebra.sofanba.network.model.Player
