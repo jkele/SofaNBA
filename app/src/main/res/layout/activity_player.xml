@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/TeamActivityTheme">
+    android:theme="@style/PlayerActivityTheme">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/teamAppBarLayout"
+        android:id="@+id/playerAppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="104dp">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/teamToolbar"
+            android:id="@+id/playerToolbar"
             android:layout_width="match_parent"
             android:layout_height="56dp">
 
@@ -29,24 +29,23 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/teamTabLayout"
+            android:id="@+id/playerTabLayout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/color_primary"
-            map:tabIndicatorColor="@color/white"
-            map:tabIndicatorHeight="3dp"
-            map:tabSelectedTextColor="@color/white"
-            map:tabTextColor="#80ffffff" />
+            app:tabIndicatorColor="@color/white"
+            app:tabIndicatorHeight="3dp"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="#80ffffff" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/teamViewPager"
+        android:id="@+id/playerViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        map:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -14,6 +14,7 @@ data class Player(
     val lastName: String,
     val position: String,
     val team: Team,
+    @SerializedName("weight_pounds")
     val weightPounds: Int?
 ): Serializable {
 

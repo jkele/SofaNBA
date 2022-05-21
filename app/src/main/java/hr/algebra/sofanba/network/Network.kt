@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 const val BASE_URL_NBA = "https://www.balldontlie.io/api/v1/"
-const val BASE_URL_SOFA = "http://academy-2022.dev.sofascore.com/api/v1/academy/"
+const val BASE_URL_SOFA = "https://academy-2022.dev.sofascore.com/api/v1/academy/"
 
 class Network {
 

@@ -1,4 +1,4 @@
-package hr.algebra.sofanba.network.paging
+package hr.algebra.sofanba.network.paging.player
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState

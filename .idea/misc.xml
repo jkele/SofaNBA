@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_bottom_nav.xml" value="0.122" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_button_login.xml" value="0.122" />
+        <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_highlight_item_view.xml" value="0.135" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_player_item_view.xml" value="0.122" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_season_button.xml" value="0.135" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_team_image.xml" value="0.122" />
@@ -27,11 +28,15 @@
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/ic_warriors.xml" value="0.1725" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/activity_login.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/activity_main.xml" value="0.213768115942029" />
+        <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/activity_player.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/activity_team.xml" value="0.22" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/fragment_explore.xml" value="0.1" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/fragment_favorites.xml" value="0.213768115942029" />
+        <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/fragment_player_details.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/fragment_team_details.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/fragment_team_matches.xml" value="0.213768115942029" />
+        <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/highlight_item_view.xml" value="0.18857142857142858" />
+        <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/player_info_view.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/player_item_view.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/team_info_view.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/team_item_view.xml" value="0.213768115942029" />

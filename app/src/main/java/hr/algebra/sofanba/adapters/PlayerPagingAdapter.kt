@@ -2,15 +2,19 @@ package hr.algebra.sofanba.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import hr.algebra.sofanba.PlayerActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.PlayerItemViewBinding
 import hr.algebra.sofanba.network.model.Player
+
+const val EXTRA_PLAYER = "hr.algebra.sofanba.extraPlayer"
 
 class PlayerPagingAdapter(
     private val context: Context,
@@ -42,6 +46,13 @@ class PlayerPagingAdapter(
             } else {
                 holder.binding.btnFavorite.isActivated = false
             }
+        }
+
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, PlayerActivity::class.java).apply {
+                putExtra(EXTRA_PLAYER, player)
+            }
+            context.startActivity(intent)
         }
     }
 

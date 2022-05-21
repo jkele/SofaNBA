@@ -41,6 +41,10 @@ class LoginActivity : AppCompatActivity() {
             signInGoogle()
         }
 
+        binding.btnNoAcc.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            this.startActivity(intent)
+        }
 
     }
 

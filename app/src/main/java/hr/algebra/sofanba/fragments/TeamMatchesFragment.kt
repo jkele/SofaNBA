@@ -38,7 +38,7 @@ class TeamMatchesFragment: Fragment(R.layout.fragment_team_matches) {
 
         val pagingAdapter = TeamMatchesPagingAdapter(requireContext(), selectedTeam, MatchDiff)
         binding.rvMatches.adapter = pagingAdapter
-        submitPagingAdatperData(pagingAdapter)
+        submitPagingAdapterData(pagingAdapter)
 
 
         setButtonListeners(pagingAdapter)
@@ -50,16 +50,16 @@ class TeamMatchesFragment: Fragment(R.layout.fragment_team_matches) {
     private fun setButtonListeners(pagingAdapter: TeamMatchesPagingAdapter){
         binding.btnRegularSeason.setOnClickListener {
             postSeason = false
-            submitPagingAdatperData(pagingAdapter)
+            submitPagingAdapterData(pagingAdapter)
         }
 
         binding.btnPlayoffs.setOnClickListener {
             postSeason = true
-            submitPagingAdatperData(pagingAdapter)
+            submitPagingAdapterData(pagingAdapter)
         }
     }
 
-    private fun submitPagingAdatperData(pagingAdapter: TeamMatchesPagingAdapter) {
+    private fun submitPagingAdapterData(pagingAdapter: TeamMatchesPagingAdapter) {
         lifecycleScope.launch {
             val flow = viewModel.getMatchesFlow(selectedTeam.id, postSeason)
             flow.collectLatest {

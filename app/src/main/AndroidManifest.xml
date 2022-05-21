@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SofaNBA">
-
+        <activity
+            android:name=".PlayerActivity"
+            android:theme="@style/PlayerActivityTheme"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -17,9 +20,9 @@
 
         <activity
             android:name=".TeamActivity"
-            android:theme="@style/TeamActivityTheme"
             android:exported="false"
-            android:label="@string/title_activity_team" />
+            android:label="@string/title_activity_team"
+            android:theme="@style/TeamActivityTheme" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">

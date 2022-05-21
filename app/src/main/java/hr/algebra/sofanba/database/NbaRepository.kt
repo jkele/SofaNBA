@@ -19,6 +19,10 @@ class NbaRepository(private val nbaDao: NbaDao) {
         nbaDao.insertFavoritePlayer(player)
     }
 
+    fun isPlayerFavorite(id: Int): Boolean{
+        return nbaDao.isPlayerFavorite(id)
+    }
+
     fun deleteFavoritePlayer(player: FavoritePlayer) {
         nbaDao.deleteFavoritePlayer(player)
     }

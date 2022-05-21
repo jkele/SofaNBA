@@ -13,7 +13,7 @@ import hr.algebra.sofanba.network.Network
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.PlayerImage
 import hr.algebra.sofanba.network.model.Team
-import hr.algebra.sofanba.network.paging.PlayerPagingSource
+import hr.algebra.sofanba.network.paging.player.PlayerPagingSource
 import kotlinx.coroutines.launch
 
 class ExploreViewModel(application: Application): AndroidViewModel(application) {
