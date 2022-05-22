@@ -7,12 +7,11 @@ import hr.algebra.sofanba.network.model.Match
 import java.lang.Exception
 
 
-
 class TeamMatchPagingSource(
     val service: NbaService,
     val teamId: Int,
     val postSeason: Boolean
-    ): PagingSource<Int, Match>() {
+) : PagingSource<Int, Match>() {
     override fun getRefreshKey(state: PagingState<Int, Match>): Int? {
         return state.anchorPosition?.let {
             val anchorPage = state.closestPageToPosition(it)
@@ -24,13 +23,14 @@ class TeamMatchPagingSource(
         if (postSeason) {
             return try {
                 val nextPageNumber = params.key ?: 0
-                val response = service.getAllPostseasonMatchesForTeam(teamId, postSeason, 20, nextPageNumber)
+                val response =
+                    service.getAllPostseasonMatchesForTeam(teamId, postSeason, 20, nextPageNumber)
                 LoadResult.Page(
                     data = response.data.sortedBy { it.date },
                     prevKey = null,
                     nextKey = response.meta.nextPage
                 )
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 LoadResult.Error(e)
             }
         } else {
@@ -42,7 +42,7 @@ class TeamMatchPagingSource(
                     prevKey = null,
                     nextKey = response.meta.nextPage
                 )
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 LoadResult.Error(e)
             }
         }

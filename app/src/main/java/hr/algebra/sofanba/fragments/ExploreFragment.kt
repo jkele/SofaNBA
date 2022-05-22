@@ -12,7 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
-import hr.algebra.sofanba.adapters.PlayerPagingAdapter
+import hr.algebra.sofanba.adapters.paging.PlayerPagingAdapter
 import hr.algebra.sofanba.adapters.TeamRecyclerAdapter
 import hr.algebra.sofanba.databinding.FragmentExploreBinding
 import hr.algebra.sofanba.network.model.Player

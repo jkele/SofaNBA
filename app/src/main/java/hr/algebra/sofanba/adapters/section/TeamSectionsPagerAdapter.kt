@@ -1,4 +1,4 @@
-package hr.algebra.sofanba.adapters.sectionPager
+package hr.algebra.sofanba.adapters.section
 
 import android.content.Context
 import androidx.fragment.app.Fragment

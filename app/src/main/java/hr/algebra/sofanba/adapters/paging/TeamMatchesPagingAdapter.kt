@@ -1,4 +1,4 @@
-package hr.algebra.sofanba.adapters
+package hr.algebra.sofanba.adapters.paging
 
 import android.annotation.SuppressLint
 import android.content.Context

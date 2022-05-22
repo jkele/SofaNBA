@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
-import hr.algebra.sofanba.adapters.EXTRA_PLAYER
+import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.adapters.HighlightRecyclerAdapter
 import hr.algebra.sofanba.databinding.FragmentPlayerDetailsBinding
 import hr.algebra.sofanba.network.model.Player

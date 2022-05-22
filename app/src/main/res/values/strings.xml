@@ -39,4 +39,6 @@
     <string name="forward">Forward</string>
     <string name="center">Center</string>
     <string name="youtube_highlights">Youtube Highlights</string>
+    <string name="score_divider">-</string>
+    <string name="player_stats">Player stats</string>
 </resources>

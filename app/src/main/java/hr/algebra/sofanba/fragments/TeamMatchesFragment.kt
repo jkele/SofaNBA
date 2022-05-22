@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.EXTRA_TEAM
-import hr.algebra.sofanba.adapters.TeamMatchesPagingAdapter
+import hr.algebra.sofanba.adapters.paging.TeamMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentTeamMatchesBinding
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.network.paging.match.MatchDiff

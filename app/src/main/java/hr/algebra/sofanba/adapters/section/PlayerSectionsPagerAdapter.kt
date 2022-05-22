@@ -1,12 +1,11 @@
-package hr.algebra.sofanba.adapters.sectionPager
+package hr.algebra.sofanba.adapters.section
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import hr.algebra.sofanba.fragments.PlayerDetailsFragment
-import hr.algebra.sofanba.fragments.TeamDetailsFragment
-import hr.algebra.sofanba.fragments.TeamMatchesFragment
+import hr.algebra.sofanba.fragments.PlayerMatchesFragment
 
 class PlayerSectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm){
@@ -19,7 +18,7 @@ class PlayerSectionsPagerAdapter(private val context: Context, fm: FragmentManag
             0 -> PlayerDetailsFragment()
             1 -> PlayerDetailsFragment()
             else -> {
-                PlayerDetailsFragment()
+                PlayerMatchesFragment()
             }
         }
     }

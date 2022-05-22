@@ -2,6 +2,7 @@ package hr.algebra.sofanba.network
 
 import hr.algebra.sofanba.network.model.response.MatchResponse
 import hr.algebra.sofanba.network.model.response.PlayerResponse
+import hr.algebra.sofanba.network.model.response.StatsResponse
 import hr.algebra.sofanba.network.model.response.TeamResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -41,4 +42,13 @@ interface NbaService {
         @Query("per_page") numberOfResults: Int,
         @Query("page") pageNumber: Int
     ) : MatchResponse
+
+    @GET("stats")
+    suspend fun getStatsForMatchPerPlayer(
+        @Query("seasons[]") season: Int,
+        @Query("player_ids[]") playerId: Int,
+        @Query("postseason") postseason: Boolean,
+        @Query("per_page") numberOfResults: Int,
+        @Query("page") pageNumber: Int
+    ) : StatsResponse
 }
