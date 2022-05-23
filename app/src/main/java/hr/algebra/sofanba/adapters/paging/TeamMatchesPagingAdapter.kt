@@ -32,9 +32,7 @@ class TeamMatchesPagingAdapter(
         holder.binding.tvHomeTeamPoints.text = match!!.homeTeamScore.toString()
         holder.binding.tvAwayTeamPoints.text = match.visitorTeamScore.toString()
 
-
-        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        val matchDate = sdf.parse(match.date)
+        val matchDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(match.date)
 
         holder.binding.tvMatchDay.text = SimpleDateFormat("EEEE").format(matchDate!!).uppercase()
         holder.binding.tvMatchDate.text =

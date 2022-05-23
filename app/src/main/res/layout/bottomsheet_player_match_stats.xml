@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="720dp"
+    android:background="@drawable/background_bottomsheet">
+
+    <View
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/background_bottomsheet_icon"
+        android:layout_marginTop="8dp"
+        android:layout_width="48dp"
+        android:layout_height="4dp"/>
+
+    <ImageView
+        android:id="@+id/ivHomeTeamLogo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_timberwolves" />
+
+    <TextView
+        android:id="@+id/tvHomeTeamAbbreviation"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/black"
+        android:theme="@style/DescriptionNLv2Center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivHomeTeamLogo"
+        tools:text="MIN" />
+
+    <ImageView
+        android:id="@+id/ivAwayTeamLogo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_lakers" />
+
+    <TextView
+        android:id="@+id/tvAwayTeamAbbreviation"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:theme="@style/DescriptionNLv2Center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivHomeTeamLogo"
+        tools:text="LAL" />
+
+    <TextView
+        android:id="@+id/tvMatchDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:theme="@style/AssistiveNLv2Center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="01 FEB 2022" />
+
+    <TextView
+        android:id="@+id/tvPlayerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:theme="@style/HeadlineMediumNLv1Center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvMatchDate"
+        tools:text="LeBron James" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/timePlayed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/tvPlayerName" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/fieldGoalsMade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/timePlayed" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/fieldGoalsAttempts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fieldGoalsMade" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/fieldGoalsThreeMade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fieldGoalsAttempts" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/fieldGoalsThreeAttempts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fieldGoalsThreeMade" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/freeThrowsMade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fieldGoalsThreeAttempts" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/freeThrowsAttempts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/freeThrowsMade" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/offensiveRebounds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/freeThrowsAttempts" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/defensiveRebounds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/offensiveRebounds" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/rebounds"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/defensiveRebounds" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/assists"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/rebounds" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/steals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/assists" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/blocks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/steals" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/turnover"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/blocks" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/personalFouls"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/turnover" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/points"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/personalFouls" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/fieldGoalPer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/points" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/fieldGoalThreePer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fieldGoalPer" />
+
+    <hr.algebra.sofanba.views.PlayerMatchStatsView
+        android:id="@+id/freeThrowPer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/fieldGoalThreePer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

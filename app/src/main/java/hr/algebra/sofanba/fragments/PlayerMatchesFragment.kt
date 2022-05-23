@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -35,7 +36,7 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
         binding.rvPlayerMatches.layoutManager = LinearLayoutManager(requireContext())
         selectedPlayer = requireActivity().intent.getSerializableExtra(EXTRA_PLAYER) as Player
 
-        val pagingAdapter = PlayerMatchesPagingAdapter(requireContext(), PlayerMatchDiff)
+        val pagingAdapter = PlayerMatchesPagingAdapter(requireContext(), requireActivity().supportFragmentManager, PlayerMatchDiff)
         binding.rvPlayerMatches.adapter = pagingAdapter
 
         lifecycleScope.launch {

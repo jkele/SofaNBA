@@ -42,6 +42,42 @@ fun loadTeamImage(context: Context, team_abbr: String, imageView: ImageView, ima
     }
 }
 
+fun getTeamAbbr(teamId: Int): String {
+    when(teamId) {
+        1 -> return "ATL"
+        2 -> return "BOS"
+        3 -> return "BKN"
+        4 -> return "CHA"
+        5 -> return "CHI"
+        6 -> return "CLE"
+        7 -> return "DAL"
+        8 -> return "DEN"
+        9 -> return "DET"
+        10 -> return "GSW"
+        11 -> return "HOU"
+        12 -> return "IND"
+        13 -> return "LAC"
+        14 -> return "LAL"
+        15 -> return "MEM"
+        16 -> return "MIA"
+        17 -> return "MIL"
+        18 -> return "MIN"
+        19 -> return "NOP"
+        20 -> return "NYK"
+        21 -> return "OKC"
+        22 -> return "ORL"
+        23 -> return "PHI"
+        24 -> return "PHX"
+        25 -> return "POR"
+        26 -> return "SAC"
+        27 -> return "SAS"
+        28 -> return "TOR"
+        29 -> return "UTA"
+        30 -> return "WAS"
+    }
+    return "ATL"
+}
+
 fun loadTeamMatchImage(team_abbr: String, imageView: ImageView){
     when(team_abbr){
         "ATL" -> imageView.load(R.drawable.ic_hawks)
