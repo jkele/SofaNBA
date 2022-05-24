@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView
 import coil.load
 import com.google.android.gms.maps.model.LatLng
 import hr.algebra.sofanba.R
+import hr.algebra.sofanba.adapters.paging.PlayerPagingAdapter
 
 fun loadTeamImage(context: Context, team_abbr: String, imageView: ImageView, imageContainer: CardView){
     when(team_abbr){
@@ -185,8 +186,24 @@ fun getTeamColor(team_abbr: String): Int {
     return R.color.color_primary
 }
 
+fun loadPlayerImagePlaceholder(position: Int, imageView: ImageView) {
+    val uiPosition = position + 1
+
+    if (uiPosition % 2 == 0 && uiPosition % 3 != 0 && position % 3 != 0) {
+        imageView.load(R.drawable.ic_player_two)
+    } else if(uiPosition % 3 == 0) {
+        imageView.load(R.drawable.ic_player_three)
+    } else if (position % 3 == 0) {
+        imageView.load(R.drawable.ic_player_one)
+    } else {
+        imageView.load(R.drawable.ic_player_two)
+    }
+}
+
 private fun loadImage(context: Context, imageView: ImageView, imageContainer: CardView, color: Int, image: Int){
     imageContainer.setCardBackgroundColor(context.resources.getColor(color))
     imageView.load(image)
 }
+
+
 

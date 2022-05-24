@@ -11,6 +11,7 @@ import hr.algebra.sofanba.PlayerActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.databinding.PlayerItemViewBinding
+import hr.algebra.sofanba.helpers.loadPlayerImagePlaceholder
 import hr.algebra.sofanba.network.model.Player
 
 class FavoritePlayerRecyclerAdapter(
@@ -28,7 +29,7 @@ class FavoritePlayerRecyclerAdapter(
         return FavoritePlayerViewHolder(view)
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     override fun onBindViewHolder(holder: FavoritePlayerViewHolder, position: Int) {
         val player = favoritesList[position]
 
@@ -47,6 +48,8 @@ class FavoritePlayerRecyclerAdapter(
             }
             context.startActivity(intent)
         }
+
+        loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
     }
 
     override fun getItemCount(): Int {

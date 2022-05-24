@@ -9,9 +9,11 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import hr.algebra.sofanba.PlayerActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.PlayerItemViewBinding
+import hr.algebra.sofanba.helpers.loadPlayerImagePlaceholder
 import hr.algebra.sofanba.network.model.Player
 
 const val EXTRA_PLAYER = "hr.algebra.sofanba.extraPlayer"
@@ -54,6 +56,9 @@ class PlayerPagingAdapter(
             }
             context.startActivity(intent)
         }
+
+        loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
@@ -61,9 +66,7 @@ class PlayerPagingAdapter(
         return PlayerViewHolder(view)
     }
 
-    fun loadPlayerImage() {
 
-    }
 
     private fun isPlayerFavorite(playerId: Int): Boolean {
         var exists = false

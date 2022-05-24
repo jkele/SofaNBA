@@ -7,15 +7,25 @@
     android:layout_marginBottom="8dp"
     android:background="@drawable/background_player_item_view">
 
-    <ImageView
-        android:id="@+id/ivPlayerImage"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageContainer"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        app:cardCornerRadius="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivPlayerImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvPlayerName"
@@ -24,7 +34,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:theme="@style/BodyLargeNLv1Left"
-        app:layout_constraintStart_toEndOf="@+id/ivPlayerImage"
+        app:layout_constraintStart_toEndOf="@+id/imageContainer"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="LeBron James" />
 
@@ -35,7 +45,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:theme="@style/BodyMediumNLv1Left"
-        app:layout_constraintStart_toEndOf="@+id/ivPlayerImage"
+        app:layout_constraintStart_toEndOf="@+id/imageContainer"
         app:layout_constraintTop_toBottomOf="@id/tvPlayerName"
         tools:text="LAL" />
 
@@ -45,10 +55,10 @@
         android:layout_height="24dp"
         android:layout_marginEnd="24dp"
         android:background="@android:color/transparent"
+        android:src="@drawable/favorite_button_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/color_secondary"
-        android:src="@drawable/favorite_button_selector" />
+        app:tint="@color/color_secondary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
