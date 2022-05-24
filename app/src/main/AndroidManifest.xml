@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SofaNBA">
         <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:theme="@style/AboutTheme" />
+        <activity
             android:name=".PlayerActivity"
-            android:theme="@style/PlayerActivityTheme"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/PlayerActivityTheme" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

@@ -1,11 +1,15 @@
 package hr.algebra.sofanba.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import hr.algebra.sofanba.PlayerActivity
 import hr.algebra.sofanba.R
+import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.databinding.PlayerItemViewBinding
 import hr.algebra.sofanba.network.model.Player
 
@@ -24,6 +28,7 @@ class FavoritePlayerRecyclerAdapter(
         return FavoritePlayerViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: FavoritePlayerViewHolder, position: Int) {
         val player = favoritesList[position]
 
@@ -34,6 +39,13 @@ class FavoritePlayerRecyclerAdapter(
             deleteCallback.invoke(player)
             favoritesList.remove(player)
             notifyDataSetChanged()
+        }
+
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, PlayerActivity::class.java).apply {
+                putExtra(EXTRA_PLAYER, player)
+            }
+            context.startActivity(intent)
         }
     }
 

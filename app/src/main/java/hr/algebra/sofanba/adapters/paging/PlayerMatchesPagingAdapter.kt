@@ -36,6 +36,14 @@ class PlayerMatchesPagingAdapter(
         holder.binding.tvHomeTeamAbbreviation.text = getTeamAbbr(gameStats.game.home_team_id)
         holder.binding.tvAwayTeamAbbreviation.text = getTeamAbbr(gameStats.game.visitor_team_id)
 
+        if (gameStats.game.home_team_score > gameStats.game.visitor_team_score) {
+            holder.binding.tvHomeTeamPoints.isActivated = true
+            holder.binding.tvAwayTeamPoints.isActivated = false
+        } else {
+            holder.binding.tvHomeTeamPoints.isActivated = false
+            holder.binding.tvAwayTeamPoints.isActivated = true
+        }
+
         loadTeamImage(
             context,
             getTeamAbbr(gameStats.game.home_team_id),
