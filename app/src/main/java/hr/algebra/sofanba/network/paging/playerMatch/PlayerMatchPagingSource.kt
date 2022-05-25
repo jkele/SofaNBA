@@ -24,14 +24,24 @@ class PlayerMatchPagingSource(
             val nextPageNumber = params.key ?: 0
             val response =
                 service.getStatsForMatchPerPlayer(season, playerId, postseason, 20, nextPageNumber)
-            LoadResult.Page(
-                data = response.data,
-                prevKey = null,
-                nextKey = response.meta.nextPage
-            )
+            if(response.meta.nextPage != 0) {
+                LoadResult.Page(
+                    data = response.data,
+                    prevKey = null,
+                    nextKey = response.meta.nextPage
+                )
+            } else {
+                LoadResult.Page(
+                    data = response.data,
+                    prevKey = null,
+                    nextKey = null
+                )
+            }
         } catch (e: Exception) {
             LoadResult.Error(e)
         }
     }
+
+    override val keyReuseSupported = true
 
 }

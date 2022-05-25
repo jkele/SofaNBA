@@ -17,6 +17,7 @@ import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.paging.playerMatch.PlayerMatchDiff
 import hr.algebra.sofanba.viewmodels.PlayerMatchesViewModel
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
 class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {

@@ -17,7 +17,7 @@ class PlayerPagingSource(val service: NbaService): PagingSource<Int, Player>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Player> {
         return try {
-            val nextPageNumber = params.key ?: 0
+            val nextPageNumber = params.key ?: 1
             val response = service.getPlayers(20, nextPageNumber)
             LoadResult.Page(
                 data = response.data,

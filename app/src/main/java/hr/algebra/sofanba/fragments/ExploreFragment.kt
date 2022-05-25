@@ -61,9 +61,6 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         return binding.root
     }
 
-    var insertFavoritePlayer = fun(it: Player) { viewModel.insertFavoritePlayer(it) }
-    var deleteFavoritePlayer = fun(it: Player) { viewModel.deleteFavoritePlayer(it) }
-
     fun getPlayersList(){
         viewModel.getFavoritePlayers()
         val favoritePlayersList = viewModel.favoritePlayers

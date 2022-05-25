@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvMonthYear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:theme="@style/HeadlineSmallNLv2Left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="October 2021" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/matchItem"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:background="@drawable/background_player_item_view"
+        app:layout_constraintTop_toBottomOf="@id/tvMonthYear">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homeImageContainer"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:backgroundTint="@color/team_lakers_primary">
+
+            <ImageView
+                android:id="@+id/ivHomeTeamImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                tools:src="@drawable/ic_lakers" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvMatchDate"
+            android:layout_width="152dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:theme="@style/DescriptionNLv2Center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="TUESDAY, 19 OCT 2021" />
+
+        <TextView
+            android:id="@+id/scoreDivider"
+            android:layout_width="24dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="36dp"
+            android:text="@string/score_divider"
+            android:theme="@style/DisplayLargeNLv1Center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvHomeTeamPoints"
+            android:layout_width="56dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="36dp"
+            android:textColor="@color/match_points_selector"
+            android:theme="@style/DisplayLargeNLv1Center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/scoreDivider"
+            tools:text="122" />
+
+        <TextView
+            android:id="@+id/tvAwayTeamPoints"
+            android:layout_width="56dp"
+            android:layout_height="32dp"
+            android:layout_marginBottom="36dp"
+            android:textColor="@color/match_points_selector"
+            android:theme="@style/DisplayLargeNLv1Center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/scoreDivider"
+            tools:text="116" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/awayImageContainer"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:backgroundTint="@color/team_celtics_primary">
+
+            <ImageView
+                android:id="@+id/ivAwayTeamImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                tools:src="@drawable/ic_celtics" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvHomeTeamAbbreviation"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="6dp"
+            android:theme="@style/AssistiveNLv1Center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/homeImageContainer"
+            tools:text="LAL" />
+
+        <TextView
+            android:id="@+id/tvAwayTeamAbbreviation"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="8dp"
+            android:theme="@style/AssistiveNLv1Center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/awayImageContainer"
+            tools:text="BOS" />
+
+        <TextView
+            android:id="@+id/tvMatchStatus"
+            android:layout_width="87dp"
+            android:layout_height="16dp"
+            android:textAllCaps="true"
+            android:layout_marginTop="12dp"
+            android:theme="@style/DescriptionNLv2Center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scoreDivider"
+            tools:text="FINAL" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
