@@ -54,7 +54,7 @@ class PlayerMatchStatsBottomSheet(val gameStats: GameStats): BottomSheetDialogFr
         binding.points.fillPlayerMatchStats("Points (PTS)", gameStats.pts)
         binding.fieldGoalPer.fillPlayerMatchStats("Field goal percentage (FG%)", gameStats.fg_pct.toInt())
         binding.fieldGoalThreePer.fillPlayerMatchStats("Field goal 3-pointer percentage (FG3%)", gameStats.fg3_pct.toInt())
-        binding.freeThrowPer.fillPlayerMatchStats("Free throw percentage (FT%)", gameStats.ft_pct)
+        binding.freeThrowPer.fillPlayerMatchStats("Free throw percentage (FT%)", gameStats.ft_pct.toInt())
 
         return binding.root
     }

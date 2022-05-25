@@ -22,7 +22,8 @@ class PlayerPagingAdapter(
     private val context: Context,
     private val favouritePlayers: ArrayList<Player>?,
     diffCallback: DiffUtil.ItemCallback<Player>,
-    private val insertCallback: (Player) -> Unit
+    private val insertCallback: (Player) -> Unit,
+    private val deleteCallback: (Player) -> Unit
 ) :
     PagingDataAdapter<Player, PlayerPagingAdapter.PlayerViewHolder>(diffCallback) {
 

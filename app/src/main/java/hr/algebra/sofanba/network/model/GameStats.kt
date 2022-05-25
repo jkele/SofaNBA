@@ -11,7 +11,7 @@ data class GameStats(
     val fg_pct: Double,
     val fga: Int,
     val fgm: Int,
-    val ft_pct: Int,
+    val ft_pct: Double,
     val fta: Int,
     val ftm: Int,
     val game: Game,

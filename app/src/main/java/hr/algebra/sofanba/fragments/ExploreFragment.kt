@@ -69,9 +69,11 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         val favoritePlayersList = viewModel.favoritePlayers
 
         binding.tvAll.text = getString(R.string.all_players)
-        val pagingAdapter = PlayerPagingAdapter(requireContext(), favoritePlayersList.value, PlayerDiff) {
+        val pagingAdapter = PlayerPagingAdapter(requireContext(), favoritePlayersList.value, PlayerDiff, {
             viewModel.insertFavoritePlayer(it)
-        }
+        }, {
+            viewModel.deleteFavoritePlayer(it)
+        })
         binding.rvPlayers.adapter = pagingAdapter
 
         lifecycleScope.launch {
