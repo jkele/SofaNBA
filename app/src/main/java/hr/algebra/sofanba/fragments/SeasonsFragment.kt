@@ -8,6 +8,9 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
+import androidx.paging.LoadStates
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.SeasonMatchesPagingAdapter
@@ -34,14 +37,18 @@ class SeasonsFragment: Fragment(R.layout.fragment_seasons) {
         val pagingAdapter = SeasonMatchesPagingAdapter(requireContext(), SeasonMatchDiff)
         binding.rvSeasonMatches.adapter = pagingAdapter
 
+        pagingAdapter.addLoadStateListener {
+            if (it.refresh is LoadState.Loading){
+                binding.seasonProgressBar.visibility = ProgressBar.VISIBLE
+            } else {
+                binding.seasonProgressBar.visibility = ProgressBar.GONE
+            }
+        }
 
         lifecycleScope.launch {
             val flow = viewModel.getSeasonMatchesFlow(2021, "2021-10-10" , false)
             flow.collectLatest {
                 pagingAdapter.submitData(it)
-            }
-            while (pagingAdapter.itemCount != 0) {
-                binding.seasonProgressBar.visibility = ProgressBar.GONE
             }
         }
 

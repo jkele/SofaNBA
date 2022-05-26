@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.PlayerPagingAdapter
@@ -73,13 +74,19 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         })
         binding.rvPlayers.adapter = pagingAdapter
 
+        pagingAdapter.addLoadStateListener {
+            if (it.refresh is LoadState.Loading){
+                binding.progressBar.visibility = ProgressBar.VISIBLE
+            } else {
+                binding.progressBar.visibility = ProgressBar.GONE
+            }
+        }
+
         lifecycleScope.launch {
-            binding.progressBar.visibility = ProgressBar.VISIBLE
             viewModel.flow.collectLatest {
                 pagingAdapter.submitData(it)
             }
         }
-        binding.progressBar.visibility = ProgressBar.GONE
     }
 
     var insertFavoriteTeam = fun(it: Team) { viewModel.insertFavoriteTeam(it) }
@@ -89,9 +96,11 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         viewModel.getFavoriteTeams()
         val favoriteTeams = viewModel.favoriteTeams.value
 
+        binding.progressBar.visibility = ProgressBar.VISIBLE
+
         binding.tvAll.text = getString(R.string.all_teams)
         viewModel.teamsList.observe(viewLifecycleOwner) {
-            binding.progressBar.visibility = ProgressBar.VISIBLE
+
             val adapter = TeamRecyclerAdapter(requireContext(), it, favoriteTeams, false
             , insertFavoriteTeam, deleteFavoriteTeam)
             binding.rvPlayers.adapter = adapter

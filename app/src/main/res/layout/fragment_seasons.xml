@@ -6,6 +6,7 @@
 
     <ProgressBar
         android:id="@+id/seasonProgressBar"
+        android:visibility="visible"
         android:translationZ="2dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

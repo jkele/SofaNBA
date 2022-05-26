@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -54,6 +55,11 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
                     binding.emptyStateView.setupEmptyStateView(selectedPlayer.firstName + " "
                             + selectedPlayer.lastName + " hasn't played this season.")
                 }
+            }
+            if (it.refresh is LoadState.Loading){
+                binding.progressBar.visibility = ProgressBar.VISIBLE
+            } else {
+                binding.progressBar.visibility = ProgressBar.GONE
             }
         }
 
