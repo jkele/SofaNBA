@@ -48,6 +48,7 @@ class PlayerPagingAdapter(
                 insertCallback.invoke(player)
             } else {
                 holder.binding.btnFavorite.isActivated = false
+                deleteCallback.invoke(player)
             }
         }
 

@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.adapters.HighlightRecyclerAdapter
@@ -34,8 +36,13 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
 
         binding.rvHighlights.layoutManager = LinearLayoutManager(requireContext())
         viewModel.highlightsList.observe(viewLifecycleOwner) {
-            val adapter = HighlightRecyclerAdapter(requireContext(), it)
-            binding.rvHighlights.adapter = adapter
+            if(it.isNotEmpty()) {
+                binding.tvHighlightsTitle.visibility = TextView.VISIBLE
+                binding.rvHighlights.visibility = RecyclerView.VISIBLE
+
+                val adapter = HighlightRecyclerAdapter(requireContext(), it)
+                binding.rvHighlights.adapter = adapter
+            }
         }
 
 

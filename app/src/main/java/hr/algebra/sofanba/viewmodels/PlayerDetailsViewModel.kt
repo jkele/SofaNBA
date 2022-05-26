@@ -41,6 +41,7 @@ class PlayerDetailsViewModel(application: Application): AndroidViewModel(applica
             try {
                 highlightsList.value = Network().getSofaService().getHighlightsForPlayer(id).data
             } catch (e: Exception){
+                highlightsList.value = arrayListOf()
             }
         }
     }

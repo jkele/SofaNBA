@@ -42,6 +42,4 @@ class PlayerMatchPagingSource(
         }
     }
 
-    override val keyReuseSupported = true
-
 }

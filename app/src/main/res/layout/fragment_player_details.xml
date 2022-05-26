@@ -16,7 +16,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-
         <hr.algebra.sofanba.views.PlayerInfoView
             android:id="@+id/playerInfoView"
             android:layout_width="match_parent"
@@ -33,6 +32,7 @@
         android:layout_marginTop="22dp"
         android:text="@string/youtube_highlights"
         android:theme="@style/HeadlineSmallNLv1Left"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardPlayerInfo" />
 
@@ -41,7 +41,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/tvHighlightsTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
