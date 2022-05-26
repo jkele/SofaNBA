@@ -63,14 +63,33 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
             }
         }
 
-        lifecycleScope.launch {
-            val flow = viewModel.getPlayerMatchesFlow(2017, selectedPlayer.id, false)
-            flow.collectLatest {
-                pagingAdapter.submitData(it)
-            }
-        }
+        submitPagingAdapterData(pagingAdapter, false)
+        setButtonListeners(pagingAdapter)
 
         return binding.root
     }
 
+    private fun setButtonListeners(pagingAdapter: PlayerMatchesPagingAdapter) {
+        binding.btnRegularSeason.isActivated = true
+        binding.btnRegularSeason.setOnClickListener {
+            binding.btnRegularSeason.isActivated = true
+            binding.btnPlayoffs.isActivated = false
+            submitPagingAdapterData(pagingAdapter, false)
+        }
+
+        binding.btnPlayoffs.setOnClickListener {
+            binding.btnPlayoffs.isActivated = true
+            binding.btnRegularSeason.isActivated = false
+            submitPagingAdapterData(pagingAdapter, true)
+        }
+    }
+
+    private fun submitPagingAdapterData(pagingAdapter: PlayerMatchesPagingAdapter, postseason: Boolean) {
+        lifecycleScope.launch {
+            val flow = viewModel.getPlayerMatchesFlow(2017, selectedPlayer.id, postseason)
+            flow.collectLatest {
+                pagingAdapter.submitData(it)
+            }
+        }
+    }
 }

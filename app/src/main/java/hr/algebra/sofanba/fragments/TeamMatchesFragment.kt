@@ -18,13 +18,12 @@ import hr.algebra.sofanba.viewmodels.TeamMatchesViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class TeamMatchesFragment: Fragment(R.layout.fragment_team_matches) {
+class TeamMatchesFragment : Fragment(R.layout.fragment_team_matches) {
 
     private lateinit var binding: FragmentTeamMatchesBinding
     private val viewModel: TeamMatchesViewModel by activityViewModels()
 
     private lateinit var selectedTeam: Team
-    private var postSeason = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +37,7 @@ class TeamMatchesFragment: Fragment(R.layout.fragment_team_matches) {
 
         val pagingAdapter = TeamMatchesPagingAdapter(requireContext(), selectedTeam, MatchDiff)
         binding.rvMatches.adapter = pagingAdapter
-        submitPagingAdapterData(pagingAdapter)
+        submitPagingAdapterData(pagingAdapter, false)
 
 
         setButtonListeners(pagingAdapter)
@@ -47,21 +46,27 @@ class TeamMatchesFragment: Fragment(R.layout.fragment_team_matches) {
         return binding.root
     }
 
-    private fun setButtonListeners(pagingAdapter: TeamMatchesPagingAdapter){
+    private fun setButtonListeners(pagingAdapter: TeamMatchesPagingAdapter) {
+        binding.btnRegularSeason.isActivated = true
         binding.btnRegularSeason.setOnClickListener {
-            postSeason = false
-            submitPagingAdapterData(pagingAdapter)
+            binding.btnRegularSeason.isActivated = true
+            binding.btnPlayoffs.isActivated = false
+            submitPagingAdapterData(pagingAdapter, false)
         }
 
         binding.btnPlayoffs.setOnClickListener {
-            postSeason = true
-            submitPagingAdapterData(pagingAdapter)
+            binding.btnPlayoffs.isActivated = true
+            binding.btnRegularSeason.isActivated = false
+            submitPagingAdapterData(pagingAdapter, true)
         }
     }
 
-    private fun submitPagingAdapterData(pagingAdapter: TeamMatchesPagingAdapter) {
+    private fun submitPagingAdapterData(
+        pagingAdapter: TeamMatchesPagingAdapter,
+        postseason: Boolean
+    ) {
         lifecycleScope.launch {
-            val flow = viewModel.getMatchesFlow(selectedTeam.id, postSeason)
+            val flow = viewModel.getMatchesFlow(selectedTeam.id, postseason)
             flow.collectLatest {
                 pagingAdapter.submitData(it)
             }

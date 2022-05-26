@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/surface_surface_0"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,15 +13,16 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:translationZ="3dp"
-            android:layout_height="wrap_content"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <hr.algebra.sofanba.views.TeamInfoView
+            android:background="@drawable/background_team_info_view"
             android:id="@+id/teamInfoView"
             android:layout_width="match_parent"
             android:layout_height="168dp"
@@ -60,41 +62,41 @@
             android:theme="@style/HeadlineSmallNLv1Left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvDivisionTeams" />
-        
+
         <androidx.cardview.widget.CardView
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="30dp"
-            app:layout_constraintTop_toBottomOf="@id/tvArenaTitle"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="376dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="30dp"
             app:cardCornerRadius="16dp"
-            android:layout_width="match_parent"
-            android:layout_height="376dp">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvArenaTitle">
 
             <ImageView
-                android:src="@drawable/ic_maps_pin"
-                android:layout_marginTop="8dp"
-                android:layout_marginStart="8dp"
                 android:layout_width="24dp"
-                android:layout_height="24dp"/>
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_maps_pin" />
 
             <TextView
                 android:id="@+id/tvCityName"
-                tools:text="Los Angeles"
-                android:theme="@style/BodyMediumNLv1Left"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="40dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="12dp"
+                android:theme="@style/BodyMediumNLv1Left"
+                tools:text="Los Angeles" />
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="328dp"
-                app:cardCornerRadius="16dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginTop="40dp">
+                app:cardCornerRadius="16dp">
 
                 <fragment
                     android:id="@+id/map"
@@ -104,10 +106,8 @@
                     tools:context=".fragments.TeamDetailsFragment" />
 
             </androidx.cardview.widget.CardView>
-            
-        </androidx.cardview.widget.CardView>
 
-        
+        </androidx.cardview.widget.CardView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

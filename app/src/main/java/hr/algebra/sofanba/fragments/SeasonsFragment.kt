@@ -45,15 +45,34 @@ class SeasonsFragment: Fragment(R.layout.fragment_seasons) {
             }
         }
 
-        lifecycleScope.launch {
-            val flow = viewModel.getSeasonMatchesFlow(2021, "2021-10-10" , false)
-            flow.collectLatest {
-                pagingAdapter.submitData(it)
-            }
-        }
+        submitPagingAdapterData(pagingAdapter, false)
+        setButtonListeners(pagingAdapter)
 
         return binding.root
     }
 
+    private fun setButtonListeners(pagingAdapter: SeasonMatchesPagingAdapter) {
+        binding.btnRegularSeason.isActivated = true
+        binding.btnRegularSeason.setOnClickListener {
+            binding.btnRegularSeason.isActivated = true
+            binding.btnPlayoffs.isActivated = false
+            submitPagingAdapterData(pagingAdapter, false)
+        }
+
+        binding.btnPlayoffs.setOnClickListener {
+            binding.btnPlayoffs.isActivated = true
+            binding.btnRegularSeason.isActivated = false
+            submitPagingAdapterData(pagingAdapter, true)
+        }
+    }
+
+    private fun submitPagingAdapterData(pagingAdapter: SeasonMatchesPagingAdapter, postseason: Boolean) {
+        lifecycleScope.launch {
+            val flow = viewModel.getSeasonMatchesFlow(2021, "2021-10-10" , postseason)
+            flow.collectLatest {
+                pagingAdapter.submitData(it)
+            }
+        }
+    }
 
 }
