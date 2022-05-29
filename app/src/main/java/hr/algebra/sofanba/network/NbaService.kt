@@ -60,4 +60,12 @@ interface NbaService {
         @Query("per_page") numberOfResults: Int,
         @Query("page") pageNumber: Int
     ) : StatsResponse
+
+    @GET("stats")
+    suspend fun getStatsForMatch(
+        @Query("game_ids[]") gameId: Int,
+        @Query("per_page") numberOfResults: Int,
+        @Query("page") pageNumber: Int
+    ) : StatsResponse
+
 }

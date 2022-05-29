@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="104dp"
+    android:layout_height="112dp">
+
+    <TextView
+        android:id="@+id/tvStatTitle"
+        android:layout_width="46dp"
+        android:layout_height="16dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        android:theme="@style/DescriptionNLv2Center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="FG%" />
+
+    <ProgressBar
+        android:id="@+id/homeStatProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
+        android:progressDrawable="@drawable/stats_progressbar_red"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvStatTitle"/>
+
+    <ProgressBar
+        android:id="@+id/awayStatProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="32dp"
+        android:layout_height="48dp"
+        android:progressDrawable="@drawable/stats_progressbar_red"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvStatTitle"/>
+
+    <TextView
+        android:id="@+id/tvHomeStatValue"
+        app:layout_constraintTop_toBottomOf="@id/homeStatProgressBar"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="57"
+        android:theme="@style/HeadlineMediumNLv1Center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_width="32dp"
+        android:layout_height="24dp"/>
+
+    <View
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/neutrals_n_lv_3"
+        android:layout_width="1dp"
+        android:layout_marginBottom="8dp"
+        android:layout_height="20dp"/>
+
+    <TextView
+        android:id="@+id/tvAwayStatValue"
+        app:layout_constraintTop_toBottomOf="@id/awayStatProgressBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="57"
+        android:theme="@style/HeadlineMediumNLv1Center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_width="32dp"
+        android:layout_height="24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

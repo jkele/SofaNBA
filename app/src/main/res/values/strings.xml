@@ -38,7 +38,6 @@
     <string name="guard">Guard</string>
     <string name="forward">Forward</string>
     <string name="center">Center</string>
-    <string name="youtube_highlights">Youtube Highlights</string>
     <string name="score_divider">-</string>
     <string name="player_stats">Player stats</string>
     <string name="about">About</string>
@@ -53,4 +52,10 @@
     <string name="developer">Developer</string>
     <string name="jk">Josip Kelentrić</string>
     <string name="no_results_found">No results found</string>
+    <string name="title_activity_match">MatchActivity</string>
+    <string name="stadium">Stadium</string>
+    <string name="match_info">Match info</string>
+    <string name="youtube_highlights">Youtube Highlights</string>
+    <string name="add_a_youtube_url_to_see_videos_for_this_team">Add a YouTube URL to see videos for this team</string>
+    <string name="add_url">Add URL</string>
 </resources>

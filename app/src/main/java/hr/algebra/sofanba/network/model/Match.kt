@@ -1,6 +1,7 @@
 package hr.algebra.sofanba.network.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Match(
     val id: Int,
@@ -18,5 +19,5 @@ data class Match(
     val homeTeam: Team,
     @SerializedName("visitor_team")
     val visitorTeam: Team
-) {
+): Serializable {
 }

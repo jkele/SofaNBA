@@ -33,8 +33,6 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
 
     private lateinit var selectedPlayer: Player
 
-    private var itemCount = 0
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,7 +48,11 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
 
         pagingAdapter.addLoadStateListener {
             if (it.append.endOfPaginationReached) {
-                if (pagingAdapter.itemCount < 1) {
+                if (pagingAdapter.itemCount < 1 && binding.btnPlayoffs.isActivated) {
+                    binding.emptyStateView.visibility = View.VISIBLE
+                    binding.emptyStateView.setupEmptyStateView(selectedPlayer.firstName + " "
+                            + selectedPlayer.lastName + " hasn't played in the playoffs.")
+                } else {
                     binding.emptyStateView.visibility = View.VISIBLE
                     binding.emptyStateView.setupEmptyStateView(selectedPlayer.firstName + " "
                             + selectedPlayer.lastName + " hasn't played this season.")

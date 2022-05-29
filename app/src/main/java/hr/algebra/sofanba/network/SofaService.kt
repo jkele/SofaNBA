@@ -13,4 +13,6 @@ interface SofaService {
     @GET("highlight/player/{playerId}")
     suspend fun getHighlightsForPlayer(@Path("playerId")playerId: Int): HighlightResponse
 
+    @GET("highlight/event/{eventId}")
+    suspend fun getHighlightsForMatch(@Path("eventId")matchId: Int): HighlightResponse
 }

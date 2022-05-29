@@ -2,6 +2,7 @@ package hr.algebra.sofanba.adapters.paging
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.opengl.Visibility
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -12,12 +13,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import hr.algebra.sofanba.MatchActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.SeasonMatchItemViewBinding
 import hr.algebra.sofanba.helpers.loadTeamImage
 import hr.algebra.sofanba.network.model.Match
 import java.text.SimpleDateFormat
 import java.util.*
+
+const val EXTRA_MATCH = "hr.algebra.sofanba.extraMatch"
 
 class SeasonMatchesPagingAdapter(
     private val context: Context,
@@ -68,6 +72,12 @@ class SeasonMatchesPagingAdapter(
             holder.binding.tvAwayTeamPoints.isActivated = true
         }
 
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, MatchActivity::class.java).apply {
+                putExtra(EXTRA_MATCH, match)
+            }
+            context.startActivity(intent)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeasonMatchViewHolder {

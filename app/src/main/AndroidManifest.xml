@@ -6,9 +6,20 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SofaNBA">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDeed-BDiUS66DSIl2MYGq-2xoIvS9hNd8" />
+
+        <activity
+            android:name=".MatchActivity"
+            android:exported="false"
+            android:label="@string/title_activity_match"
+            android:theme="@style/MatchActivityTheme" />
         <activity
             android:name=".AboutActivity"
             android:exported="false"
@@ -17,11 +28,6 @@
             android:name=".PlayerActivity"
             android:exported="false"
             android:theme="@style/PlayerActivityTheme" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDeed-BDiUS66DSIl2MYGq-2xoIvS9hNd8" />
-
         <activity
             android:name=".TeamActivity"
             android:exported="false"
