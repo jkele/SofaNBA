@@ -47,30 +47,45 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
 
         viewModel.matchHighlightsList.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
-                binding.highlightsEmptyState.visibility = View.VISIBLE
-                binding.btnAddVideo.visibility = View.GONE
+                setEmptyState()
             } else {
-                binding.highlightsEmptyState.visibility = View.GONE
-                binding.btnAddVideo.visibility = View.VISIBLE
+                removeEmptyState()
                 adapter.updateList(it)
             }
-
         }
 
         binding.btnAddVideo.setOnClickListener {
-            val bottomSheet = AddVideoBottomSheet(selectedMatch, {
-                viewModel.addHighlightForMatch(it)
-            }, {
-                    adapter.updateHighlightsListItems(it)
-                })
-            bottomSheet.show(requireActivity().supportFragmentManager, "AddVideo")
+            openAddVideoBottomSheet()
         }
-
 
         viewModel.getMatchStats(selectedMatch.id, 50, 0)
         viewModel.getMatchHighlights(selectedMatch.id)
 
         return binding.root
+    }
+
+    private fun openAddVideoBottomSheet() {
+        val bottomSheet = AddVideoBottomSheet(selectedMatch, {
+            viewModel.addHighlightForMatch(it)
+        }, {
+            adapter.updateHighlightsListItems(it)
+        }, {
+            removeEmptyState()
+        })
+        bottomSheet.show(requireActivity().supportFragmentManager, "AddVideo")
+    }
+
+    private fun setEmptyState() {
+        binding.highlightsEmptyState.visibility = View.VISIBLE
+        binding.btnAddVideo.visibility = View.GONE
+        binding.highlightsEmptyState.setupHighlightEmptyStateView {
+            openAddVideoBottomSheet()
+        }
+    }
+
+    private fun removeEmptyState() {
+        binding.highlightsEmptyState.visibility = View.GONE
+        binding.btnAddVideo.visibility = View.VISIBLE
     }
 
     private fun setupMatchStats() {

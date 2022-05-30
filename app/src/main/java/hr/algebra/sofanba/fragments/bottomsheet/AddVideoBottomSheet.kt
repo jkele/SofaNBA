@@ -16,7 +16,8 @@ import org.json.JSONObject
 class AddVideoBottomSheet(
     private val selectedMatch: Match,
     private val insertCallback: ((RequestBody) -> Unit)?,
-    private val updateRecyclerView: ((Highlight) -> Unit)?
+    private val updateRecyclerViewCallback: ((Highlight) -> Unit)?,
+    private val hideEmptyStateCallback: (() -> Unit)
 ) : BottomSheetDialogFragment() {
 
     private lateinit var binding: BottomsheetAddVideoBinding
@@ -45,7 +46,8 @@ class AddVideoBottomSheet(
             val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
 
             insertCallback?.invoke(requestBody)
-            updateRecyclerView?.invoke(highlight)
+            updateRecyclerViewCallback?.invoke(highlight)
+            hideEmptyStateCallback.invoke()
         }
 
         return binding.root
