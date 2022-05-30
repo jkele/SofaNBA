@@ -1,9 +1,13 @@
 package hr.algebra.sofanba.network
 
+import hr.algebra.sofanba.network.model.Highlight
 import hr.algebra.sofanba.network.model.response.HighlightResponse
 import hr.algebra.sofanba.network.model.response.PlayerImageResponse
-import retrofit2.http.GET
-import retrofit2.http.Path
+import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.http.*
 
 interface SofaService {
 
@@ -15,4 +19,10 @@ interface SofaService {
 
     @GET("highlight/event/{eventId}")
     suspend fun getHighlightsForMatch(@Path("eventId")matchId: Int): HighlightResponse
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("highlight")
+    suspend fun addHighlightForMatch(
+        @Body requestBody: RequestBody
+    ) : Response<ResponseBody>
 }

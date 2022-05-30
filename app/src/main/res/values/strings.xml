@@ -58,4 +58,11 @@
     <string name="youtube_highlights">Youtube Highlights</string>
     <string name="add_a_youtube_url_to_see_videos_for_this_team">Add a YouTube URL to see videos for this team</string>
     <string name="add_url">Add URL</string>
+    <string name="add_youtube_video">Add Youtube video</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="url">URL</string>
+    <string name="paste_video_url">Paste video URL</string>
+    <string name="video_title">Video title</string>
+    <string name="type_a_video_title_ie">Type a video title, ie. Lakers vs. Nets Half time</string>
 </resources>

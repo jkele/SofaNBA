@@ -9,6 +9,7 @@ import hr.algebra.sofanba.network.Network
 import hr.algebra.sofanba.network.model.GameStats
 import hr.algebra.sofanba.network.model.Highlight
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
 import java.lang.Exception
 
 class MatchDetailsViewModel: ViewModel() {
@@ -29,6 +30,12 @@ class MatchDetailsViewModel: ViewModel() {
             } catch (e: Exception) {
                 matchHighlightsList.value = arrayListOf()
             }
+        }
+    }
+
+    fun addHighlightForMatch(requestBody: RequestBody) {
+        viewModelScope.launch {
+            Network().getSofaService().addHighlightForMatch(requestBody)
         }
     }
 

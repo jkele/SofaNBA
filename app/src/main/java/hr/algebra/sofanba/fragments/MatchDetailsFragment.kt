@@ -15,6 +15,7 @@ import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.HighlightRecyclerAdapter
 import hr.algebra.sofanba.adapters.paging.EXTRA_MATCH
 import hr.algebra.sofanba.databinding.FragmentMatchDetailsBinding
+import hr.algebra.sofanba.fragments.bottomsheet.AddVideoBottomSheet
 import hr.algebra.sofanba.helpers.getStadiumLocation
 import hr.algebra.sofanba.network.model.Match
 import hr.algebra.sofanba.viewmodels.MatchDetailsViewModel
@@ -25,7 +26,7 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
     private val viewModel: MatchDetailsViewModel by viewModels()
 
     private lateinit var selectedMatch: Match
-
+    private val adapter by lazy { HighlightRecyclerAdapter(requireContext(), arrayListOf()) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,16 +43,27 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
         setupMatchStats()
 
         binding.rvHighlights.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvHighlights.adapter = adapter
 
         viewModel.matchHighlightsList.observe(viewLifecycleOwner) {
-            if(it.isEmpty()) {
+            if (it.isEmpty()) {
                 binding.highlightsEmptyState.visibility = View.VISIBLE
+                binding.btnAddVideo.visibility = View.GONE
             } else {
                 binding.highlightsEmptyState.visibility = View.GONE
-                val adapter = HighlightRecyclerAdapter(requireContext(), it)
-                binding.rvHighlights.adapter = adapter
+                binding.btnAddVideo.visibility = View.VISIBLE
+                adapter.updateList(it)
             }
 
+        }
+
+        binding.btnAddVideo.setOnClickListener {
+            val bottomSheet = AddVideoBottomSheet(selectedMatch, {
+                viewModel.addHighlightForMatch(it)
+            }, {
+                    adapter.updateHighlightsListItems(it)
+                })
+            bottomSheet.show(requireActivity().supportFragmentManager, "AddVideo")
         }
 
 

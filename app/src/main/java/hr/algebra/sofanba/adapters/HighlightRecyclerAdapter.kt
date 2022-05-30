@@ -26,6 +26,17 @@ class HighlightRecyclerAdapter(
         val binding = HighlightItemViewBinding.bind(view)
     }
 
+    fun updateList(newList: ArrayList<Highlight>) {
+        highlightsList.clear()
+        highlightsList.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    fun updateHighlightsListItems(highlight: Highlight) {
+        highlightsList.add(highlight)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighlightViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.highlight_item_view, parent, false)
         return HighlightViewHolder(view)
