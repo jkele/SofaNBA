@@ -40,6 +40,7 @@ class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
 
     private fun loadFavoritePlayers(){
         viewModel.favoritePlayers.observe(viewLifecycleOwner) {
+            setEmptyState(binding.playersEmptyState, it.isNotEmpty())
             val adapter = FavoritePlayerRecyclerAdapter(requireContext(), it){ player ->
                 viewModel.deleteFavoritePlayer(player)
             }
@@ -49,11 +50,20 @@ class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
 
     private fun loadFavoriteTeams() {
         viewModel.favoriteTeams.observe(viewLifecycleOwner) {
+            setEmptyState(binding.teamsEmptyState, it.isNotEmpty())
             val adapter = TeamRecyclerAdapter(requireContext(), it, null, true,
                 null) { team ->
                 viewModel.deleteFavoriteTeam(team)
             }
             binding.rvFavoriteTeams.adapter = adapter
+        }
+    }
+
+    private fun setEmptyState(view: View, isNotEmpty: Boolean) {
+        if(isNotEmpty) {
+            view.visibility = View.GONE
+        } else {
+            view.visibility = View.VISIBLE
         }
     }
 }

@@ -12,9 +12,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.squareup.picasso.Picasso
 import hr.algebra.sofanba.databinding.ActivityLoginBinding
-import jp.wasabeef.picasso.transformations.BlurTransformation
 
 class LoginActivity : AppCompatActivity() {
 

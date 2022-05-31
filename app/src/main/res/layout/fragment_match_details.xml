@@ -161,6 +161,7 @@
 
         <ImageButton
             android:id="@+id/btnAddVideo"
+            android:background="@android:color/transparent"
             app:layout_constraintTop_toBottomOf="@id/mapContainer"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"

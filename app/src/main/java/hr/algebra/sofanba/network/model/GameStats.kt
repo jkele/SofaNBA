@@ -17,7 +17,7 @@ data class GameStats(
     val fta: Int,
     val ftm: Int,
     val game: Game,
-    val min: String,
+    val min: String?,
     val oreb: Int,
     val pf: Int,
     val player: GamePlayer,

@@ -17,6 +17,11 @@
         android:scaleX="1.2"
         android:src="@drawable/ic_nba" />
 
+    <View
+        android:background="#72000000"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <ImageView
         android:layout_width="138dp"
         android:layout_height="80dp"

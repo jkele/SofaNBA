@@ -45,6 +45,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/favoritesToolbar" />
 
+        <hr.algebra.sofanba.views.EmptyStateView
+            android:id="@+id/playersEmptyState"
+            app:layout_constraintTop_toBottomOf="@id/tvPlayersTitle"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavoritePlayers"
             android:layout_width="match_parent"
@@ -64,6 +73,15 @@
             android:theme="@style/HeadlineSmallNLv2Left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rvFavoritePlayers" />
+
+        <hr.algebra.sofanba.views.EmptyStateView
+            android:id="@+id/teamsEmptyState"
+            app:layout_constraintTop_toBottomOf="@id/tvTeamsTitle"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavoriteTeams"
