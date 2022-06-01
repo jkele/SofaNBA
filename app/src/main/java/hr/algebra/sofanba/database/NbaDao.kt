@@ -24,6 +24,9 @@ interface NbaDao {
     @Delete
     fun deleteFavoritePlayer(player: FavoritePlayer)
 
+    @Query("DELETE FROM favoritePlayers")
+    fun deleteFavoritePlayers()
+
 
     //Favorite team
 
@@ -41,6 +44,9 @@ interface NbaDao {
 
     @Delete
     fun deleteFavoriteTeam(team: FavoriteTeam)
+
+    @Query("DELETE FROM favoriteTeams")
+    fun deleteFavoriteTeams()
 
 
 }

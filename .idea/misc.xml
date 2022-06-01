@@ -7,6 +7,7 @@
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_bottomsheet.xml" value="0.135" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_bottomsheet_icon.xml" value="0.135" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_button_login.xml" value="0.122" />
+        <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_custom_dialog.xml" value="0.136" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_highlight_empty_text.xml" value="0.135" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_highlight_empty_view.xml" value="0.135" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/drawable/background_highlight_item_view.xml" value="0.135" />
@@ -46,6 +47,7 @@
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/activity_team.xml" value="0.22" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/bottomsheet_add_video.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/bottomsheet_player_match_stats.xml" value="0.18857142857142858" />
+        <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/custom_dialog.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/empty_state_view.xml" value="0.213768115942029" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/fragment_explore.xml" value="0.14285714285714285" />
         <entry key="..\:/Users/Josip/Desktop/Android predavanja projekti/SofaNBA/app/src/main/res/layout/fragment_favorites.xml" value="0.213768115942029" />

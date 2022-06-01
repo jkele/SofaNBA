@@ -66,4 +66,6 @@
     <string name="video_title">Video title</string>
     <string name="type_a_video_title_ie">Type a video title, ie. Lakers vs. Nets Half time</string>
     <string name="season">Season</string>
+    <string name="clear">Clear</string>
+    <string name="clear_favorites_list">Clear favorites list?</string>
 </resources>

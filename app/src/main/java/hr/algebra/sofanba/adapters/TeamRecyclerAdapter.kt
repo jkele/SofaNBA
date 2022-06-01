@@ -13,7 +13,6 @@ import hr.algebra.sofanba.helpers.loadTeamImage
 import hr.algebra.sofanba.network.model.Team
 
 const val EXTRA_TEAM = "hr.algebra.sofanba.extraTeam"
-const val EXTRA_TEAM_IS_FAVORITE = "hr.algebra.sofanba.teamIsFavorite"
 
 class TeamRecyclerAdapter(
     private val context: Context,

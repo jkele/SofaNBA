@@ -27,6 +27,10 @@ class NbaRepository(private val nbaDao: NbaDao) {
         nbaDao.deleteFavoritePlayer(player)
     }
 
+    fun deleteFavoritePlayers() {
+        nbaDao.deleteFavoritePlayers()
+    }
+
     //Favorite team
 
     fun getFavoriteTeams(): List<FavoriteTeam> {
@@ -47,5 +51,9 @@ class NbaRepository(private val nbaDao: NbaDao) {
 
     fun deleteFavoriteTeam(team: FavoriteTeam) {
         nbaDao.deleteFavoriteTeam(team)
+    }
+
+    fun deleteFavoriteTeams() {
+        nbaDao.deleteFavoriteTeams()
     }
 }
