@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import hr.algebra.sofanba.fragments.PlayerDetailsFragment
 import hr.algebra.sofanba.fragments.PlayerMatchesFragment
+import hr.algebra.sofanba.fragments.PlayerStatisticsFragment
 
 class PlayerSectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm){
@@ -16,7 +17,7 @@ class PlayerSectionsPagerAdapter(private val context: Context, fm: FragmentManag
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> PlayerDetailsFragment()
-            1 -> PlayerDetailsFragment()
+            1 -> PlayerStatisticsFragment()
             else -> {
                 PlayerMatchesFragment()
             }

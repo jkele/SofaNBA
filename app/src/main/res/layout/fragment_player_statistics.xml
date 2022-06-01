@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface_surface_0">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationZ="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/season"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/season"
+                    android:theme="@style/BodyMediumNLv1Left"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvSeasonOne"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="42dp"
+                    android:theme="@style/AssistiveNLv2Center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/season"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2021" />
+
+                <TextView
+                    android:id="@+id/tvSeasonTwo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="42dp"
+                    android:theme="@style/AssistiveNLv2Center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvSeasonOne"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2020" />
+
+                <TextView
+                    android:id="@+id/tvSeasonThree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="42dp"
+                    android:theme="@style/AssistiveNLv2Center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvSeasonTwo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2019" />
+
+                <TextView
+                    android:id="@+id/tvSeasonFour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="42dp"
+                    android:theme="@style/AssistiveNLv2Center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvSeasonThree"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="2018" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFgm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statMin" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFga"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statFgm" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFgmThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statFga" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFgaThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statFgmThree" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFtm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statFgaThree" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statFtm" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statOreb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statFta" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statDreb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statOreb" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statReb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statDreb" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statAst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statReb" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statStl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statAst" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statBlk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statStl" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statTov"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statBlk" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statPf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statTov" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statPts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statPf" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFgPerc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statPts" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFgThreePerc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statFgPerc" />
+
+        <hr.algebra.sofanba.views.PlayerStatisticsView
+            android:id="@+id/statFtPerc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/statFgThreePerc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

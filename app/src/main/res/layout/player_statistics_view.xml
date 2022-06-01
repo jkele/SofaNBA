@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="32dp">
+
+    <TextView
+        android:id="@+id/tvStatTitle"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:theme="@style/HeadlineSmallNLv1Left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="MIN" />
+
+    <TextView
+        android:id="@+id/tvStatValueOne"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="38dp"
+        android:theme="@style/HeadlineSmallNLv1Center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvStatTitle"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textAllCaps="true"
+        tools:text="37.2" />
+
+    <TextView
+        android:id="@+id/tvStatValueTwo"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="38dp"
+        android:theme="@style/HeadlineSmallNLv1Center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvStatValueOne"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="33.2" />
+
+    <TextView
+        android:id="@+id/tvStatValueThree"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="38dp"
+        android:theme="@style/HeadlineSmallNLv1Center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvStatValueTwo"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="34.6" />
+
+    <TextView
+        android:id="@+id/tvStatValueFour"
+        android:layout_width="32dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="38dp"
+        android:theme="@style/HeadlineSmallNLv1Center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvStatValueThree"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="34.6" />
+
+    <View
+        app:layout_constraintTop_toBottomOf="@id/tvStatTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/neutrals_n_lv_3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

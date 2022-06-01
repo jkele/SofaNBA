@@ -65,4 +65,5 @@
     <string name="paste_video_url">Paste video URL</string>
     <string name="video_title">Video title</string>
     <string name="type_a_video_title_ie">Type a video title, ie. Lakers vs. Nets Half time</string>
+    <string name="season">Season</string>
 </resources>
