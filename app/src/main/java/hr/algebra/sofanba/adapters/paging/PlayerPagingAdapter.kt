@@ -13,10 +13,12 @@ import coil.load
 import hr.algebra.sofanba.PlayerActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.PlayerItemViewBinding
+import hr.algebra.sofanba.helpers.getPlayerImagePlaceholder
 import hr.algebra.sofanba.helpers.loadPlayerImagePlaceholder
 import hr.algebra.sofanba.network.model.Player
 
 const val EXTRA_PLAYER = "hr.algebra.sofanba.extraPlayer"
+const val EXTRA_PLAYER_IMAGE_PLACEHOLDER = "hr.algebra.sofanba.extraPlayerImagePlaceholder"
 
 class PlayerPagingAdapter(
     private val context: Context,
@@ -55,6 +57,7 @@ class PlayerPagingAdapter(
         holder.binding.root.setOnClickListener {
             val intent = Intent(context, PlayerActivity::class.java).apply {
                 putExtra(EXTRA_PLAYER, player)
+                putExtra(EXTRA_PLAYER_IMAGE_PLACEHOLDER, getPlayerImagePlaceholder(position))
             }
             context.startActivity(intent)
         }

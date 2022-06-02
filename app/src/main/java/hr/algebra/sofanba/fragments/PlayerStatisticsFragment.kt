@@ -17,6 +17,7 @@ import hr.algebra.sofanba.network.model.response.StatsResponse
 import hr.algebra.sofanba.viewmodels.PlayerStatisticsViewModel
 import hr.algebra.sofanba.views.PlayerStatisticsView
 import kotlinx.android.synthetic.main.fragment_player_statistics.*
+import java.lang.Exception
 
 class PlayerStatisticsFragment: Fragment(R.layout.fragment_player_statistics) {
 
@@ -43,19 +44,23 @@ class PlayerStatisticsFragment: Fragment(R.layout.fragment_player_statistics) {
         }
 
         viewModel.playerSeasonAveragesList.observe(viewLifecycleOwner) {
-            binding.progressBar.visibility = ProgressBar.VISIBLE
+            try {
+                binding.progressBar.visibility = ProgressBar.VISIBLE
 
-            val statsResponseList = it.take(4)
-            val seasonAveragesList = arrayListOf<SeasonStats>()
+                val statsResponseList = it.take(4)
+                val seasonAveragesList = arrayListOf<SeasonStats>()
 
-            statsResponseList.forEach {
-                seasonAveragesList.add(it.data!![0])
+                statsResponseList.forEach {
+                    seasonAveragesList.add(it.data!![0])
+                }
+
+                setSeasonValues(seasonAveragesList)
+                setStatValues(seasonAveragesList)
+
+                binding.progressBar.visibility = ProgressBar.GONE
+            } catch (e: Exception) {
+
             }
-
-            setSeasonValues(seasonAveragesList)
-            setStatValues(seasonAveragesList)
-
-            binding.progressBar.visibility = ProgressBar.GONE
         }
 
         viewModel.getPlayerSeasonAveragesList(selectedPlayer.id)

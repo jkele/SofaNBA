@@ -40,9 +40,6 @@ class ExploreViewModel(application: Application): AndroidViewModel(application) 
         }
     }
 
-    fun getPlayerImages(playerId: Int): ArrayList<PlayerImage> {
-        return Network().getSofaService().getPlayerImages(playerId).data
-    }
 
     fun insertFavoritePlayer(player: Player) {
         repository.insertFavoritePlayer(player.convertToFavoritePlayer())

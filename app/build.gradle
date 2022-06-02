@@ -81,6 +81,12 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'jp.wasabeef:picasso-transformations:2.4.0'
 
+    //Viewpager
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+
+    //CircleIndicator
+    implementation 'me.relex:circleindicator:2.1.6'
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

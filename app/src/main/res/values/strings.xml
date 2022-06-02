@@ -70,4 +70,8 @@
     <string name="clear_favorites_list">Clear favorites list?</string>
     <string name="error_deleting_highlight">Error deleting highlight</string>
     <string name="seasons_title">Seasons</string>
+    <string name="add_player_photo">Add player photo</string>
+    <string name="paste_photo_url">Paste photo url</string>
+    <string name="photo_title">Photo title</string>
+    <string name="type_a_photo_title_ie">Type a photo title, ie. “LeBron Headshot”</string>
 </resources>

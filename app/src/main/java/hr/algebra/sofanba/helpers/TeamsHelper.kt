@@ -223,16 +223,20 @@ fun getTeamProgressColor(team_abbr: String): Int {
 }
 
 fun loadPlayerImagePlaceholder(position: Int, imageView: ImageView) {
+    imageView.load(getPlayerImagePlaceholder(position))
+}
+
+fun getPlayerImagePlaceholder(position: Int): Int {
     val uiPosition = position + 1
 
     if (uiPosition % 2 == 0 && uiPosition % 3 != 0 && position % 3 != 0) {
-        imageView.load(R.drawable.ic_player_two)
+        return R.drawable.ic_player_two
     } else if(uiPosition % 3 == 0) {
-        imageView.load(R.drawable.ic_player_three)
+        return R.drawable.ic_player_three
     } else if (position % 3 == 0) {
-        imageView.load(R.drawable.ic_player_one)
+        return R.drawable.ic_player_one
     } else {
-        imageView.load(R.drawable.ic_player_two)
+        return R.drawable.ic_player_two
     }
 }
 

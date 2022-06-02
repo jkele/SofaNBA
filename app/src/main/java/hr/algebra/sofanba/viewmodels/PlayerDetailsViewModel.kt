@@ -11,13 +11,16 @@ import hr.algebra.sofanba.network.model.Highlight
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.PlayerImage
 import kotlinx.coroutines.launch
+import okhttp3.RequestBody
+import retrofit2.HttpException
 import java.lang.Exception
+import kotlin.jvm.Throws
 
 class PlayerDetailsViewModel(application: Application): AndroidViewModel(application) {
 
     val highlightsList = MutableLiveData<ArrayList<Highlight>>()
     val imagesList = MutableLiveData<ArrayList<PlayerImage>>()
-    val repository: NbaRepository
+    private val repository: NbaRepository
 
     init {
         val nbaDao = NbaDatabase.getDatabase(application).nbaDao()
@@ -46,15 +49,18 @@ class PlayerDetailsViewModel(application: Application): AndroidViewModel(applica
         }
     }
 
-
-
     fun getPlayerImages(id: Int) {
         viewModelScope.launch {
             try {
                 imagesList.value = Network().getSofaService().getPlayerImages(id).data
             } catch (e: Exception) {
-
             }
+        }
+    }
+
+    fun addImageForPlayer(requestBody: RequestBody) {
+        viewModelScope.launch {
+            Network().getSofaService().addImageForPlayer(requestBody)
         }
     }
 }

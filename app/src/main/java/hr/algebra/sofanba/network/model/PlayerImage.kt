@@ -6,6 +6,6 @@ data class PlayerImage(
     val playerId: Int,
     val imageUrl: String,
     val imageCaption: String,
-    val id: Int
+    val id: Int?
 ): Serializable {
 }

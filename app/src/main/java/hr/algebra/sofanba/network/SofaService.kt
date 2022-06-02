@@ -13,7 +13,7 @@ import retrofit2.http.*
 interface SofaService {
 
     @GET("player-image/player/{playerId}")
-    fun getPlayerImages(@Path("playerId")playerId: Int): PlayerImageResponse
+    suspend fun getPlayerImages(@Path("playerId")playerId: Int): PlayerImageResponse
 
     @GET("highlight/player/{playerId}")
     suspend fun getHighlightsForPlayer(@Path("playerId")playerId: Int): HighlightResponse
@@ -24,6 +24,12 @@ interface SofaService {
     @Headers("Content-Type: application/json;charset=UTF-8")
     @POST("highlight")
     suspend fun addHighlightForMatch(
+        @Body requestBody: RequestBody
+    ) : Response<ResponseBody>
+
+    @Headers("Content-Type: application/json;charset=UTF-8")
+    @POST("player-image")
+    suspend fun addImageForPlayer(
         @Body requestBody: RequestBody
     ) : Response<ResponseBody>
 
