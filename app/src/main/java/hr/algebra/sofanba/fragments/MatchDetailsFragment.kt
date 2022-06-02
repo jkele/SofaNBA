@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import hr.algebra.sofanba.adapters.paging.EXTRA_MATCH
 import hr.algebra.sofanba.databinding.FragmentMatchDetailsBinding
 import hr.algebra.sofanba.fragments.bottomsheet.AddVideoBottomSheet
 import hr.algebra.sofanba.helpers.getStadiumLocation
+import hr.algebra.sofanba.helpers.getTeamProgressColor
 import hr.algebra.sofanba.network.model.Match
 import hr.algebra.sofanba.viewmodels.MatchDetailsViewModel
 
@@ -29,6 +31,7 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
     private lateinit var selectedMatch: Match
     private val adapter by lazy { HighlightRecyclerAdapter(requireContext(), arrayListOf()) }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -167,30 +170,43 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
 
             binding.statFieldGoal.setupMatchStatsView(
                 "FG%", totalHomeMade / totalHomeAt,
-                totalAwayMade / totalAwayAt, true
+                totalAwayMade / totalAwayAt,
+                getTeamProgressColor(selectedMatch.homeTeam.abbreviation),
+                getTeamProgressColor(selectedMatch.visitorTeam.abbreviation),
+                true
             )
             binding.statThreePoint.setupMatchStatsView(
                 "FG3%", totalHomeThreeMade / totalHomeThreeAt,
-                totalAwayThreeMade / totalAwayThreeAt, true
+                totalAwayThreeMade / totalAwayThreeAt,
+                getTeamProgressColor(selectedMatch.homeTeam.abbreviation),
+                getTeamProgressColor(selectedMatch.visitorTeam.abbreviation), true
             )
             binding.statRebound.setupMatchStatsView(
                 "REB",
                 homeReb,
                 awayReb,
+                getTeamProgressColor(selectedMatch.homeTeam.abbreviation),
+                getTeamProgressColor(selectedMatch.visitorTeam.abbreviation),
                 false
             )
             binding.statAssists.setupMatchStatsView(
                 "AST",
                 homeAssists,
                 awayAssists,
+                getTeamProgressColor(selectedMatch.homeTeam.abbreviation),
+                getTeamProgressColor(selectedMatch.visitorTeam.abbreviation),
                 false
             )
             binding.statTurnovers.setupMatchStatsView(
                 "TOV", homeTurnover, awayTurnover,
+                getTeamProgressColor(selectedMatch.homeTeam.abbreviation),
+                getTeamProgressColor(selectedMatch.visitorTeam.abbreviation),
                 false
             )
             binding.statOffensiveRebound.setupMatchStatsView(
                 "OREB", homeOffensiveReb, awayOffensiveReb,
+                getTeamProgressColor(selectedMatch.homeTeam.abbreviation),
+                getTeamProgressColor(selectedMatch.visitorTeam.abbreviation),
                 false
             )
         }

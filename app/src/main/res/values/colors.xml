@@ -61,4 +61,35 @@
     <color name="progress_bar_red">#80E03A3E</color>
     <color name="progress_bar_green">#80007A33</color>
     <color name="on_color_on_color_secondary">#80ffffff</color>
+
+    <color name="team_pacers_progress">#80FCB424</color>
+    <color name="team_bulls_progress">#80CE1141</color>
+    <color name="team_hornets_progress">#80008CA8</color>
+    <color name="team_nets_progress">#802D2925</color>
+    <color name="team_hawks_progress">#80E03A3E</color>
+    <color name="team_bucks_progress">#8000471B</color>
+    <color name="team_76_ers_progress">#80006BB6</color>
+    <color name="team_wizards_progress">#80002B5C</color>
+    <color name="team_magic_progress">#800077C0</color>
+    <color name="team_raptors_progress">#80000000</color>
+    <color name="team_knicks_progress">#80F26729</color>
+    <color name="team_pistons_progress">#801D42BA</color>
+    <color name="team_heat_progress">#8098002E</color>
+    <color name="team_celtics_progress">#80007A33</color>
+    <color name="team_cavaliers_progress">#80860038</color>
+    <color name="team_grizzlies_progress">#5d76a9</color>
+    <color name="team_kings_progress">#805C666F</color>
+    <color name="team_thunder_progress">#80007AC1</color>
+    <color name="team_suns_progress">#801D1160</color>
+    <color name="team_clippers_progress">#80C8102E</color>
+    <color name="team_lakers_progress">#80552583</color>
+    <color name="team_jazz_progress">#80F9A11A</color>
+    <color name="team_pelicans_progress">#80002A5B</color>
+    <color name="team_rockets_progress">#80393A35</color>
+    <color name="team_warriors_progress">#801D428A</color>
+    <color name="team_mavericks_progress">#80007DC5</color>
+    <color name="team_timberwolves_progress">#80004F83</color>
+    <color name="team_spurs_progress">#809EA6AC</color>
+    <color name="team_nuggets_progress">#800E2240</color>
+    <color name="team_blazers_progress">#80E03A3E</color>
 </resources>

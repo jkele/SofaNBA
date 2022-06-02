@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.ProgressBar
 import androidx.fragment.app.activityViewModels
 
@@ -19,6 +20,7 @@ import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.EXTRA_TEAM
 import hr.algebra.sofanba.databinding.FragmentTeamDetailsBinding
 import hr.algebra.sofanba.helpers.getStadiumLocation
+import hr.algebra.sofanba.helpers.getTeamColor
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.viewmodels.TeamDetailsViewModel
 
@@ -40,6 +42,7 @@ class TeamDetailsFragment : Fragment() {
 
         binding.teamInfoView.setupTeamInfoView(requireContext(), selectedTeam)
         binding.tvCityName.text = selectedTeam.city
+
 
         viewModel.teamsList.observe(viewLifecycleOwner) {
             binding.progressBar.visibility = ProgressBar.VISIBLE

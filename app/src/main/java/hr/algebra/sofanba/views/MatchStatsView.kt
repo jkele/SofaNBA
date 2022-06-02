@@ -3,7 +3,6 @@ package hr.algebra.sofanba.views
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.animation.Animation
@@ -22,6 +21,8 @@ class MatchStatsView(context: Context, attrs: AttributeSet) : ConstraintLayout(c
         title: String,
         homeStatValue: Double,
         awayStatValue: Double,
+        homeTeamColor: Int,
+        awayTeamColor: Int,
         statIsPerc: Boolean
     ) {
         binding.tvStatTitle.text = title
@@ -33,16 +34,16 @@ class MatchStatsView(context: Context, attrs: AttributeSet) : ConstraintLayout(c
             setupStatProgressBar(
                 binding.homeStatProgressBar,
                 homeStatPerc,
-                true,
-                homeStatPerc > awayStatPerc
+                homeTeamColor,
+                true
             )
 
             binding.tvAwayStatValue.text = awayStatPerc.toInt().toString()
             setupStatProgressBar(
                 binding.awayStatProgressBar,
                 awayStatPerc,
-                true,
-                awayStatPerc > homeStatPerc
+                awayTeamColor,
+                true
             )
         } else {
             val homeValue = homeStatValue / (homeStatValue + awayStatValue)
@@ -52,15 +53,15 @@ class MatchStatsView(context: Context, attrs: AttributeSet) : ConstraintLayout(c
             setupStatProgressBar(
                 binding.homeStatProgressBar,
                 homeValue,
-                false,
-                homeValue > awayValue
+                homeTeamColor,
+                false
             )
             binding.tvAwayStatValue.text = awayStatValue.toInt().toString()
             setupStatProgressBar(
                 binding.awayStatProgressBar,
                 awayValue,
-                false,
-                awayValue > homeValue
+                awayTeamColor,
+                false
             )
         }
     }
@@ -68,16 +69,11 @@ class MatchStatsView(context: Context, attrs: AttributeSet) : ConstraintLayout(c
     private fun setupStatProgressBar(
         progressBar: ProgressBar,
         value: Double,
-        statIsPerc: Boolean,
-        statIsHigher: Boolean
+        progressBarColor: Int,
+        statIsPerc: Boolean
     ) {
-        if (statIsHigher) {
-            progressBar.progressTintList =
-                ColorStateList.valueOf(resources.getColor(R.color.progress_bar_green))
-        } else {
-            progressBar.progressTintList =
-                ColorStateList.valueOf(resources.getColor(R.color.progress_bar_red))
-        }
+        progressBar.progressTintList =
+            ColorStateList.valueOf(resources.getColor(progressBarColor))
 
         if (statIsPerc) {
             val animation = ProgressBarAnimation(progressBar, 0.0, value)

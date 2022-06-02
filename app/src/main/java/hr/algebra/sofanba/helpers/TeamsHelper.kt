@@ -186,6 +186,42 @@ fun getTeamColor(team_abbr: String): Int {
     return R.color.color_primary
 }
 
+fun getTeamProgressColor(team_abbr: String): Int {
+    when(team_abbr){
+        "ATL" -> return R.color.team_hawks_progress
+        "BOS" -> return R.color.team_celtics_progress
+        "BKN" -> return R.color.team_nets_progress
+        "CHA" -> return R.color.team_hornets_progress
+        "CHI" -> return R.color.team_bulls_progress
+        "CLE" -> return R.color.team_cavaliers_progress
+        "DAL" -> return R.color.team_mavericks_progress
+        "DEN" -> return R.color.team_nuggets_progress
+        "DET" -> return R.color.team_pistons_progress
+        "GSW" -> return R.color.team_warriors_progress
+        "HOU" -> return R.color.team_rockets_progress
+        "IND" -> return R.color.team_pacers_progress
+        "LAC" -> return R.color.team_clippers_progress
+        "LAL" -> return R.color.team_lakers_progress
+        "MEM" -> return R.color.team_grizzlies_progress
+        "MIA" -> return R.color.team_heat_progress
+        "MIL" -> return R.color.team_bucks_progress
+        "MIN" -> return R.color.team_timberwolves_progress
+        "NOP" -> return R.color.team_pelicans_progress
+        "NYK" -> return R.color.team_knicks_progress
+        "OKC" -> return R.color.team_thunder_progress
+        "ORL" -> return R.color.team_magic_progress
+        "PHI" -> return R.color.team_76_ers_progress
+        "PHX" -> return R.color.team_suns_progress
+        "POR" -> return R.color.team_blazers_progress
+        "SAC" -> return R.color.team_kings_progress
+        "SAS" -> return R.color.team_spurs_progress
+        "TOR" -> return R.color.team_raptors_progress
+        "UTA" -> return R.color.team_jazz_progress
+        "WAS" -> return R.color.team_wizards_progress
+    }
+    return R.color.color_primary
+}
+
 fun loadPlayerImagePlaceholder(position: Int, imageView: ImageView) {
     val uiPosition = position + 1
 

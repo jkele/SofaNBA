@@ -27,6 +27,7 @@ class TeamActivity : AppCompatActivity() {
 
         selectedTeam = intent.getSerializableExtra(EXTRA_TEAM) as Team
         val isFavorite = viewModel.isTeamFavorite(selectedTeam.id)
+        this.window.statusBarColor = resources.getColor(getTeamColor(selectedTeam.abbreviation))
 
         binding.btnFavorite.isActivated = isFavorite
 
