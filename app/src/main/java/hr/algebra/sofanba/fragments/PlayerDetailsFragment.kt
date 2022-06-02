@@ -43,7 +43,7 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
             R.drawable.ic_player_one)
 
         binding.playerInfoView.setupPlayerInfoView(selectedPlayer)
-        binding.imageProgressBar.visibility = View.GONE
+        binding.imageProgressBar.visibility = View.VISIBLE
 
         binding.rvHighlights.layoutManager = LinearLayoutManager(requireContext())
         viewModel.highlightsList.observe(viewLifecycleOwner) {
@@ -86,6 +86,9 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
         }, {
             imageSliderAdapter.updateImageList(it)
             binding.indicator.setViewPager(binding.imageSliderViewPager)
+        }, {
+            binding.ivPlaceholder.visibility = View.GONE
+            binding.imageProgressBar.visibility = View.GONE
         })
         bottomSheet.show(requireActivity().supportFragmentManager, "AddPhoto")
     }

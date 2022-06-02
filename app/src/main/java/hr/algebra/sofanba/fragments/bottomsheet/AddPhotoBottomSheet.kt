@@ -18,7 +18,8 @@ import org.json.JSONObject
 class AddPhotoBottomSheet(
     private val selectedPlayer: Player,
     private val insertCallback: ((RequestBody) -> Unit)?,
-    private val updateImageSlider: ((PlayerImage) -> Unit)?
+    private val updateImageSlider: ((PlayerImage) -> Unit)?,
+    private val hideEmptyStateCallback: (() -> Unit)
 ): BottomSheetDialogFragment() {
 
     private lateinit var binding: BottomsheetAddPhotoBinding
@@ -44,6 +45,7 @@ class AddPhotoBottomSheet(
 
             insertCallback?.invoke(requestBody)
             updateImageSlider?.invoke(playerImage)
+            hideEmptyStateCallback.invoke()
         }
 
 
