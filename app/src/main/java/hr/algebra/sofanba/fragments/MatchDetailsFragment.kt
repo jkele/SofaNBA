@@ -11,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.snackbar.Snackbar
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.HighlightRecyclerAdapter
 import hr.algebra.sofanba.adapters.paging.EXTRA_MATCH
@@ -58,6 +59,35 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
             openAddVideoBottomSheet()
         }
 
+        binding.btnEditVideo.setOnClickListener {
+            binding.btnAddVideo.visibility = View.GONE
+            binding.btnEditVideo.visibility = View.GONE
+            binding.btnCancelEdit.visibility = View.VISIBLE
+
+            adapter.deleteCallback = {
+                viewModel.deleteMatchHighlight(it.id!!)
+            }
+
+            adapter.showMessageCallback = { snackbarTitle ->
+                val snack = Snackbar.make(binding.root, snackbarTitle, Snackbar.LENGTH_SHORT)
+                snack.view.setBackgroundResource(R.drawable.background_custom_snackbar)
+                snack.show()
+            }
+
+            adapter.editSwitch = true
+            adapter.notifyDataSetChanged()
+        }
+
+
+        binding.btnCancelEdit.setOnClickListener {
+            binding.btnAddVideo.visibility = View.VISIBLE
+            binding.btnEditVideo.visibility = View.VISIBLE
+            binding.btnCancelEdit.visibility = View.GONE
+
+            adapter.editSwitch = false
+            adapter.notifyDataSetChanged()
+        }
+
         viewModel.getMatchStats(selectedMatch.id, 50, 0)
         viewModel.getMatchHighlights(selectedMatch.id)
 
@@ -78,6 +108,7 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
     private fun setEmptyState() {
         binding.highlightsEmptyState.visibility = View.VISIBLE
         binding.btnAddVideo.visibility = View.GONE
+        binding.btnEditVideo.visibility = View.GONE
         binding.highlightsEmptyState.setupHighlightEmptyStateView {
             openAddVideoBottomSheet()
         }

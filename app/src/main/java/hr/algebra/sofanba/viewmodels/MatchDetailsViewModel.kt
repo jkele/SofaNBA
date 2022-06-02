@@ -39,4 +39,10 @@ class MatchDetailsViewModel: ViewModel() {
         }
     }
 
+    fun deleteMatchHighlight(highlightId: Int) {
+        viewModelScope.launch {
+            Network().getSofaService().deleteMatchHighlight(highlightId)
+        }
+    }
+
 }

@@ -4,15 +4,22 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import hr.algebra.sofanba.R
+import hr.algebra.sofanba.adapters.paging.SeasonMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.HighlightItemViewBinding
 import hr.algebra.sofanba.network.model.Highlight
+import java.lang.Exception
 
 const val VIDEO_THUMBNAIL_URL = "http://img.youtube.com/vi/"
 const val VIDEO_THUMBNAIL_QUALITY = "/mqdefault.jpg"
@@ -21,6 +28,10 @@ class HighlightRecyclerAdapter(
     private val context: Context,
     private val highlightsList: ArrayList<Highlight>
 ): RecyclerView.Adapter<HighlightRecyclerAdapter.HighlightViewHolder>() {
+
+    var editSwitch = false
+    var deleteCallback: ((Highlight) -> Unit)? = null
+    var showMessageCallback: ((String) -> Unit)? = null
 
     class HighlightViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = HighlightItemViewBinding.bind(view)
@@ -36,6 +47,7 @@ class HighlightRecyclerAdapter(
         highlightsList.add(highlight)
         notifyDataSetChanged()
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HighlightViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.highlight_item_view, parent, false)
@@ -59,6 +71,36 @@ class HighlightRecyclerAdapter(
                 context.startActivity(webIntent)
             }
         }
+
+        holder.binding.editContainer.visibility = CardView.GONE
+
+        if (editSwitch) {
+            setViewMargin(holder, 48f)
+            holder.binding.editContainer.visibility = CardView.VISIBLE
+            holder.binding.btnDelete.setOnClickListener {
+                try {
+                    deleteCallback!!.invoke(highlight)
+                    highlightsList.remove(highlight)
+                    notifyDataSetChanged()
+                } catch (e: Exception) {
+                    showMessageCallback!!.invoke(context.getString(R.string.error_deleting_highlight))
+                }
+            }
+        } else {
+            setViewMargin(holder, 2f)
+            holder.binding.editContainer.visibility = CardView.GONE
+        }
+    }
+
+    private fun setViewMargin(holder: HighlightViewHolder, value: Float) {
+        val px = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            value,
+            context.resources.displayMetrics
+        )
+        val param = holder.binding.highlightViewContainer.layoutParams as ConstraintLayout.LayoutParams
+        param.setMargins(0, 0, px.toInt(), 0)
+        holder.binding.highlightViewContainer.layoutParams = param
     }
 
     override fun getItemCount(): Int {

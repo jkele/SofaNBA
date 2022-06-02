@@ -46,6 +46,8 @@ class PlayerDetailsViewModel(application: Application): AndroidViewModel(applica
         }
     }
 
+
+
     fun getPlayerImages(id: Int) {
         viewModelScope.launch {
             try {

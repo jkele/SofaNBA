@@ -2,12 +2,14 @@ package hr.algebra.sofanba.adapters.paging
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import hr.algebra.sofanba.MatchActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.TeamMatchItemViewBinding
 import hr.algebra.sofanba.helpers.loadTeamMatchImage
@@ -65,6 +67,13 @@ class TeamMatchesPagingAdapter(
             holder.binding.at.text = context.getString(R.string.versus)
             holder.binding.tvTeamAbbr.text = match.visitorTeam.abbreviation
             loadTeamMatchImage(match.visitorTeam.abbreviation, holder.binding.ivOpponentTeamImage)
+        }
+
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, MatchActivity::class.java).apply {
+                putExtra(EXTRA_MATCH, match)
+            }
+            context.startActivity(intent)
         }
     }
 

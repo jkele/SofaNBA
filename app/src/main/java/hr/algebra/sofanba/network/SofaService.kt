@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.network
 
+import androidx.room.Delete
 import hr.algebra.sofanba.network.model.Highlight
 import hr.algebra.sofanba.network.model.response.HighlightResponse
 import hr.algebra.sofanba.network.model.response.PlayerImageResponse
@@ -25,4 +26,7 @@ interface SofaService {
     suspend fun addHighlightForMatch(
         @Body requestBody: RequestBody
     ) : Response<ResponseBody>
+
+    @DELETE("highlight/{highlightId}")
+    suspend fun deleteMatchHighlight(@Path("highlightId") highlightId: Int) : Response<ResponseBody>?
 }

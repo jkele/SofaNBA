@@ -4,52 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="96dp"
-    android:layout_marginBottom="8dp"
-    android:background="@drawable/background_highlight_item_view">
+    android:layout_marginBottom="8dp">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/imageContainer"
-        android:layout_width="112dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:id="@+id/editContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/background_highlight_edit_container"
+        android:backgroundTint="#EDEDED"
+        android:layout_width="64dp"
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/ivHighlightThumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_play_circle"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/white" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:src="@drawable/ic_delete"
+            android:background="@android:color/transparent"
+            app:tint="@android:color/holo_red_dark"
+            android:layout_marginBottom="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="bottom|end"
+            android:layout_width="24dp"
+            android:layout_height="24dp"/>
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/tvHighlightTitle"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:theme="@style/BodyMediumNLv1Left"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/imageContainer"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="LeBron James best highlights" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:translationZ="2dp"
+        android:id="@+id/highlightViewContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_highlight_item_view">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/imageContainer"
+            android:layout_width="112dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivHighlightThumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_play_circle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvHighlightTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="136dp"
+            android:layout_marginEnd="24dp"
+            android:theme="@style/BodyMediumNLv1Left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="LeBron James best highlights" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

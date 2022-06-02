@@ -5,14 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import androidx.paging.LoadStates
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
@@ -22,8 +18,6 @@ import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.paging.playerMatch.PlayerMatchDiff
 import hr.algebra.sofanba.viewmodels.PlayerMatchesViewModel
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
@@ -45,6 +39,7 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
 
         val pagingAdapter = PlayerMatchesPagingAdapter(requireContext(), requireActivity().supportFragmentManager, PlayerMatchDiff)
         binding.rvPlayerMatches.adapter = pagingAdapter
+        binding.emptyStateView.visibility = View.GONE
 
         pagingAdapter.addLoadStateListener {
             if (it.append.endOfPaginationReached) {
@@ -80,8 +75,8 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
         }
 
         binding.btnPlayoffs.setOnClickListener {
-            binding.btnPlayoffs.isActivated = true
             binding.btnRegularSeason.isActivated = false
+            binding.btnPlayoffs.isActivated = true
             submitPagingAdapterData(pagingAdapter, true)
         }
     }
