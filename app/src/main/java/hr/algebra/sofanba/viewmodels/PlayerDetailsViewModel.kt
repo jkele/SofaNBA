@@ -12,9 +12,6 @@ import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.PlayerImage
 import kotlinx.coroutines.launch
 import okhttp3.RequestBody
-import retrofit2.HttpException
-import java.lang.Exception
-import kotlin.jvm.Throws
 
 class PlayerDetailsViewModel(application: Application): AndroidViewModel(application) {
 
@@ -61,6 +58,20 @@ class PlayerDetailsViewModel(application: Application): AndroidViewModel(applica
     fun addImageForPlayer(requestBody: RequestBody) {
         viewModelScope.launch {
             Network().getSofaService().addImageForPlayer(requestBody)
+        }
+    }
+
+    fun deletePlayerImage(imageId: Int) {
+        viewModelScope.launch {
+            Network().getSofaService().deletePlayerImage(imageId)
+        }
+    }
+
+    fun deleteAllPlayerImages(imageList: ArrayList<PlayerImage>) {
+        viewModelScope.launch {
+            imageList.forEach {
+                Network().getSofaService().deletePlayerImage(it.id!!)
+            }
         }
     }
 }

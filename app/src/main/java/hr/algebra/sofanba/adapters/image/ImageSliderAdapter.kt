@@ -27,6 +27,11 @@ class ImageSliderAdapter(
         notifyDataSetChanged()
     }
 
+    fun clearImageList(imagesToRemove: ArrayList<PlayerImage>) {
+        imageList.removeAll(imagesToRemove)
+        notifyDataSetChanged()
+    }
+
     override fun getCount(): Int {
         return imageList.size
     }

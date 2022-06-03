@@ -74,4 +74,7 @@
     <string name="paste_photo_url">Paste photo url</string>
     <string name="photo_title">Photo title</string>
     <string name="type_a_photo_title_ie">Type a photo title, ie. “LeBron Headshot”</string>
+    <string name="manage_photos">Manage photos</string>
+    <string name="delete_all_photos">Delete all photos</string>
+    <string name="error_deleting_image">Error deleting image</string>
 </resources>

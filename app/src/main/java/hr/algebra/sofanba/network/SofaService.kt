@@ -35,4 +35,7 @@ interface SofaService {
 
     @DELETE("highlight/{highlightId}")
     suspend fun deleteMatchHighlight(@Path("highlightId") highlightId: Int) : Response<ResponseBody>?
+
+    @DELETE("player-image/{imageId}")
+    suspend fun deletePlayerImage(@Path("imageId") imageId: Int) : Response<ResponseBody>?
 }
