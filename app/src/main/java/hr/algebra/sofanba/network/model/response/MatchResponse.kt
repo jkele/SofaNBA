@@ -6,5 +6,4 @@ import hr.algebra.sofanba.network.model.Meta
 data class MatchResponse(
     val data: ArrayList<Match>,
     val meta: Meta
-) {
-}
+)

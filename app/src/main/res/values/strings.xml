@@ -77,4 +77,8 @@
     <string name="manage_photos">Manage photos</string>
     <string name="delete_all_photos">Delete all photos</string>
     <string name="error_deleting_image">Error deleting image</string>
+    <string name="favoritebutton">favoriteButton</string>
+    <string name="editbutton">editButton</string>
+    <string name="hometeamlogo">homeTeamLogo</string>
+    <string name="awayteamlogo">awayTeamLogo</string>
 </resources>

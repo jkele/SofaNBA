@@ -45,7 +45,8 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
                 android:layout_width="24dp"
-                android:layout_height="24dp"/>
+                android:layout_height="24dp"
+                android:contentDescription="@string/editbutton" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -8,9 +8,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
-import androidx.paging.LoadStates
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.SeasonMatchesPagingAdapter
@@ -29,7 +27,7 @@ class SeasonsFragment: Fragment(R.layout.fragment_seasons) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSeasonsBinding.inflate(inflater, container, false)
 
         binding.rvSeasonMatches.layoutManager = LinearLayoutManager(requireContext())

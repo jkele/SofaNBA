@@ -14,5 +14,4 @@ data class Meta(
     val perPage: Int,
     @SerializedName("total_count")
     val totalCount: Int,
-): Serializable {
-}
+): Serializable

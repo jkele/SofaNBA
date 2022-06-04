@@ -26,7 +26,7 @@ class AddVideoBottomSheet(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = BottomsheetAddVideoBinding.inflate(inflater, container, false)
 
         binding.btnAdd.setOnClickListener {

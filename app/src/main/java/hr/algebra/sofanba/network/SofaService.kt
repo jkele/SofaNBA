@@ -1,12 +1,9 @@
 package hr.algebra.sofanba.network
 
-import androidx.room.Delete
-import hr.algebra.sofanba.network.model.Highlight
 import hr.algebra.sofanba.network.model.response.HighlightResponse
 import hr.algebra.sofanba.network.model.response.PlayerImageResponse
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 

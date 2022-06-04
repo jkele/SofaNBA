@@ -41,14 +41,6 @@ interface NbaService {
         @Query("page") pageNumber: Int
     ) : MatchResponse
 
-    @GET
-    suspend fun getMatchesForTeamPerSeason(
-        @Query("seasons[]") season: Int,
-        @Query("team_ids[]") teamId: Int,
-        @Query("per_page") numberOfResults: Int,
-        @Query("page") pageNumber: Int
-    ) : MatchResponse
-
     @GET("stats")
     suspend fun getStatsForMatchPerPlayer(
         @Query("seasons[]") season: Int,

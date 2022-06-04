@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -72,6 +73,7 @@ class TeamRecyclerAdapter(
         return exists
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun onFavoriteTeamButtonClick(team: Team) {
         deleteCallback?.invoke(team)
         teamsList.remove(team)

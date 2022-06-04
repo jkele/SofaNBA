@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.adapters.image
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +41,7 @@ class ImageSliderAdapter(
         return view === `object`
     }
 
+    @SuppressLint("InflateParams")
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val view = LayoutInflater.from(context).inflate(R.layout.player_image_slider_item, null)
         val ivImages = view.findViewById<ImageView>(R.id.ivImages)

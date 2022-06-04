@@ -31,7 +31,7 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPlayerMatchesBinding.inflate(inflater, container, false)
 
         binding.rvPlayerMatches.layoutManager = LinearLayoutManager(requireContext())

@@ -19,5 +19,4 @@ data class Match(
     val homeTeam: Team,
     @SerializedName("visitor_team")
     val visitorTeam: Team
-): Serializable {
-}
+): Serializable

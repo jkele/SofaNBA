@@ -27,7 +27,7 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
         binding.btnAbout.setOnClickListener {

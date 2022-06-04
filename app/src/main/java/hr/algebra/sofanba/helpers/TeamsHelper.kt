@@ -6,7 +6,6 @@ import androidx.cardview.widget.CardView
 import coil.load
 import com.google.android.gms.maps.model.LatLng
 import hr.algebra.sofanba.R
-import hr.algebra.sofanba.adapters.paging.PlayerPagingAdapter
 
 fun loadTeamImage(context: Context, team_abbr: String, imageView: ImageView, imageContainer: CardView){
     when(team_abbr){

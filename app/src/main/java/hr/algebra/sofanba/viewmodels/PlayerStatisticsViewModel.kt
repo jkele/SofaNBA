@@ -37,7 +37,7 @@ class PlayerStatisticsViewModel: ViewModel() {
     }
 
     private fun getMaxSeason(statsResponse: StatsResponse): Int? {
-        var seasonList = ArrayList<Int>()
+        val seasonList = ArrayList<Int>()
         statsResponse.data.forEach {
             seasonList.add(it.game.season)
         }
@@ -45,7 +45,7 @@ class PlayerStatisticsViewModel: ViewModel() {
     }
 
     private fun getMinSeason(statsResponse: StatsResponse): Int? {
-        var seasonList = ArrayList<Int>()
+        val seasonList = ArrayList<Int>()
         statsResponse.data.forEach {
             seasonList.add(it.game.season)
         }

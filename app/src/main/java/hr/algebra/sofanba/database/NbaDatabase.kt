@@ -20,7 +20,14 @@ abstract class NbaDatabase : RoomDatabase() {
     companion object {
         private var instance: NbaDatabase? = null
 
-        fun getDatabase(context: Context): NbaDatabase =
+        fun getDatabase(context: Context): NbaDatabase? {
+            if (instance == null) {
+                instance = buildDatabase(context)
+            }
+            return instance
+        }
+
+        private fun buildDatabase(context: Context): NbaDatabase =
             Room.databaseBuilder(context, NbaDatabase::class.java, "NbaDatabase")
                 .allowMainThreadQueries().build()
     }

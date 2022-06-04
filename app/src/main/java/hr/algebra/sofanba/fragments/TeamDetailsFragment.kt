@@ -1,26 +1,20 @@
 package hr.algebra.sofanba.fragments
 
-import androidx.fragment.app.Fragment
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.ProgressBar
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-
 import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.EXTRA_TEAM
 import hr.algebra.sofanba.databinding.FragmentTeamDetailsBinding
 import hr.algebra.sofanba.helpers.getStadiumLocation
-import hr.algebra.sofanba.helpers.getTeamColor
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.viewmodels.TeamDetailsViewModel
 
@@ -35,7 +29,7 @@ class TeamDetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTeamDetailsBinding.inflate(inflater, container, false)
 
         selectedTeam = requireActivity().intent.getSerializableExtra(EXTRA_TEAM) as Team
@@ -44,11 +38,13 @@ class TeamDetailsFragment : Fragment() {
         binding.tvCityName.text = selectedTeam.city
 
 
-        viewModel.teamsList.observe(viewLifecycleOwner) {
+        viewModel.teamsList.observe(viewLifecycleOwner) { teamsList ->
             binding.progressBar.visibility = ProgressBar.VISIBLE
-            val divisionTeams = it.filter { it.division == selectedTeam.division } as ArrayList
+
+            val divisionTeams = teamsList.filter { it.division == selectedTeam.division } as ArrayList
             divisionTeams.remove(selectedTeam)
             binding.rvDivisionTeams.setupTeamSequenceView(requireContext(), divisionTeams, false)
+
             binding.progressBar.visibility = ProgressBar.GONE
         }
 

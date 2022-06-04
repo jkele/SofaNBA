@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import hr.algebra.sofanba.PlayerActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.PlayerItemViewBinding

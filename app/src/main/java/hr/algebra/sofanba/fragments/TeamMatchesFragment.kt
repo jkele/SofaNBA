@@ -29,7 +29,7 @@ class TeamMatchesFragment : Fragment(R.layout.fragment_team_matches) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTeamMatchesBinding.inflate(inflater, container, false)
 
         binding.rvMatches.layoutManager = LinearLayoutManager(requireContext())

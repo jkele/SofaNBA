@@ -26,8 +26,7 @@ data class GameStats(
     val stl: Int,
     val team: Team,
     val turnover: Int
-) {
-}
+)
 
 data class GamePlayer(
     val id: Int,

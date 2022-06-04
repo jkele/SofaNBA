@@ -9,7 +9,6 @@ import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.widget.ProgressBar
 import androidx.constraintlayout.widget.ConstraintLayout
-import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.MatchStatsViewBinding
 
 class MatchStatsView(context: Context, attrs: AttributeSet) : ConstraintLayout(context, attrs) {

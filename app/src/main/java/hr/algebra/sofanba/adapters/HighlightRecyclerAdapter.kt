@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.adapters
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -10,16 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import hr.algebra.sofanba.R
-import hr.algebra.sofanba.adapters.paging.SeasonMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.HighlightItemViewBinding
 import hr.algebra.sofanba.network.model.Highlight
-import java.lang.Exception
 
 const val VIDEO_THUMBNAIL_URL = "http://img.youtube.com/vi/"
 const val VIDEO_THUMBNAIL_QUALITY = "/mqdefault.jpg"
@@ -37,12 +33,14 @@ class HighlightRecyclerAdapter(
         val binding = HighlightItemViewBinding.bind(view)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: ArrayList<Highlight>) {
         highlightsList.clear()
         highlightsList.addAll(newList)
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateHighlightsListItems(highlight: Highlight) {
         highlightsList.add(highlight)
         notifyDataSetChanged()
@@ -54,6 +52,7 @@ class HighlightRecyclerAdapter(
         return HighlightViewHolder(view)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: HighlightViewHolder, position: Int) {
         val highlight = highlightsList[position]
         val videoId = highlight.url!!.substringAfter('=')

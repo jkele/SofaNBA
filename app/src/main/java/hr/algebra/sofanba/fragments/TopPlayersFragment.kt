@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_MATCH
@@ -24,7 +23,7 @@ class TopPlayersFragment : Fragment(R.layout.fragment_top_players) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentTopPlayersBinding.inflate(inflater, container, false)
 
         selectedMatch = requireActivity().intent.getSerializableExtra(EXTRA_MATCH) as Match

@@ -7,9 +7,9 @@ import hr.algebra.sofanba.network.model.GameStats
 import java.lang.Exception
 
 class PlayerMatchPagingSource(
-    val service: NbaService,
-    val season: Int,
-    val playerId: Int,
+    private val service: NbaService,
+    private val season: Int,
+    private val playerId: Int,
     val postseason: Boolean
 ) : PagingSource<Int, GameStats>() {
     override fun getRefreshKey(state: PagingState<Int, GameStats>): Int? {

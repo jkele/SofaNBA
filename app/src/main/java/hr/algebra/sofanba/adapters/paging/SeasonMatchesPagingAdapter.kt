@@ -3,7 +3,6 @@ package hr.algebra.sofanba.adapters.paging
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.opengl.Visibility
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View

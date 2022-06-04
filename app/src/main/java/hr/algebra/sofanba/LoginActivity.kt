@@ -51,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, req_code)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == req_code) {
@@ -63,14 +64,14 @@ class LoginActivity : AppCompatActivity() {
         try {
             val account: GoogleSignInAccount? = completedTask.getResult(ApiException::class.java)
             if (account != null) {
-                UpdateUI(account)
+                updateUI(account)
             }
         } catch (e: ApiException) {
             Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun UpdateUI(account: GoogleSignInAccount) {
+    private fun updateUI(account: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(account.idToken, null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {

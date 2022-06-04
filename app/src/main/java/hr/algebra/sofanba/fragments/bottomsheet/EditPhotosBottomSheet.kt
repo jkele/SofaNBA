@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.fragments.bottomsheet
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -15,7 +16,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.PlayerPhotoRecyclerAdapter
 import hr.algebra.sofanba.databinding.BottomsheetEditPhotosBinding
-import hr.algebra.sofanba.network.model.Highlight
 import hr.algebra.sofanba.network.model.PlayerImage
 
 class EditPhotosBottomSheet(
@@ -29,11 +29,12 @@ class EditPhotosBottomSheet(
     private lateinit var binding: BottomsheetEditPhotosBinding
     private val adapter by lazy { PlayerPhotoRecyclerAdapter(requireContext(), arrayListOf()) }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = BottomsheetEditPhotosBinding.inflate(inflater, container, false)
 
         binding.rvPlayerPhotos.layoutManager = LinearLayoutManager(requireContext())

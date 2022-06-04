@@ -13,11 +13,8 @@ import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.databinding.FragmentPlayerStatisticsBinding
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.SeasonStats
-import hr.algebra.sofanba.network.model.response.StatsResponse
 import hr.algebra.sofanba.viewmodels.PlayerStatisticsViewModel
 import hr.algebra.sofanba.views.PlayerStatisticsView
-import kotlinx.android.synthetic.main.fragment_player_statistics.*
-import java.lang.Exception
 
 class PlayerStatisticsFragment: Fragment(R.layout.fragment_player_statistics) {
 
@@ -32,7 +29,7 @@ class PlayerStatisticsFragment: Fragment(R.layout.fragment_player_statistics) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPlayerStatisticsBinding.inflate(inflater, container, false)
 
         selectedPlayer = requireActivity().intent.getSerializableExtra(EXTRA_PLAYER) as Player
@@ -43,11 +40,11 @@ class PlayerStatisticsFragment: Fragment(R.layout.fragment_player_statistics) {
             }
         }
 
-        viewModel.playerSeasonAveragesList.observe(viewLifecycleOwner) {
+        viewModel.playerSeasonAveragesList.observe(viewLifecycleOwner) { statsResponse ->
             try {
                 binding.progressBar.visibility = ProgressBar.VISIBLE
 
-                val statsResponseList = it.take(4)
+                val statsResponseList = statsResponse.take(4)
                 val seasonAveragesList = arrayListOf<SeasonStats>()
 
                 statsResponseList.forEach {

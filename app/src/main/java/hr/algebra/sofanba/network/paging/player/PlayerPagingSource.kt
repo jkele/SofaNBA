@@ -6,7 +6,7 @@ import hr.algebra.sofanba.network.NbaService
 import hr.algebra.sofanba.network.model.Player
 import java.lang.Exception
 
-class PlayerPagingSource(val service: NbaService): PagingSource<Int, Player>() {
+class PlayerPagingSource(private val service: NbaService): PagingSource<Int, Player>() {
 
     override fun getRefreshKey(state: PagingState<Int, Player>): Int? {
         return state.anchorPosition?.let {

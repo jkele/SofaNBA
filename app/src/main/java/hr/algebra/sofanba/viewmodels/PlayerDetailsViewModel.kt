@@ -20,7 +20,7 @@ class PlayerDetailsViewModel(application: Application): AndroidViewModel(applica
     private val repository: NbaRepository
 
     init {
-        val nbaDao = NbaDatabase.getDatabase(application).nbaDao()
+        val nbaDao = NbaDatabase.getDatabase(application)!!.nbaDao()
         repository = NbaRepository(nbaDao)
     }
 

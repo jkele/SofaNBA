@@ -6,5 +6,4 @@ import hr.algebra.sofanba.network.model.Meta
 data class StatsResponse(
     val data: ArrayList<GameStats>,
     val meta: Meta
-) {
-}
+)

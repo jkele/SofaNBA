@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import hr.algebra.sofanba.database.NbaDatabase
 import hr.algebra.sofanba.database.NbaRepository
-import hr.algebra.sofanba.database.model.FavoritePlayer
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.Team
 import kotlinx.coroutines.launch
@@ -19,7 +18,7 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
     private val repository: NbaRepository
 
     init {
-        val nbaDao = NbaDatabase.getDatabase(application).nbaDao()
+        val nbaDao = NbaDatabase.getDatabase(application)!!.nbaDao()
         repository = NbaRepository(nbaDao)
     }
 

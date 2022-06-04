@@ -21,7 +21,7 @@ class PlayerMatchStatsBottomSheet(val gameStats: GameStats): BottomSheetDialogFr
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = BottomsheetPlayerMatchStatsBinding.inflate(inflater, container, false)
 
         loadTeamMatchImage(getTeamAbbr(gameStats.game.home_team_id), binding.ivHomeTeamLogo)

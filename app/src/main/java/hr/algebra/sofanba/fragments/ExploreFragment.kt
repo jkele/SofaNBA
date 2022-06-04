@@ -13,10 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
-import hr.algebra.sofanba.adapters.paging.PlayerPagingAdapter
 import hr.algebra.sofanba.adapters.TeamRecyclerAdapter
+import hr.algebra.sofanba.adapters.paging.PlayerPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentExploreBinding
-import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.network.paging.player.PlayerDiff
 import hr.algebra.sofanba.viewmodels.ExploreViewModel
@@ -34,7 +33,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentExploreBinding.inflate(inflater, container, false)
 
         binding.rvPlayers.layoutManager = LinearLayoutManager(requireContext())

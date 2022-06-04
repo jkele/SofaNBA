@@ -25,7 +25,8 @@
                 android:layout_marginEnd="16dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/favorite_button_selector"
-                app:tint="@color/white" />
+                app:tint="@color/white"
+                android:contentDescription="@string/favoritebutton" />
 
         </androidx.appcompat.widget.Toolbar>
 

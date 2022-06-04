@@ -26,7 +26,7 @@ class ExploreViewModel(application: Application): AndroidViewModel(application) 
     private val repository: NbaRepository
 
     init {
-        val nbaDao = NbaDatabase.getDatabase(application).nbaDao()
+        val nbaDao = NbaDatabase.getDatabase(application)!!.nbaDao()
         repository = NbaRepository(nbaDao)
     }
 

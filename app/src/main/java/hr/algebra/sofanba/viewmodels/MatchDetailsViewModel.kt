@@ -3,14 +3,11 @@ package hr.algebra.sofanba.viewmodels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import hr.algebra.sofanba.network.Network
 import hr.algebra.sofanba.network.model.GameStats
 import hr.algebra.sofanba.network.model.Highlight
 import kotlinx.coroutines.launch
 import okhttp3.RequestBody
-import java.lang.Exception
 
 class MatchDetailsViewModel: ViewModel() {
 

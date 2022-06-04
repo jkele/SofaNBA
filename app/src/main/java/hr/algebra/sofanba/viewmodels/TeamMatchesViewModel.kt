@@ -1,6 +1,5 @@
 package hr.algebra.sofanba.viewmodels
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -11,7 +10,6 @@ import hr.algebra.sofanba.network.Network
 import hr.algebra.sofanba.network.model.Match
 import hr.algebra.sofanba.network.paging.match.TeamMatchPagingSource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class TeamMatchesViewModel: ViewModel() {
 

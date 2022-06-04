@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ class PlayerInfoView(context: Context, attrs: AttributeSet): ConstraintLayout(co
 
     private var binding = PlayerInfoViewBinding.inflate(LayoutInflater.from(context), this, true)
 
+    @SuppressLint("SetTextI18n")
     fun setupPlayerInfoView(player: Player) {
         binding.tvPlayerTeam.text = player.team.fullName
         loadTeamImage(context, player.team.abbreviation, binding.ivTeamImage, binding.imageContainer)

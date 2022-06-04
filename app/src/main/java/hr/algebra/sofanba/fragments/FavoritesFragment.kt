@@ -23,7 +23,7 @@ class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
         binding.rvFavoritePlayers.layoutManager = LinearLayoutManager(requireContext())

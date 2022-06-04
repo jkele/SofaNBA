@@ -8,8 +8,8 @@ import java.lang.Exception
 
 
 class TeamMatchPagingSource(
-    val service: NbaService,
-    val teamId: Int,
+    private val service: NbaService,
+    private val teamId: Int,
     val postSeason: Boolean
 ) : PagingSource<Int, Match>() {
     override fun getRefreshKey(state: PagingState<Int, Match>): Int? {

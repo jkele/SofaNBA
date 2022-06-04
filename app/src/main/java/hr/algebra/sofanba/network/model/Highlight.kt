@@ -7,5 +7,4 @@ data class Highlight(
     val playerIdList: ArrayList<Int>?,
     val id: Int?,
     val startTimestamp: Int?
-) {
-}
+)

@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -7,13 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.squareup.picasso.Picasso
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.PlayerPhotoItemViewBinding
-import hr.algebra.sofanba.network.model.Highlight
 import hr.algebra.sofanba.network.model.PlayerImage
-import java.lang.Exception
 
 class PlayerPhotoRecyclerAdapter(
     private val context: Context,
@@ -25,12 +23,14 @@ class PlayerPhotoRecyclerAdapter(
     var updateSliderCallback: ((ArrayList<PlayerImage>) -> Unit)? = null
     var showErrorMessageCallback: ((String) -> Unit)? = null
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setImageList(newImageList: ArrayList<PlayerImage>) {
         imageList.clear()
         imageList.addAll(newImageList)
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun clearImageList() {
         imageList.clear()
         notifyDataSetChanged()
@@ -45,6 +45,7 @@ class PlayerPhotoRecyclerAdapter(
         return PlayerPhotoViewHolder(view)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: PlayerPhotoViewHolder, position: Int) {
         val playerImage = imageList[position]
 
@@ -70,7 +71,7 @@ class PlayerPhotoRecyclerAdapter(
         }
     }
 
-    private fun setViewMargin(holder: PlayerPhotoRecyclerAdapter.PlayerPhotoViewHolder, value: Float) {
+    private fun setViewMargin(holder: PlayerPhotoViewHolder, value: Float) {
         val px = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
             value,

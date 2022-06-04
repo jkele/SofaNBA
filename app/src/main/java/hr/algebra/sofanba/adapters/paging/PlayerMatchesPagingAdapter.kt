@@ -2,7 +2,6 @@ package hr.algebra.sofanba.adapters.paging
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,15 +9,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import hr.algebra.sofanba.MatchActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.PlayerMatchItemViewBinding
 import hr.algebra.sofanba.fragments.bottomsheet.PlayerMatchStatsBottomSheet
 import hr.algebra.sofanba.helpers.getTeamAbbr
 import hr.algebra.sofanba.helpers.loadTeamImage
-import hr.algebra.sofanba.network.model.Game
 import hr.algebra.sofanba.network.model.GameStats
-import kotlinx.android.synthetic.main.bottomsheet_player_match_stats.*
 import java.text.SimpleDateFormat
 
 class PlayerMatchesPagingAdapter(
@@ -35,13 +31,13 @@ class PlayerMatchesPagingAdapter(
     override fun onBindViewHolder(holder: PlayerMatchViewHolder, position: Int) {
         val gameStats = getItem(position)
 
-        val matchDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(gameStats!!.game!!.date)
+        val matchDate = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(gameStats!!.game.date)
 
         holder.binding.tvMatchDate.text = SimpleDateFormat("dd").format(matchDate!!).toString() +
                 " " +SimpleDateFormat("MMM").format(matchDate).uppercase() + " " +
                 SimpleDateFormat("yyyy"). format(matchDate)
 
-        holder.binding.tvHomeTeamPoints.text = gameStats.game!!.home_team_score.toString()
+        holder.binding.tvHomeTeamPoints.text = gameStats.game.home_team_score.toString()
         holder.binding.tvAwayTeamPoints.text = gameStats.game.visitor_team_score.toString()
 
         holder.binding.tvHomeTeamAbbreviation.text = getTeamAbbr(gameStats.game.home_team_id)

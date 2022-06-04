@@ -36,7 +36,7 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMatchDetailsBinding.inflate(inflater, container, false)
 
         selectedMatch = requireActivity().intent.getSerializableExtra(EXTRA_MATCH) as Match

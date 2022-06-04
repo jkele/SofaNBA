@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.children
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.PlayerStatisticsViewBinding
 

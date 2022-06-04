@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import hr.algebra.sofanba.databinding.BottomsheetAddPhotoBinding
-import hr.algebra.sofanba.network.model.Highlight
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.PlayerImage
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -28,7 +26,7 @@ class AddPhotoBottomSheet(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = BottomsheetAddPhotoBinding.inflate(inflater, container, false)
 
         binding.btnAdd.setOnClickListener {

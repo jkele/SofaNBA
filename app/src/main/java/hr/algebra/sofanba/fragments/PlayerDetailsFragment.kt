@@ -37,7 +37,7 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentPlayerDetailsBinding.inflate(layoutInflater, container, false)
 
         selectedPlayer = requireActivity().intent.getSerializableExtra(EXTRA_PLAYER) as Player
