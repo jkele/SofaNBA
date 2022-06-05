@@ -26,17 +26,16 @@ class MatchDetailsViewModel: ViewModel() {
 
     fun getMatchStatsAndPlayerImages(gameId: Int, perPage: Int, page: Int) {
         viewModelScope.launch {
-            var matchStats = Network().getNbaService().getStatsForMatch(gameId, perPage, page).data
+            val matchStats = Network().getNbaService().getStatsForMatch(gameId, perPage, page).data
             val asyncTasks = matchStats.map { matchStat ->
                 async {
                     try {
                         Network().getSofaService().getPlayerImages(matchStat.player.id).data
                     } catch (e: Exception) {
-                        arrayListOf<PlayerImage>(PlayerImage(0, "", "", null))
+                        arrayListOf(PlayerImage(0, "", "", null))
                     }
                 }
             }
-
             val responses = asyncTasks.awaitAll()
 
             playerImagesList.value = responses as ArrayList<ArrayList<PlayerImage>>

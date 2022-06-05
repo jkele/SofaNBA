@@ -10,6 +10,8 @@ import hr.algebra.sofanba.network.Network
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.PlayerImage
 import hr.algebra.sofanba.network.model.Team
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -19,6 +21,8 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
     val favoriteTeams = MutableLiveData<ArrayList<Team>>()
     val playerImages = MutableLiveData<ArrayList<PlayerImage>>()
 
+    val testPlayerImages = MutableLiveData<ArrayList<ArrayList<PlayerImage>>>()
+
     private val repository: NbaRepository
 
     init {
@@ -27,6 +31,29 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
     }
 
     fun getFavoritePlayersAndImages() {
+        viewModelScope.launch {
+            val players = ArrayList<Player>()
+            repository.getFavoritePlayersAsync().forEach {
+                players.add(it.convertToPlayer())
+            }
+
+            val asyncTasks = players.map { player ->
+                async {
+                    try {
+                        Network().getSofaService().getPlayerImages(player.id).data
+                    } catch (e: Exception) {
+                        arrayListOf(PlayerImage(0, "", "", null))
+                    }
+                }
+            }
+            val response = asyncTasks.awaitAll()
+
+            favoritePlayers.value = players
+            testPlayerImages.value = response as ArrayList<ArrayList<PlayerImage>>
+        }
+    }
+
+    fun getFavoritePltestayersAndImages() {
         viewModelScope.launch {
             val players = ArrayList<Player>()
             val images = ArrayList<PlayerImage>()

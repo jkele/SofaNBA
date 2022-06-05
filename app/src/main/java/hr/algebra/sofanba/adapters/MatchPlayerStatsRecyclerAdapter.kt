@@ -40,11 +40,11 @@ class MatchPlayerStatsRecyclerAdapter(
 
 
         imagesList.forEach {
-            it.forEach { playerImage ->
-                if(playerImage.playerId == playerStats.player.id) {
-                    Picasso.get().load(playerImage.imageUrl).fit().centerCrop().into(holder.binding.ivPlayerImage)
-                }
-                else {
+            for (i in 0..it.size) {
+                if (it[0].playerId == playerStats.player.id) {
+                    Picasso.get().load(it[0].imageUrl).fit().centerCrop()
+                        .into(holder.binding.ivPlayerImage)
+                } else {
                     loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
                 }
             }

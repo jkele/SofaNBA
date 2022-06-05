@@ -19,11 +19,11 @@ import hr.algebra.sofanba.network.model.PlayerImage
 class FavoritePlayerRecyclerAdapter(
     private val context: Context,
     private val favoritesList: ArrayList<Player>,
-    private val imagesList: ArrayList<PlayerImage>,
+    private val imagesList: ArrayList<ArrayList<PlayerImage>>,
     private val deleteCallback: (Player) -> Unit
-): RecyclerView.Adapter<FavoritePlayerRecyclerAdapter.FavoritePlayerViewHolder>() {
+) : RecyclerView.Adapter<FavoritePlayerRecyclerAdapter.FavoritePlayerViewHolder>() {
 
-    class FavoritePlayerViewHolder(view: View): RecyclerView.ViewHolder(view){
+    class FavoritePlayerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = PlayerItemViewBinding.bind(view)
     }
 
@@ -52,12 +52,15 @@ class FavoritePlayerRecyclerAdapter(
             context.startActivity(intent)
         }
 
-        val playerImage = imagesList.firstOrNull { it.playerId == player.id }
-
-        if (playerImage != null) {
-            Picasso.get().load(playerImage.imageUrl).fit().centerCrop().into(holder.binding.ivPlayerImage)
-        } else {
-            loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
+        imagesList.forEach {
+            for (i in 0..it.size) {
+                if (it[0].playerId == player.id) {
+                    Picasso.get().load(it[0].imageUrl).fit().centerCrop()
+                        .into(holder.binding.ivPlayerImage)
+                } else {
+                    loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
+                }
+            }
         }
 
     }
