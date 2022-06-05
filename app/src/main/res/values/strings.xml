@@ -81,4 +81,7 @@
     <string name="editbutton">editButton</string>
     <string name="hometeamlogo">homeTeamLogo</string>
     <string name="awayteamlogo">awayTeamLogo</string>
+    <string name="please_insert_value">Please insert value</string>
+    <string name="enter_valid_url">Please enter a valid url</string>
+    <string name="youtube_url">Please enter a URL from YouTube</string>
 </resources>
