@@ -41,7 +41,7 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private fun loadFavoritePlayers() {
         viewModel.favoritePlayers.observe(viewLifecycleOwner) { playerList ->
-            viewModel.testPlayerImages.observe(viewLifecycleOwner) { imagesList ->
+            viewModel.playerImages.observe(viewLifecycleOwner) { imagesList ->
                 binding.progressBar.visibility = ProgressBar.VISIBLE
 
                 val adapter = FavoritePlayerRecyclerAdapter(

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.SeasonMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentSeasonsBinding
+import hr.algebra.sofanba.fragments.bottomsheet.FilterSeasonBottomSheet
 import hr.algebra.sofanba.network.paging.season.SeasonMatchDiff
 import hr.algebra.sofanba.viewmodels.SeasonsViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -23,6 +24,9 @@ class SeasonsFragment: Fragment(R.layout.fragment_seasons) {
     private lateinit var binding: FragmentSeasonsBinding
     private val viewModel: SeasonsViewModel by activityViewModels()
 
+    private val pagingAdapter by lazy { SeasonMatchesPagingAdapter(requireContext(), SeasonMatchDiff) }
+    private var selectedSeason: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,7 +36,10 @@ class SeasonsFragment: Fragment(R.layout.fragment_seasons) {
 
         binding.rvSeasonMatches.layoutManager = LinearLayoutManager(requireContext())
 
-        val pagingAdapter = SeasonMatchesPagingAdapter(requireContext(), SeasonMatchDiff)
+        binding.btnFilter.setOnClickListener {
+            openFilterBottomSheet()
+        }
+
         binding.rvSeasonMatches.adapter = pagingAdapter
 
         pagingAdapter.addLoadStateListener {
@@ -43,34 +50,61 @@ class SeasonsFragment: Fragment(R.layout.fragment_seasons) {
             }
         }
 
-        submitPagingAdapterData(pagingAdapter, false)
-        setButtonListeners(pagingAdapter)
+        selectedSeason = "2021"
+        submitPagingAdapterData(pagingAdapter, "2021",false)
+        setButtonListeners()
 
         return binding.root
     }
 
-    private fun setButtonListeners(pagingAdapter: SeasonMatchesPagingAdapter) {
+    private fun setButtonListeners() {
         binding.btnRegularSeason.isActivated = true
         binding.btnRegularSeason.setOnClickListener {
-            binding.btnRegularSeason.isActivated = true
-            binding.btnPlayoffs.isActivated = false
-            submitPagingAdapterData(pagingAdapter, false)
+            regularSeasonButtonClick("2021")
+            selectedSeason = "2021"
         }
 
         binding.btnPlayoffs.setOnClickListener {
-            binding.btnPlayoffs.isActivated = true
-            binding.btnRegularSeason.isActivated = false
-            submitPagingAdapterData(pagingAdapter, true)
+            playoffsButtonClick("2021")
+            selectedSeason = "2021"
         }
     }
 
-    private fun submitPagingAdapterData(pagingAdapter: SeasonMatchesPagingAdapter, postseason: Boolean) {
+    private fun submitPagingAdapterData(pagingAdapter: SeasonMatchesPagingAdapter, season: String, postseason: Boolean) {
         lifecycleScope.launch {
-            val flow = viewModel.getSeasonMatchesFlow(2021, "2021-10-10" , postseason)
+            val flow = viewModel.getSeasonMatchesFlow(season.toInt(), postseason)
             flow.collectLatest {
                 pagingAdapter.submitData(it)
             }
         }
+    }
+
+    private fun openFilterBottomSheet() {
+        val bottomSheet = FilterSeasonBottomSheet(selectedSeason) { season ->
+            selectedSeason = season
+            submitPagingAdapterData(pagingAdapter, season, false)
+
+            binding.btnRegularSeason.setOnClickListener {
+                regularSeasonButtonClick(season)
+            }
+
+            binding.btnPlayoffs.setOnClickListener {
+                playoffsButtonClick(season)
+            }
+        }
+        bottomSheet.show(requireActivity().supportFragmentManager, "FilterSeason")
+    }
+
+    private fun regularSeasonButtonClick(season: String) {
+        binding.btnRegularSeason.isActivated = true
+        binding.btnPlayoffs.isActivated = false
+        submitPagingAdapterData(pagingAdapter, season,false)
+    }
+
+    private fun playoffsButtonClick(season: String) {
+        binding.btnPlayoffs.isActivated = true
+        binding.btnRegularSeason.isActivated = false
+        submitPagingAdapterData(pagingAdapter, season, true)
     }
 
 }

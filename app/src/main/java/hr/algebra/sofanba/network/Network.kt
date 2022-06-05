@@ -4,6 +4,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 const val BASE_URL_NBA = "https://www.balldontlie.io/api/v1/"
 const val BASE_URL_SOFA = "https://academy-2022.dev.sofascore.com/api/v1/academy/"
@@ -19,12 +20,19 @@ class Network {
         val httpClient = OkHttpClient.Builder().addInterceptor(interceptor)
 
         val retrofitNba =
-            Retrofit.Builder().baseUrl(BASE_URL_NBA).addConverterFactory(GsonConverterFactory.create())
+            Retrofit.Builder().baseUrl(BASE_URL_NBA)
+                .addConverterFactory(GsonConverterFactory.create())
                 .client(httpClient.build()).build()
 
         val retrofitSofa =
-            Retrofit.Builder().baseUrl(BASE_URL_SOFA).addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient.build()).build()
+            Retrofit.Builder().baseUrl(BASE_URL_SOFA)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(
+                    httpClient
+                        .connectTimeout(60, TimeUnit.SECONDS)
+                        .writeTimeout(120, TimeUnit.SECONDS)
+                        .readTimeout(60, TimeUnit.SECONDS).build()
+                ).build()
 
         nbaService = retrofitNba.create(NbaService::class.java)
         sofaService = retrofitSofa.create(SofaService::class.java)

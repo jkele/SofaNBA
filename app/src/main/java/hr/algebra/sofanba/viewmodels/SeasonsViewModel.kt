@@ -13,9 +13,9 @@ import kotlinx.coroutines.flow.Flow
 
 class SeasonsViewModel: ViewModel() {
 
-    fun getSeasonMatchesFlow(season: Int, startDate: String, postseason: Boolean): Flow<PagingData<Match>> {
+    fun getSeasonMatchesFlow(season: Int, postseason: Boolean): Flow<PagingData<Match>> {
         return Pager(PagingConfig(pageSize = 20)) {
-            SeasonMatchPagingSource(Network().getNbaService(), season, startDate, postseason)
+            SeasonMatchPagingSource(Network().getNbaService(), season, postseason)
         }.flow.cachedIn(viewModelScope)
     }
 }

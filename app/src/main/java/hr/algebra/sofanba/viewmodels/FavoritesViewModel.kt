@@ -19,9 +19,8 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
 
     val favoritePlayers = MutableLiveData<ArrayList<Player>>()
     val favoriteTeams = MutableLiveData<ArrayList<Team>>()
-    val playerImages = MutableLiveData<ArrayList<PlayerImage>>()
 
-    val testPlayerImages = MutableLiveData<ArrayList<ArrayList<PlayerImage>>>()
+    val playerImages = MutableLiveData<ArrayList<ArrayList<PlayerImage>>>()
 
     private val repository: NbaRepository
 
@@ -49,24 +48,7 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
             val response = asyncTasks.awaitAll()
 
             favoritePlayers.value = players
-            testPlayerImages.value = response as ArrayList<ArrayList<PlayerImage>>
-        }
-    }
-
-    fun getFavoritePltestayersAndImages() {
-        viewModelScope.launch {
-            val players = ArrayList<Player>()
-            val images = ArrayList<PlayerImage>()
-            repository.getFavoritePlayersAsync().forEach {
-                players.add(it.convertToPlayer())
-            }
-            players.forEach {
-                try {
-                    images.addAll(Network().getSofaService().getPlayerImages(it.id).data)
-                } catch (e: Exception) {}
-            }
-            favoritePlayers.value = players
-            playerImages.value = images
+            playerImages.value = response as ArrayList<ArrayList<PlayerImage>>
         }
     }
 

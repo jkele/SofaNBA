@@ -37,6 +37,7 @@ class FavoritePlayerRecyclerAdapter(
         val player = favoritesList[position]
 
         holder.binding.tvPlayerName.text = player.firstName + " " + player.lastName
+        holder.binding.tvPlayerTeam.text = player.team.abbreviation
 
         holder.binding.btnFavorite.setImageResource(R.drawable.ic_star_filled)
         holder.binding.btnFavorite.setOnClickListener {

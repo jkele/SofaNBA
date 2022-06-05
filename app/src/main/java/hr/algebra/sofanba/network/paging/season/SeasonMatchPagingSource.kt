@@ -9,7 +9,6 @@ import java.lang.Exception
 class SeasonMatchPagingSource(
     private val service: NbaService,
     private val season: Int,
-    private val startDate: String,
     private val postseason: Boolean
 ) : PagingSource<Int, Match>() {
     override fun getRefreshKey(state: PagingState<Int, Match>): Int? {
@@ -22,7 +21,7 @@ class SeasonMatchPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Match> {
         return try {
             val nextPageNumber = params.key ?: 0
-            val response = service.getAllMatchesForSeason(season, startDate, postseason, 20, nextPageNumber)
+            val response = service.getAllMatchesForSeason(season, postseason, 20, nextPageNumber)
             LoadResult.Page(
                 data = response.data.sortedBy { it.date },
                 prevKey = null,

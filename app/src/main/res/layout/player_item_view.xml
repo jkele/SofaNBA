@@ -29,9 +29,10 @@
 
     <TextView
         android:id="@+id/tvPlayerName"
-        android:layout_width="168dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="72dp"
+        android:layout_marginStart="104dp"
         android:layout_marginTop="28dp"
         android:theme="@style/BodyLargeNLv1Left"
         app:layout_constraintStart_toEndOf="@+id/imageContainer"
@@ -44,7 +45,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
-        android:theme="@style/BodyMediumNLv1Left"
+        android:theme="@style/BodyMediumNLv2Left"
         app:layout_constraintStart_toEndOf="@+id/imageContainer"
         app:layout_constraintTop_toBottomOf="@id/tvPlayerName"
         tools:text="LAL" />
