@@ -6,14 +6,18 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import hr.algebra.sofanba.database.NbaDatabase
 import hr.algebra.sofanba.database.NbaRepository
+import hr.algebra.sofanba.network.Network
 import hr.algebra.sofanba.network.model.Player
+import hr.algebra.sofanba.network.model.PlayerImage
 import hr.algebra.sofanba.network.model.Team
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class FavoritesViewModel(application: Application): AndroidViewModel(application) {
 
     val favoritePlayers = MutableLiveData<ArrayList<Player>>()
     val favoriteTeams = MutableLiveData<ArrayList<Team>>()
+    val playerImages = MutableLiveData<ArrayList<PlayerImage>>()
 
     private val repository: NbaRepository
 
@@ -22,13 +26,20 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
         repository = NbaRepository(nbaDao)
     }
 
-    fun getFavoritePlayers() {
+    fun getFavoritePlayersAndImages() {
         viewModelScope.launch {
             val players = ArrayList<Player>()
+            val images = ArrayList<PlayerImage>()
             repository.getFavoritePlayersAsync().forEach {
                 players.add(it.convertToPlayer())
             }
+            players.forEach {
+                try {
+                    images.addAll(Network().getSofaService().getPlayerImages(it.id).data)
+                } catch (e: Exception) {}
+            }
             favoritePlayers.value = players
+            playerImages.value = images
         }
     }
 

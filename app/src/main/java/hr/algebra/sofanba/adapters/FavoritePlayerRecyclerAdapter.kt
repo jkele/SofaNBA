@@ -7,16 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import hr.algebra.sofanba.PlayerActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.databinding.PlayerItemViewBinding
 import hr.algebra.sofanba.helpers.loadPlayerImagePlaceholder
 import hr.algebra.sofanba.network.model.Player
+import hr.algebra.sofanba.network.model.PlayerImage
 
 class FavoritePlayerRecyclerAdapter(
     private val context: Context,
     private val favoritesList: ArrayList<Player>,
+    private val imagesList: ArrayList<PlayerImage>,
     private val deleteCallback: (Player) -> Unit
 ): RecyclerView.Adapter<FavoritePlayerRecyclerAdapter.FavoritePlayerViewHolder>() {
 
@@ -49,7 +52,14 @@ class FavoritePlayerRecyclerAdapter(
             context.startActivity(intent)
         }
 
-        loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
+        val playerImage = imagesList.firstOrNull { it.playerId == player.id }
+
+        if (playerImage != null) {
+            Picasso.get().load(playerImage.imageUrl).fit().centerCrop().into(holder.binding.ivPlayerImage)
+        } else {
+            loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
+        }
+
     }
 
     override fun getItemCount(): Int {

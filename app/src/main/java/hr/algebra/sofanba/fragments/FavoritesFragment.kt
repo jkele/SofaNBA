@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,7 +14,7 @@ import hr.algebra.sofanba.adapters.TeamRecyclerAdapter
 import hr.algebra.sofanba.databinding.FragmentFavoritesBinding
 import hr.algebra.sofanba.viewmodels.FavoritesViewModel
 
-class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
+class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
     private lateinit var binding: FragmentFavoritesBinding
 
@@ -32,27 +33,38 @@ class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
         loadFavoritePlayers()
         loadFavoriteTeams()
 
-        viewModel.getFavoritePlayers()
+        viewModel.getFavoritePlayersAndImages()
         viewModel.getFavoriteTeams()
 
         return binding.root
     }
 
-    private fun loadFavoritePlayers(){
-        viewModel.favoritePlayers.observe(viewLifecycleOwner) {
-            setEmptyState(binding.playersEmptyState, it.isNotEmpty())
-            val adapter = FavoritePlayerRecyclerAdapter(requireContext(), it){ player ->
-                viewModel.deleteFavoritePlayer(player)
+    private fun loadFavoritePlayers() {
+        viewModel.favoritePlayers.observe(viewLifecycleOwner) { playerList ->
+            viewModel.playerImages.observe(viewLifecycleOwner) { imagesList ->
+                binding.progressBar.visibility = ProgressBar.VISIBLE
+
+                val adapter = FavoritePlayerRecyclerAdapter(
+                    requireContext(), playerList,
+                    imagesList
+                ) { player ->
+                    viewModel.deleteFavoritePlayer(player)
+                }
+                binding.rvFavoritePlayers.adapter = adapter
+
+                binding.progressBar.visibility = ProgressBar.GONE
             }
-            binding.rvFavoritePlayers.adapter = adapter
+            setEmptyState(binding.playersEmptyState, playerList.isNotEmpty())
         }
     }
 
     private fun loadFavoriteTeams() {
         viewModel.favoriteTeams.observe(viewLifecycleOwner) {
             setEmptyState(binding.teamsEmptyState, it.isNotEmpty())
-            val adapter = TeamRecyclerAdapter(requireContext(), it, null, true,
-                null) { team ->
+            val adapter = TeamRecyclerAdapter(
+                requireContext(), it, null, true,
+                null
+            ) { team ->
                 viewModel.deleteFavoriteTeam(team)
             }
             binding.rvFavoriteTeams.adapter = adapter
@@ -60,7 +72,7 @@ class FavoritesFragment: Fragment(R.layout.fragment_favorites) {
     }
 
     private fun setEmptyState(view: View, isNotEmpty: Boolean) {
-        if(isNotEmpty) {
+        if (isNotEmpty) {
             view.visibility = View.GONE
         } else {
             view.visibility = View.VISIBLE
