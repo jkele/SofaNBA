@@ -12,12 +12,13 @@
 
         <ProgressBar
             android:id="@+id/progressBar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/favoritesToolbar"
@@ -57,12 +58,12 @@
 
         <hr.algebra.sofanba.views.EmptyStateView
             android:id="@+id/playersEmptyState"
-            app:layout_constraintTop_toBottomOf="@id/tvPlayersTitle"
-            android:layout_marginTop="14dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvPlayersTitle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavoritePlayers"
@@ -86,12 +87,12 @@
 
         <hr.algebra.sofanba.views.EmptyStateView
             android:id="@+id/teamsEmptyState"
-            app:layout_constraintTop_toBottomOf="@id/tvTeamsTitle"
-            android:layout_marginTop="14dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tvTeamsTitle" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvFavoriteTeams"

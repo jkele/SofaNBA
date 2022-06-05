@@ -23,7 +23,12 @@ class PlayerInfoView(context: Context, attrs: AttributeSet): ConstraintLayout(co
             "F" -> binding.tvPlayerPosition.text = context.getString(R.string.forward)
             "C" -> binding.tvPlayerPosition.text = context.getString(R.string.center)
         }
-        binding.tvPlayerHeight.text = player.height_feet.toString() + "'" + player.height_inches + "\""
-        binding.tvPlayerWeight.text = player.weightPounds.toString() + "lbs"
+        if(player.height_feet == null && player.weightPounds == null) {
+            binding.tvPlayerHeight.text = context.getString(R.string.undefined)
+            binding.tvPlayerWeight.text = context.getString(R.string.undefined)
+        } else {
+            binding.tvPlayerHeight.text = player.height_feet.toString() + "'" + player.height_inches + "\""
+            binding.tvPlayerWeight.text = player.weightPounds.toString() + "lbs"
+        }
     }
 }

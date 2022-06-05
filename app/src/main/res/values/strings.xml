@@ -86,6 +86,7 @@
     <string name="youtube_url">Please enter a URL from YouTube</string>
     <string name="fitler_matches">Filter Matches</string>
     <string name="apply">Apply</string>
+    <string name="undefined">Undefined</string>
 
     <string-array name="seasons">
         <item>2021</item>

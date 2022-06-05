@@ -2,16 +2,20 @@ package hr.algebra.sofanba.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import hr.algebra.sofanba.PlayerActivity
 import hr.algebra.sofanba.R
+import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.databinding.PlayerStatsItemViewBinding
 import hr.algebra.sofanba.helpers.getTeamAbbr
 import hr.algebra.sofanba.helpers.loadPlayerImagePlaceholder
 import hr.algebra.sofanba.network.model.GameStats
+import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.PlayerImage
 
 class MatchPlayerStatsRecyclerAdapter(
@@ -48,6 +52,17 @@ class MatchPlayerStatsRecyclerAdapter(
                     loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
                 }
             }
+        }
+
+        val player = Player(playerStats.player.id, playerStats.player.firstName, playerStats.player.height_feet,
+        playerStats.player.height_inches, playerStats.player.lastName, playerStats.player.position,
+        playerStats.team, playerStats.player.weightPounds)
+
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, PlayerActivity::class.java).apply {
+                putExtra(EXTRA_PLAYER, player)
+            }
+            context.startActivity(intent)
         }
 
         when(stat) {
