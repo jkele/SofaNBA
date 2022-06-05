@@ -5,13 +5,13 @@ import java.io.Serializable
 
 data class Meta(
     @SerializedName("total_pages")
-    val totalPages: Int,
+    val totalPages: Int?,
     @SerializedName("current_page")
-    val currentPage: Int,
+    val currentPage: Int?,
     @SerializedName("next_page")
-    val nextPage: Int,
+    val nextPage: Int?,
     @SerializedName("per_page")
-    val perPage: Int,
+    val perPage: Int?,
     @SerializedName("total_count")
-    val totalCount: Int,
+    val totalCount: Int?,
 ): Serializable

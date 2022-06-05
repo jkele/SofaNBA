@@ -12,6 +12,7 @@ import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.EXTRA_TEAM
 import hr.algebra.sofanba.adapters.paging.TeamMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentTeamMatchesBinding
+import hr.algebra.sofanba.fragments.bottomsheet.FilterSeasonBottomSheet
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.network.paging.match.MatchDiff
 import hr.algebra.sofanba.viewmodels.TeamMatchesViewModel
@@ -24,6 +25,7 @@ class TeamMatchesFragment : Fragment(R.layout.fragment_team_matches) {
     private val viewModel: TeamMatchesViewModel by activityViewModels()
 
     private lateinit var selectedTeam: Team
+    private var selectedSeason: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,9 +39,9 @@ class TeamMatchesFragment : Fragment(R.layout.fragment_team_matches) {
 
         val pagingAdapter = TeamMatchesPagingAdapter(requireContext(), selectedTeam, MatchDiff)
         binding.rvMatches.adapter = pagingAdapter
-        submitPagingAdapterData(pagingAdapter, false)
 
-
+        selectedSeason = "2021"
+        submitPagingAdapterData(pagingAdapter, "2021", false)
         setButtonListeners(pagingAdapter)
 
 
@@ -49,28 +51,59 @@ class TeamMatchesFragment : Fragment(R.layout.fragment_team_matches) {
     private fun setButtonListeners(pagingAdapter: TeamMatchesPagingAdapter) {
         binding.btnRegularSeason.isActivated = true
         binding.btnRegularSeason.setOnClickListener {
-            binding.btnRegularSeason.isActivated = true
-            binding.btnPlayoffs.isActivated = false
-            submitPagingAdapterData(pagingAdapter, false)
+            regularSeasonButtonClick(pagingAdapter, "2021")
+            selectedSeason = "2021"
         }
 
         binding.btnPlayoffs.setOnClickListener {
-            binding.btnPlayoffs.isActivated = true
-            binding.btnRegularSeason.isActivated = false
-            submitPagingAdapterData(pagingAdapter, true)
+            playoffsButtonClick(pagingAdapter,"2021")
+            selectedSeason = "2021"
+        }
+
+        binding.btnFilter.setOnClickListener {
+            openFilterBottomSheet(pagingAdapter)
         }
     }
 
     private fun submitPagingAdapterData(
         pagingAdapter: TeamMatchesPagingAdapter,
+        season: String,
         postseason: Boolean
     ) {
         lifecycleScope.launch {
-            val flow = viewModel.getMatchesFlow(selectedTeam.id, postseason)
+            val flow = viewModel.getMatchesFlow(selectedTeam.id, season.toInt(), postseason)
             flow.collectLatest {
                 pagingAdapter.submitData(it)
             }
         }
+    }
+
+    private fun openFilterBottomSheet(pagingAdapter: TeamMatchesPagingAdapter) {
+        val bottomSheet = FilterSeasonBottomSheet(selectedSeason) { season ->
+            selectedSeason = season
+            submitPagingAdapterData(pagingAdapter, season, false)
+
+            binding.btnRegularSeason.setOnClickListener {
+                regularSeasonButtonClick(pagingAdapter, season)
+            }
+
+            binding.btnPlayoffs.setOnClickListener {
+                playoffsButtonClick(pagingAdapter, season)
+            }
+        }
+        bottomSheet.show(requireActivity().supportFragmentManager, "FilterSeason")
+    }
+
+    private fun regularSeasonButtonClick(pagingAdapter: TeamMatchesPagingAdapter, season: String) {
+        binding.btnRegularSeason.isActivated = true
+        binding.btnPlayoffs.isActivated = false
+        submitPagingAdapterData(pagingAdapter, season,false)
+    }
+
+    private fun playoffsButtonClick(pagingAdapter: TeamMatchesPagingAdapter, season: String) {
+        binding.btnPlayoffs.isActivated = true
+        binding.btnRegularSeason.isActivated = false
+        submitPagingAdapterData(pagingAdapter, season, true)
     }
 
 }

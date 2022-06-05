@@ -19,12 +19,18 @@ import java.text.SimpleDateFormat
 
 class TeamMatchesPagingAdapter(
     private val context: Context,
-    private val selectedTeam: Team,
+    private var selectedTeam: Team?,
     diffCallback: DiffUtil.ItemCallback<Match>
 ) : PagingDataAdapter<Match, TeamMatchesPagingAdapter.TeamMatchViewHolder>(diffCallback) {
 
     class TeamMatchViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val binding = TeamMatchItemViewBinding.bind(itemView)
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setSelectedTeam(team: Team) {
+        selectedTeam = team
+        notifyDataSetChanged()
     }
 
     @SuppressLint("SimpleDateFormat", "SetTextI18n")
@@ -44,7 +50,7 @@ class TeamMatchesPagingAdapter(
         if (match.homeTeamScore < match.visitorTeamScore) holder.binding.tvWinLose.text = "L"
         if (match.homeTeamScore > match.visitorTeamScore) holder.binding.tvWinLose.text = "W"
 
-        if (selectedTeam.id != match.homeTeam.id) {
+        if (selectedTeam!!.id != match.homeTeam.id) {
             //selected team is visitor
             if(match.visitorTeamScore > match.homeTeamScore){
                 holder.binding.tvWinLose.text = "W"

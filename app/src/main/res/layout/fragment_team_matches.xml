@@ -38,6 +38,17 @@
                 app:layout_constraintStart_toEndOf="@id/btnRegularSeason"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageButton
+                android:id="@+id/btnFilter"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_filter"
+                android:background="@android:color/transparent"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.appbar.AppBarLayout>

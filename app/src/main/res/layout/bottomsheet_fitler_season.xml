@@ -25,12 +25,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tvLabel"
+        android:text="@string/season"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_height="wrap_content"/>
+
     <Spinner
         android:id="@+id/seasonsDropdown"
-        android:layout_marginTop="32dp"
         android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
         android:background="@drawable/background_text_input"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvLabel"
         android:layout_height="56dp"
         android:inputType="none"
         android:layout_marginStart="16dp"

@@ -16,7 +16,7 @@ class PlayerStatisticsViewModel: ViewModel() {
         viewModelScope.launch {
             val resultList = arrayListOf<SeasonStatsResponse>()
             val firstStats = Network().getNbaService().getPlayerSeason(playerId, false, 0)
-            val lastStats = Network().getNbaService().getPlayerSeason(playerId, false, firstStats.meta.totalPages)
+            val lastStats = Network().getNbaService().getPlayerSeason(playerId, false, firstStats.meta.totalPages!!)
 
             val firstSeason = getMinSeason(firstStats)
             val lastSeason = getMaxSeason(lastStats)

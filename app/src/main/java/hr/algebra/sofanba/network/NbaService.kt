@@ -35,6 +35,7 @@ interface NbaService {
     @GET("games")
     suspend fun getAllPostseasonMatchesForTeam(
         @Query("team_ids[]") teamId: Int,
+        @Query("seasons[]") season: Int,
         @Query("postseason") postseason: Boolean,
         @Query("per_page") numberOfResults: Int,
         @Query("page") pageNumber: Int
