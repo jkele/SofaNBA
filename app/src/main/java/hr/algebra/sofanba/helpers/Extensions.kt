@@ -1,6 +1,13 @@
 package hr.algebra.sofanba.helpers
 
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
 import hr.algebra.sofanba.R
 
@@ -28,4 +35,27 @@ fun TextInputEditText.customValidate(context: Context): Boolean {
         }
     }
     return valid
+}
+
+fun showCustomDialog(title: String, context: Context) {
+    val dialog = Dialog(context).apply {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        this.setCancelable(true)
+        this.setContentView(R.layout.custom_dialog)
+        this.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    val tvTitle = dialog.findViewById<TextView>(R.id.tvDialogTitle)
+    val btnOk = dialog.findViewById<Button>(R.id.btnDialogOk)
+    val btnCancel = dialog.findViewById<Button>(R.id.btnDialogCancel)
+
+    tvTitle.text = title
+    btnOk.text = context.getText(R.string.clear)
+    btnCancel.visibility = View.GONE
+
+    btnOk.setOnClickListener {
+        dialog.dismiss()
+    }
+
+    dialog.show()
 }

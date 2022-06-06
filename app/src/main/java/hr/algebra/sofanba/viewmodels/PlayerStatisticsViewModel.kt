@@ -5,52 +5,29 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import hr.algebra.sofanba.network.Network
 import hr.algebra.sofanba.network.model.response.SeasonStatsResponse
-import hr.algebra.sofanba.network.model.response.StatsResponse
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 
 class PlayerStatisticsViewModel: ViewModel() {
 
     val playerSeasonAveragesList = MutableLiveData<ArrayList<SeasonStatsResponse>>()
 
-    fun getPlayerSeasonAveragesList(playerId: Int) {
+    fun getSeasonAveragesList(playerId: Int) {
         viewModelScope.launch {
-            val resultList = arrayListOf<SeasonStatsResponse>()
-            val firstStats = Network().getNbaService().getPlayerSeason(playerId, false, 0)
-            val lastStats = Network().getNbaService().getPlayerSeason(playerId, false, firstStats.meta.totalPages!!)
+            val seasonsList = ArrayList<Int>()
+            for (i in 1979..2021) {
+                seasonsList.add(i)
+            }
 
-            val firstSeason = getMinSeason(firstStats)
-            val lastSeason = getMaxSeason(lastStats)
-
-            if (lastSeason != null && firstSeason != null) {
-                if (lastSeason > firstSeason) {
-                    for (i in lastSeason downTo lastSeason - 4 ){
-                        resultList.add(Network().getNbaService().getSeasonAverages(i, playerId))
-                    }
-                } else {
-                    for (i in lastSeason downTo firstSeason ){
-                        resultList.add(Network().getNbaService().getSeasonAverages(i, playerId))
-                    }
+            val asyncTasks = seasonsList.map { season ->
+                async {
+                    Network().getNbaService().getSeasonAverages(season, playerId)
                 }
             }
-            playerSeasonAveragesList.value = resultList
+            val responses = asyncTasks.awaitAll()
+            playerSeasonAveragesList.value = responses as ArrayList<SeasonStatsResponse>
         }
     }
-
-    private fun getMaxSeason(statsResponse: StatsResponse): Int? {
-        val seasonList = ArrayList<Int>()
-        statsResponse.data.forEach {
-            seasonList.add(it.game.season)
-        }
-        return seasonList.maxOrNull()
-    }
-
-    private fun getMinSeason(statsResponse: StatsResponse): Int? {
-        val seasonList = ArrayList<Int>()
-        statsResponse.data.forEach {
-            seasonList.add(it.game.season)
-        }
-        return seasonList.minOrNull()
-    }
-
 
 }

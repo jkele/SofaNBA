@@ -14,14 +14,25 @@ class PlayerStatisticsView(context: Context, attrs: AttributeSet): ConstraintLay
     private val binding = PlayerStatisticsViewBinding.inflate(LayoutInflater.from(context), this, true)
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    fun setupPlayerStatisticsView(title: String, valueOne: Double, valueTwo: Double, valueThree: Double, valueFour: Double) {
+    fun setupPlayerStatisticsView(title: String, valueOne: Double?, valueTwo: Double?, valueThree: Double?, valueFour: Double?) {
         binding.tvStatTitle.text = title
-        binding.tvStatValueOne.text = valueOne.toString()
-        binding.tvStatValueTwo.text = valueTwo.toString()
-        binding.tvStatValueThree.text = valueThree.toString()
-        binding.tvStatValueFour.text = valueFour.toString()
+        binding.tvStatValueOne.text = valueOne?.toString()
+        binding.tvStatValueTwo.text = valueTwo?.toString()
+        binding.tvStatValueThree.text = valueThree?.toString()
+        binding.tvStatValueFour.text = valueFour?.toString()
 
-        val valuesList = doubleArrayOf(valueOne, valueTwo, valueThree, valueFour)
+        val valuesList: DoubleArray
+
+        if (valueOne != null && valueTwo != null && valueThree != null && valueFour != null) {
+            valuesList = doubleArrayOf(valueOne, valueTwo, valueThree, valueFour)
+        } else if (valueOne != null && valueTwo != null && valueThree != null) {
+            valuesList = doubleArrayOf(valueOne, valueTwo, valueThree)
+        } else if (valueOne != null && valueTwo != null) {
+            valuesList = doubleArrayOf(valueOne, valueTwo)
+        } else {
+            valuesList = doubleArrayOf(valueOne!!)
+        }
+
         val textViewList = ArrayList<TextView>()
         val maxValue = valuesList.maxOrNull()
 

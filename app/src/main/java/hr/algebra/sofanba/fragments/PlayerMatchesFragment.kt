@@ -14,11 +14,13 @@ import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.adapters.paging.PlayerMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentPlayerMatchesBinding
+import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.paging.playerMatch.PlayerMatchDiff
 import hr.algebra.sofanba.viewmodels.PlayerMatchesViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
 
@@ -83,9 +85,13 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
 
     private fun submitPagingAdapterData(pagingAdapter: PlayerMatchesPagingAdapter, postseason: Boolean) {
         lifecycleScope.launch {
-            val flow = viewModel.getPlayerMatchesFlow(2017, selectedPlayer.id, postseason)
-            flow.collectLatest {
-                pagingAdapter.submitData(it)
+            try {
+                val flow = viewModel.getPlayerMatchesFlow(2017, selectedPlayer.id, postseason)
+                flow.collectLatest {
+                    pagingAdapter.submitData(it)
+                }
+            } catch (e: Exception) {
+                showCustomDialog("Error loading data. Try again later!", requireContext())
             }
         }
     }
