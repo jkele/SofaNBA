@@ -1,5 +1,6 @@
 package hr.algebra.sofanba
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import com.google.android.material.tabs.TabLayout
 import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.adapters.section.PlayerSectionsPagerAdapter
 import hr.algebra.sofanba.databinding.ActivityPlayerBinding
+import hr.algebra.sofanba.fragments.SHARED_PREF_NAME
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.viewmodels.PlayerDetailsViewModel
 
@@ -29,7 +31,6 @@ class PlayerActivity : AppCompatActivity() {
 
         setupActionBar()
         setupTabLayout()
-
         setButtonListener(isFavorite)
     }
 

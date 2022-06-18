@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -39,6 +40,8 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPlayerDetailsBinding.inflate(layoutInflater, container, false)
+        val sharedPref = activity?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val unitPref = sharedPref?.getString(MEASURE_UNIT, "0")
 
         selectedPlayer = requireActivity().intent.getSerializableExtra(EXTRA_PLAYER) as Player
         val placeholderImage = requireActivity().intent.getIntExtra(
@@ -46,7 +49,7 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
             R.drawable.ic_player_one
         )
 
-        binding.playerInfoView.setupPlayerInfoView(selectedPlayer)
+        binding.playerInfoView.setupPlayerInfoView(selectedPlayer, unitPref)
         binding.imageProgressBar.visibility = View.VISIBLE
 
         binding.rvHighlights.layoutManager = LinearLayoutManager(requireContext())

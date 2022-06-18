@@ -1,9 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/surface_surface_0"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/surface_surface_0">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/surface_surface_2">
+
+            <TextView
+                android:id="@+id/tvUnitType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/unit_type"
+                android:textAllCaps="true"
+                android:theme="@style/AssistiveNLv2Left"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RadioGroup
+                android:id="@+id/unitRadioButtonGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvUnitType">
+
+                <RadioButton
+                    android:id="@+id/rbMetric"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:buttonTint="@color/color_primary"
+                    android:paddingStart="16dp"
+                    android:text="@string/metric_cm_kg"
+                    android:theme="@style/BodyMediumNLv1Left"
+                    tools:ignore="RtlSymmetry" />
+
+                <RadioButton
+                    android:id="@+id/rbImperial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="24dp"
+                    android:buttonTint="@color/color_primary"
+                    android:paddingStart="16dp"
+                    android:text="@string/imperial_ft_lb"
+                    android:theme="@style/BodyMediumNLv1Left"
+                    tools:ignore="RtlSymmetry" />
+
+
+            </RadioGroup>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -18,8 +87,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="@color/surface_surface_2"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/surface_surface_2">
 
             <TextView
                 android:id="@+id/tvAbout"

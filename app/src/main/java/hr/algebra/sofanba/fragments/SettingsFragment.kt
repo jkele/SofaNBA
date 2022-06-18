@@ -1,6 +1,7 @@
 package hr.algebra.sofanba.fragments
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -11,12 +12,16 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import hr.algebra.sofanba.AboutActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.FragmentSettingsBinding
 import hr.algebra.sofanba.viewmodels.SettingsViewModel
+
+const val SHARED_PREF_NAME = "hr.algebra.sofanba.sharedPrefs"
+const val MEASURE_UNIT = "hr.algebra.sofanba.measureUnit"
 
 class SettingsFragment: Fragment(R.layout.fragment_settings) {
 
@@ -29,6 +34,31 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSettingsBinding.inflate(inflater, container, false)
+
+        val sharedPref = activity?.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        val unitPref = sharedPref?.getString(MEASURE_UNIT, "Imperial")
+
+        when(unitPref){
+            "Imperial" -> binding.unitRadioButtonGroup.check(binding.rbImperial.id)
+            "Metric" -> binding.unitRadioButtonGroup.check(binding.rbMetric.id)
+        }
+
+        binding.unitRadioButtonGroup.setOnCheckedChangeListener { radioGroup, checkedId ->
+            when(checkedId) {
+                binding.rbMetric.id -> {
+                    sharedPref?.edit {
+                        putString(MEASURE_UNIT, "Metric")
+                        commit()
+                    }
+                }
+                binding.rbImperial.id -> {
+                    sharedPref?.edit {
+                        putString(MEASURE_UNIT, "Imperial")
+                        commit()
+                    }
+                }
+            }
+        }
 
         binding.btnAbout.setOnClickListener {
             val intent = Intent(requireContext(), AboutActivity::class.java)

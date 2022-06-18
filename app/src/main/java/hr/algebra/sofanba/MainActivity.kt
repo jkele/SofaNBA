@@ -1,13 +1,12 @@
 package hr.algebra.sofanba
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import hr.algebra.sofanba.databinding.ActivityMainBinding
-import hr.algebra.sofanba.fragments.ExploreFragment
-import hr.algebra.sofanba.fragments.FavoritesFragment
-import hr.algebra.sofanba.fragments.SeasonsFragment
-import hr.algebra.sofanba.fragments.SettingsFragment
+import hr.algebra.sofanba.fragments.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +25,13 @@ class MainActivity : AppCompatActivity() {
 
         replaceFragment(exploreFragment)
         setupBottomNavigationListeners()
+
+        val sharedPref = this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
+        sharedPref.edit {
+            putString(MEASURE_UNIT, "Imperial")
+            commit()
+        }
+
     }
 
     private fun setupBottomNavigationListeners(){

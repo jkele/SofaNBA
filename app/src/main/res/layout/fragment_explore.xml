@@ -45,7 +45,7 @@
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="94dp"
+                android:layout_marginStart="16dp"
                 android:backgroundTint="@color/white"
                 android:dropDownWidth="120dp" />
 
