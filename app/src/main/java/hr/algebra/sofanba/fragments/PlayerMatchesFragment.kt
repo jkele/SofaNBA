@@ -91,7 +91,6 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
                     pagingAdapter.submitData(it)
                 }
             } catch (e: Exception) {
-                showCustomDialog("Error loading data. Try again later!", requireContext())
             }
         }
     }

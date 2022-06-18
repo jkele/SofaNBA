@@ -48,7 +48,9 @@ class FavoritesViewModel(application: Application): AndroidViewModel(application
             val response = asyncTasks.awaitAll()
 
             favoritePlayers.value = players
-            playerImages.value = response as ArrayList<ArrayList<PlayerImage>>
+            if (response.isNotEmpty()) {
+                playerImages.value = response as ArrayList<ArrayList<PlayerImage>>
+            }
         }
     }
 

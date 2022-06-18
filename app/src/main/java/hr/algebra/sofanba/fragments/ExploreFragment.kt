@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -40,13 +41,22 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
         val spinnerItems = resources.getStringArray(R.array.SpinnerItems)
         val spinnerAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, spinnerItems)
+            ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                spinnerItems
+            )
         binding.spinner.adapter = spinnerAdapter
 
         binding.spinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when(position){
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
                     0 -> getPlayersList()
                     1 -> getTeamsList()
                 }
@@ -61,20 +71,21 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         return binding.root
     }
 
-    fun getPlayersList(){
+    fun getPlayersList() {
         viewModel.getFavoritePlayers()
         val favoritePlayersList = viewModel.favoritePlayers
 
         binding.tvAll.text = getString(R.string.all_players)
-        val pagingAdapter = PlayerPagingAdapter(requireContext(), favoritePlayersList.value, PlayerDiff, {
-            viewModel.insertFavoritePlayer(it)
-        }, {
-            viewModel.deleteFavoritePlayer(it)
-        })
+        val pagingAdapter =
+            PlayerPagingAdapter(requireContext(), favoritePlayersList.value, PlayerDiff, {
+                viewModel.insertFavoritePlayer(it)
+            }, {
+                viewModel.deleteFavoritePlayer(it)
+            })
         binding.rvPlayers.adapter = pagingAdapter
 
         pagingAdapter.addLoadStateListener {
-            if (it.refresh is LoadState.Loading){
+            if (it.refresh is LoadState.Loading) {
                 binding.progressBar.visibility = ProgressBar.VISIBLE
             } else {
                 binding.progressBar.visibility = ProgressBar.GONE
@@ -91,7 +102,7 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
     var insertFavoriteTeam = fun(it: Team) { viewModel.insertFavoriteTeam(it) }
     var deleteFavoriteTeam = fun(it: Team) { viewModel.deleteFavoriteTeam(it) }
 
-    fun getTeamsList(){
+    fun getTeamsList() {
         viewModel.getFavoriteTeams()
         val favoriteTeams = viewModel.favoriteTeams.value
 
@@ -100,12 +111,28 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
         binding.tvAll.text = getString(R.string.all_teams)
         viewModel.teamsList.observe(viewLifecycleOwner) {
 
-            val adapter = TeamRecyclerAdapter(requireContext(), it, favoriteTeams, false
-            , insertFavoriteTeam, deleteFavoriteTeam)
+            val adapter = TeamRecyclerAdapter(
+                requireContext(), it, favoriteTeams, false, insertFavoriteTeam, deleteFavoriteTeam
+            )
             binding.rvPlayers.adapter = adapter
             binding.progressBar.visibility = ProgressBar.GONE
+
+            setTeamSearchListener(adapter)
         }
         viewModel.getTeamsList()
     }
 
+    private fun setTeamSearchListener(adapter: TeamRecyclerAdapter) {
+        binding.etSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(text: String?): Boolean {
+                adapter.filter.filter(text)
+                return false
+            }
+
+        })
+    }
 }

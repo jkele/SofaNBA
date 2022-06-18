@@ -87,6 +87,7 @@
     <string name="fitler_matches">Filter Matches</string>
     <string name="apply">Apply</string>
     <string name="undefined">Undefined</string>
+    <string name="search">Search</string>
 
     <string-array name="seasons">
         <item>2021</item>

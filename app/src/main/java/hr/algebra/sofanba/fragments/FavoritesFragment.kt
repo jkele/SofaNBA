@@ -13,6 +13,7 @@ import hr.algebra.sofanba.adapters.FavoritePlayerRecyclerAdapter
 import hr.algebra.sofanba.adapters.TeamRecyclerAdapter
 import hr.algebra.sofanba.databinding.FragmentFavoritesBinding
 import hr.algebra.sofanba.viewmodels.FavoritesViewModel
+import java.lang.Exception
 
 class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
 
@@ -33,8 +34,12 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites) {
         loadFavoritePlayers()
         loadFavoriteTeams()
 
-        viewModel.getFavoritePlayersAndImages()
-        viewModel.getFavoriteTeams()
+        try {
+            viewModel.getFavoritePlayersAndImages()
+            viewModel.getFavoriteTeams()
+        } catch (e: Exception) {
+
+        }
 
         return binding.root
     }

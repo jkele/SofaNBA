@@ -27,7 +27,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="128dp"
+            android:layout_height="64dp"
             android:background="@color/color_primary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,7 +36,7 @@
                 android:layout_width="16dp"
                 android:layout_height="36dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginBottom="78dp"
+                android:layout_marginTop="14dp"
                 android:src="@drawable/ic_nba"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -45,12 +45,32 @@
                 android:id="@+id/spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginBottom="72dp"
+                android:layout_marginStart="94dp"
                 android:backgroundTint="@color/white"
                 android:dropDownWidth="120dp" />
 
         </androidx.appcompat.widget.Toolbar>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/searchToolbar"
+            android:background="@color/color_primary"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+
+            <SearchView
+                android:id="@+id/etSearch"
+                android:background="@drawable/background_search_view"
+                android:layout_width="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:queryHint="@string/search"
+                android:layout_height="wrap_content"/>
+
+
+        </androidx.appcompat.widget.Toolbar>
+
 
         <TextView
             android:id="@+id/tvAll"
@@ -60,7 +80,7 @@
             android:layout_marginTop="14dp"
             android:theme="@style/HeadlineSmallNLv2Left"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toBottomOf="@id/searchToolbar"
             tools:text="All players" />
 
         <androidx.recyclerview.widget.RecyclerView
