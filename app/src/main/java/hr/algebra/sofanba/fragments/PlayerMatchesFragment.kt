@@ -14,6 +14,7 @@ import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.adapters.paging.PlayerMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentPlayerMatchesBinding
+import hr.algebra.sofanba.helpers.isOnline
 import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.paging.playerMatch.PlayerMatchDiff
@@ -62,8 +63,12 @@ class PlayerMatchesFragment: Fragment(R.layout.fragment_player_matches) {
             }
         }
 
-        submitPagingAdapterData(pagingAdapter, false)
-        setButtonListeners(pagingAdapter)
+        if (requireContext().isOnline()) {
+            submitPagingAdapterData(pagingAdapter, false)
+            setButtonListeners(pagingAdapter)
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
 
         return binding.root
     }

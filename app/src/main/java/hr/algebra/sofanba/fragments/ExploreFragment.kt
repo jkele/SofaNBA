@@ -17,6 +17,8 @@ import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.TeamRecyclerAdapter
 import hr.algebra.sofanba.adapters.paging.PlayerPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentExploreBinding
+import hr.algebra.sofanba.helpers.isOnline
+import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.network.paging.player.PlayerDiff
 import hr.algebra.sofanba.viewmodels.ExploreViewModel
@@ -92,10 +94,14 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
             }
         }
 
-        lifecycleScope.launch {
-            viewModel.flow.collectLatest {
-                pagingAdapter.submitData(it)
+        if (requireContext().isOnline()) {
+            lifecycleScope.launch {
+                viewModel.flow.collectLatest {
+                    pagingAdapter.submitData(it)
+                }
             }
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
         }
     }
 
@@ -119,7 +125,12 @@ class ExploreFragment : Fragment(R.layout.fragment_explore) {
 
             setTeamSearchListener(adapter)
         }
-        viewModel.getTeamsList()
+
+        if (requireContext().isOnline()) {
+            viewModel.getTeamsList()
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
     }
 
     private fun setTeamSearchListener(adapter: TeamRecyclerAdapter) {

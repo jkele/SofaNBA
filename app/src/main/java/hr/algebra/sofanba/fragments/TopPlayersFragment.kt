@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_MATCH
 import hr.algebra.sofanba.databinding.FragmentTopPlayersBinding
+import hr.algebra.sofanba.helpers.isOnline
+import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Match
 import hr.algebra.sofanba.viewmodels.MatchDetailsViewModel
 import hr.algebra.sofanba.views.MatchPlayerStatsView
@@ -79,7 +81,12 @@ class TopPlayersFragment : Fragment(R.layout.fragment_top_players) {
         }
 
 
-        viewModel.getMatchStatsAndPlayerImages(selectedMatch.id, 50, 0)
+        if (requireContext().isOnline()) {
+            viewModel.getMatchStatsAndPlayerImages(selectedMatch.id, 50, 0)
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
+
         return binding.root
     }
 

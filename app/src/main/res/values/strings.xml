@@ -91,6 +91,8 @@
     <string name="unit_type">Unit type</string>
     <string name="metric_cm_kg">Metric (cm, kg)</string>
     <string name="imperial_ft_lb">Imperial (ft, lb)</string>
+    <string name="ok">OK</string>
+    <string name="no_internet_connection">No internet connection, connect to WiFi or mobile data and try again.</string>
 
     <string-array name="seasons">
         <item>2021</item>

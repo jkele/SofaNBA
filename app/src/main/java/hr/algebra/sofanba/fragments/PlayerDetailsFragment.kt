@@ -20,6 +20,8 @@ import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER_IMAGE_PLACEHOLDER
 import hr.algebra.sofanba.databinding.FragmentPlayerDetailsBinding
 import hr.algebra.sofanba.fragments.bottomsheet.AddPhotoBottomSheet
 import hr.algebra.sofanba.fragments.bottomsheet.EditPhotosBottomSheet
+import hr.algebra.sofanba.helpers.isOnline
+import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.PlayerImage
 import hr.algebra.sofanba.viewmodels.PlayerDetailsViewModel
@@ -87,8 +89,12 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
             openAddPhotoBottomSheet()
         }
 
-        viewModel.getHighlightsForPlayer(selectedPlayer.id)
-        viewModel.getPlayerImages(selectedPlayer.id)
+        if (requireContext().isOnline()) {
+            viewModel.getHighlightsForPlayer(selectedPlayer.id)
+            viewModel.getPlayerImages(selectedPlayer.id)
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
 
         return binding.root
     }

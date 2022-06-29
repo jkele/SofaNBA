@@ -13,6 +13,8 @@ import hr.algebra.sofanba.adapters.EXTRA_TEAM
 import hr.algebra.sofanba.adapters.paging.TeamMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentTeamMatchesBinding
 import hr.algebra.sofanba.fragments.bottomsheet.FilterSeasonBottomSheet
+import hr.algebra.sofanba.helpers.isOnline
+import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.network.paging.match.MatchDiff
 import hr.algebra.sofanba.viewmodels.TeamMatchesViewModel
@@ -41,8 +43,13 @@ class TeamMatchesFragment : Fragment(R.layout.fragment_team_matches) {
         binding.rvMatches.adapter = pagingAdapter
 
         selectedSeason = "2021"
-        submitPagingAdapterData(pagingAdapter, "2021", false)
-        setButtonListeners(pagingAdapter)
+
+        if (requireContext().isOnline()) {
+            submitPagingAdapterData(pagingAdapter, "2021", false)
+            setButtonListeners(pagingAdapter)
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
 
 
         return binding.root

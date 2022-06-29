@@ -4,10 +4,13 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.view.View
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.getSystemService
 import com.google.android.material.textfield.TextInputEditText
 import hr.algebra.sofanba.R
 
@@ -50,7 +53,7 @@ fun showCustomDialog(title: String, context: Context) {
     val btnCancel = dialog.findViewById<Button>(R.id.btnDialogCancel)
 
     tvTitle.text = title
-    btnOk.text = context.getText(R.string.clear)
+    btnOk.text = context.getText(R.string.ok)
     btnCancel.visibility = View.GONE
 
     btnOk.setOnClickListener {
@@ -58,4 +61,15 @@ fun showCustomDialog(title: String, context: Context) {
     }
 
     dialog.show()
+}
+
+fun Context.isOnline() : Boolean {
+    val connectivityManager = getSystemService<ConnectivityManager>()
+    connectivityManager?.activeNetwork?.let { network ->
+        connectivityManager.getNetworkCapabilities(network)?.let { networkCapabilities ->
+            return networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+                    || networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+        }
+    }
+    return false
 }

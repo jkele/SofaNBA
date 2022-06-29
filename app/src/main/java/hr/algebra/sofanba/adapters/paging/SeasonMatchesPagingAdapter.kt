@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import hr.algebra.sofanba.MatchActivity
 import hr.algebra.sofanba.R
+import hr.algebra.sofanba.TeamActivity
+import hr.algebra.sofanba.adapters.EXTRA_TEAM
 import hr.algebra.sofanba.databinding.SeasonMatchItemViewBinding
 import hr.algebra.sofanba.helpers.loadTeamImage
 import hr.algebra.sofanba.network.model.Match
@@ -43,6 +45,20 @@ class SeasonMatchesPagingAdapter(
                 SimpleDateFormat("yyyy"). format(matchDate)
 
         holder.binding.tvMatchStatus.text = match.status
+
+        holder.binding.homeImageContainer.setOnClickListener {
+            val intent = Intent(context, TeamActivity::class.java).apply {
+                putExtra(EXTRA_TEAM, match.homeTeam)
+            }
+            context.startActivity(intent)
+        }
+
+        holder.binding.awayImageContainer.setOnClickListener {
+            val intent = Intent(context, TeamActivity::class.java).apply {
+                putExtra(EXTRA_TEAM, match.visitorTeam)
+            }
+            context.startActivity(intent)
+        }
 
         loadTeamImage(
             context,

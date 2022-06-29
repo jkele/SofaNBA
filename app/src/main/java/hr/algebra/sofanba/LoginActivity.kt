@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import hr.algebra.sofanba.databinding.ActivityLoginBinding
+import hr.algebra.sofanba.helpers.isOnline
+import hr.algebra.sofanba.helpers.showCustomDialog
 
 class LoginActivity : AppCompatActivity() {
 
@@ -47,8 +49,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signInGoogle() {
-        val signInIntent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, req_code)
+        if (this.isOnline()) {
+            val signInIntent = mGoogleSignInClient.signInIntent
+            startActivityForResult(signInIntent, req_code)
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), this)
+        }
     }
 
     @Deprecated("Deprecated in Java")

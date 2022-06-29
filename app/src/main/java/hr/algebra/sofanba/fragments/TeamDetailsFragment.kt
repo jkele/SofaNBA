@@ -15,6 +15,8 @@ import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.EXTRA_TEAM
 import hr.algebra.sofanba.databinding.FragmentTeamDetailsBinding
 import hr.algebra.sofanba.helpers.getStadiumLocation
+import hr.algebra.sofanba.helpers.isOnline
+import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Team
 import hr.algebra.sofanba.viewmodels.TeamDetailsViewModel
 
@@ -48,7 +50,11 @@ class TeamDetailsFragment : Fragment() {
             binding.progressBar.visibility = ProgressBar.GONE
         }
 
-        viewModel.getTeamsList()
+        if(requireContext().isOnline()) {
+            viewModel.getTeamsList()
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
 
         return binding.root
     }

@@ -20,6 +20,8 @@ import hr.algebra.sofanba.databinding.FragmentMatchDetailsBinding
 import hr.algebra.sofanba.fragments.bottomsheet.AddVideoBottomSheet
 import hr.algebra.sofanba.helpers.getStadiumLocation
 import hr.algebra.sofanba.helpers.getTeamProgressColor
+import hr.algebra.sofanba.helpers.isOnline
+import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Match
 import hr.algebra.sofanba.viewmodels.MatchDetailsViewModel
 
@@ -91,8 +93,12 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
             adapter.notifyDataSetChanged()
         }
 
-        viewModel.getMatchStats(selectedMatch.id, 50, 0)
-        viewModel.getMatchHighlights(selectedMatch.id)
+        if(requireContext().isOnline()) {
+            viewModel.getMatchStats(selectedMatch.id, 50, 0)
+            viewModel.getMatchHighlights(selectedMatch.id)
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
 
         return binding.root
     }

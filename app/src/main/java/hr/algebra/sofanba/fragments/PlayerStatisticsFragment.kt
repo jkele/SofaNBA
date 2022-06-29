@@ -10,6 +10,7 @@ import androidx.fragment.app.activityViewModels
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.EXTRA_PLAYER
 import hr.algebra.sofanba.databinding.FragmentPlayerStatisticsBinding
+import hr.algebra.sofanba.helpers.isOnline
 import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.model.Player
 import hr.algebra.sofanba.network.model.SeasonStats
@@ -64,8 +65,11 @@ class PlayerStatisticsFragment : Fragment(R.layout.fragment_player_statistics) {
 
         }
 
-
-        viewModel.getSeasonAveragesList(selectedPlayer.id)
+        if (requireContext().isOnline()) {
+            viewModel.getSeasonAveragesList(selectedPlayer.id)
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
 
         return binding.root
     }

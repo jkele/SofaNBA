@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/background_custom_dialog"
     android:layout_width="360dp"
-    android:layout_height="132dp"
+    android:layout_height="144dp"
     android:layout_marginStart="16dp"
     android:layout_marginEnd="16dp">
 

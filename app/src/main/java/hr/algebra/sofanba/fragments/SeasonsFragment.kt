@@ -14,6 +14,8 @@ import hr.algebra.sofanba.R
 import hr.algebra.sofanba.adapters.paging.SeasonMatchesPagingAdapter
 import hr.algebra.sofanba.databinding.FragmentSeasonsBinding
 import hr.algebra.sofanba.fragments.bottomsheet.FilterSeasonBottomSheet
+import hr.algebra.sofanba.helpers.isOnline
+import hr.algebra.sofanba.helpers.showCustomDialog
 import hr.algebra.sofanba.network.paging.season.SeasonMatchDiff
 import hr.algebra.sofanba.viewmodels.SeasonsViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -51,8 +53,13 @@ class SeasonsFragment: Fragment(R.layout.fragment_seasons) {
         }
 
         selectedSeason = "2021"
-        submitPagingAdapterData(pagingAdapter, "2021",false)
-        setButtonListeners()
+
+        if (requireContext().isOnline()) {
+            submitPagingAdapterData(pagingAdapter, "2021",false)
+            setButtonListeners()
+        } else {
+            showCustomDialog(getString(R.string.no_internet_connection), requireContext())
+        }
 
         return binding.root
     }
