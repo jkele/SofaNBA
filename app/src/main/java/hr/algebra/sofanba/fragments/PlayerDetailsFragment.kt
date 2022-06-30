@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -65,7 +66,10 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
             }
         }
 
-        if (imageSliderAdapter.count == 0) binding.ivPlaceholder.load(placeholderImage)
+        if (imageSliderAdapter.count == 0) {
+            binding.ivPlaceholder.load(placeholderImage)
+            binding.imageProgressBar.visibility = ProgressBar.GONE
+        }
 
         binding.imageSliderViewPager.adapter = imageSliderAdapter
 
@@ -81,7 +85,7 @@ class PlayerDetailsFragment : Fragment(R.layout.fragment_player_details) {
             binding.imageProgressBar.visibility = View.GONE
 
             binding.btnEditImage.setOnClickListener {
-                openEditPhotoBottomSheet(playerImageList)
+                openEditPhotoBottomSheet(imageList)
             }
         }
 

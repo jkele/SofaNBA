@@ -91,6 +91,10 @@ class MatchDetailsFragment : Fragment(R.layout.fragment_match_details) {
 
             adapter.editSwitch = false
             adapter.notifyDataSetChanged()
+
+            if (adapter.itemCount == 0) {
+                setEmptyState()
+            }
         }
 
         if(requireContext().isOnline()) {

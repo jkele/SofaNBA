@@ -53,11 +53,14 @@ class FavoritePlayerRecyclerAdapter(
             context.startActivity(intent)
         }
 
+
+
         imagesList.forEach {
             for (i in 0..it.size) {
                 if (it[0].playerId == player.id) {
                     Picasso.get().load(it[0].imageUrl).fit().centerCrop()
                         .into(holder.binding.ivPlayerImage)
+                    return
                 } else {
                     loadPlayerImagePlaceholder(position, holder.binding.ivPlayerImage)
                 }

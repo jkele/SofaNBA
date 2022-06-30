@@ -1,5 +1,6 @@
 package hr.algebra.sofanba.fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -15,6 +16,7 @@ import android.widget.TextView
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.google.android.material.snackbar.Snackbar
 import hr.algebra.sofanba.AboutActivity
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.databinding.FragmentSettingsBinding
@@ -91,6 +93,7 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
         btnOk.setOnClickListener {
             viewModel.clearFavoritesList()
             dialog.dismiss()
+            showSnack()
         }
 
         btnCancel.setOnClickListener {
@@ -98,6 +101,13 @@ class SettingsFragment: Fragment(R.layout.fragment_settings) {
         }
 
         dialog.show()
+    }
+
+    @SuppressLint("ShowToast")
+    private fun showSnack() {
+        val snack = Snackbar.make(binding.root, getString(R.string.favorites_list_is_clear), Snackbar.LENGTH_SHORT)
+        snack.view.setBackgroundResource(R.drawable.background_custom_snackbar)
+        snack.show()
     }
 
 }

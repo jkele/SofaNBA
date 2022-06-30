@@ -93,6 +93,7 @@
     <string name="imperial_ft_lb">Imperial (ft, lb)</string>
     <string name="ok">OK</string>
     <string name="no_internet_connection">No internet connection, connect to WiFi or mobile data and try again.</string>
+    <string name="favorites_list_is_clear">Favorites list is clear</string>
 
     <string-array name="seasons">
         <item>2021</item>
