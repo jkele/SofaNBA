@@ -6,8 +6,11 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.Window
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.getSystemService
@@ -72,4 +75,14 @@ fun Context.isOnline() : Boolean {
         }
     }
     return false
+}
+
+fun View.startAnimation(animationId: Int)
+    = startAnimation(AnimationUtils.loadAnimation(context, animationId))
+
+fun callDelayed(delay: Long, function: Runnable) {
+    Handler(Looper.getMainLooper()).postDelayed(
+        function,
+        delay
+    )
 }
