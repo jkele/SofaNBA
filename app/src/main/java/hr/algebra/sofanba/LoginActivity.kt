@@ -82,7 +82,7 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 SavedPreference.setUsername(this, account.email.toString())
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, TeamPickActivity::class.java)
                 startActivity(intent)
                 finish()
             }

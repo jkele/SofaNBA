@@ -1,19 +1,19 @@
 package hr.algebra.sofanba
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import hr.algebra.sofanba.databinding.ActivitySplashScreenBinding
-import hr.algebra.sofanba.helpers.callDelayed
-import hr.algebra.sofanba.helpers.isOnline
-import hr.algebra.sofanba.helpers.showCustomDialog
-import hr.algebra.sofanba.helpers.startAnimation
+import hr.algebra.sofanba.helpers.*
+import hr.algebra.sofanba.viewmodels.SplashScreenViewModel
 
 private const val DELAY = 3000L
+const val DATA_IMPORTED = "hr.algebra.sofanba.dataImported"
 
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
+    private val viewModel: SplashScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +25,17 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun redirect() {
-        callDelayed(DELAY) {
-            if (isOnline()) {
-                val intent = Intent(this, LoginActivity::class.java)
-                this.startActivity(intent)
-            } else {
-                showCustomDialog(getString(R.string.no_internet_connection), this)
+        if (getBooleanPreference(DATA_IMPORTED)) {
+            callDelayed(DELAY) { startActivity<LoginActivity>() }
+        } else {
+            callDelayed(DELAY) {
+                if (isOnline()) {
+                    viewModel.insertTeamsList()
+                    this.setBooleanPreference(DATA_IMPORTED, true)
+                    this.startActivity<LoginActivity>()
+                } else {
+                    showCustomDialog(getString(R.string.no_internet_connection), this)
+                }
             }
         }
     }

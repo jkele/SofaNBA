@@ -8,9 +8,10 @@ import androidx.room.TypeConverters
 import hr.algebra.sofanba.database.converters.TeamTypeConverter
 import hr.algebra.sofanba.database.model.FavoritePlayer
 import hr.algebra.sofanba.database.model.FavoriteTeam
+import hr.algebra.sofanba.database.model.SplashTeam
 
 @Database(
-    entities = [FavoritePlayer::class, FavoriteTeam::class],
+    entities = [FavoritePlayer::class, FavoriteTeam::class, SplashTeam::class],
     version = 1
 )
 @TypeConverters(TeamTypeConverter::class)

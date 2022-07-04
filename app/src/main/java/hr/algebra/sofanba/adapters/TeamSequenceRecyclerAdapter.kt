@@ -1,10 +1,12 @@
 package hr.algebra.sofanba.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import hr.algebra.sofanba.R
 import hr.algebra.sofanba.TeamActivity
@@ -15,7 +17,8 @@ import hr.algebra.sofanba.network.model.Team
 class TeamSequenceRecyclerAdapter(
     private val context: Context,
     private val teamsList: ArrayList<Team>,
-    private val isForFavorites: Boolean
+    private val isForFavorites: Boolean,
+    private val insertCallback: ((Team) -> Unit)?
 ): RecyclerView.Adapter<TeamSequenceRecyclerAdapter.TeamSequenceViewHolder>() {
 
     class TeamSequenceViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -27,11 +30,23 @@ class TeamSequenceRecyclerAdapter(
         return TeamSequenceViewHolder(view)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onBindViewHolder(holder: TeamSequenceViewHolder, position: Int) {
         val team = teamsList[position]
+        var isSelected = false
+
         if (isForFavorites){
             holder.binding.tvTeamName.text = team.name
             loadTeamImage(context, team.abbreviation, holder.binding.ivTeamImage, holder.binding.imageContainer)
+
+            setupOverlay(holder, isSelected)
+
+            holder.binding.root.setOnClickListener {
+                isSelected = !isSelected
+                setupOverlay(holder, isSelected)
+                insertCallback?.invoke(team)
+            }
+
         } else {
             holder.binding.tvTeamName.text = team.abbreviation
             loadTeamImage(context, team.abbreviation, holder.binding.ivTeamImage, holder.binding.imageContainer)
@@ -48,6 +63,17 @@ class TeamSequenceRecyclerAdapter(
 
     override fun getItemCount(): Int {
         return teamsList.size
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun setupOverlay(holder: TeamSequenceViewHolder, isSelected: Boolean) {
+        if (isSelected) {
+            holder.binding.imageContainer.foreground = context.getDrawable(R.drawable.foreground_team_pick_overlay)
+            holder.binding.ivChecked.visibility = ImageView.VISIBLE
+        } else {
+            holder.binding.imageContainer.foreground = null
+            holder.binding.ivChecked.visibility = ImageView.GONE
+        }
     }
 
 }

@@ -17,10 +17,15 @@ class TeamSequenceView(context: Context, attrs: AttributeSet) : ConstraintLayout
         this, true
     )
 
-    fun setupTeamSequenceView(context: Context, teamsList: ArrayList<Team>, isForFavorites: Boolean){
-        binding.rvSequence.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+    fun setupTeamSequenceView(
+        context: Context, teamsList: ArrayList<Team>, isForFavorites: Boolean,
+        insertCallback: ((Team) -> Unit)?
+    ) {
+        binding.rvSequence.layoutManager =
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
 
-        val adapter = TeamSequenceRecyclerAdapter(context, teamsList, isForFavorites)
+        val adapter =
+            TeamSequenceRecyclerAdapter(context, teamsList, isForFavorites, insertCallback)
         binding.rvSequence.adapter = adapter
     }
 }

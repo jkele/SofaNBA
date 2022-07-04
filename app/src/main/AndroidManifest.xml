@@ -10,10 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SofaNBA"
         android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".TeamPickActivity"
+            android:theme="@style/TeamPickTheme"
+            android:exported="false" />
+
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/SplashScreenTheme"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -2,6 +2,7 @@ package hr.algebra.sofanba.database
 
 import hr.algebra.sofanba.database.model.FavoritePlayer
 import hr.algebra.sofanba.database.model.FavoriteTeam
+import hr.algebra.sofanba.database.model.SplashTeam
 
 class NbaRepository(private val nbaDao: NbaDao) {
 
@@ -55,5 +56,15 @@ class NbaRepository(private val nbaDao: NbaDao) {
 
     fun deleteFavoriteTeams() {
         nbaDao.deleteFavoriteTeams()
+    }
+
+    //Splash screen
+
+    fun insertTeamsList(teams: ArrayList<SplashTeam>) {
+        nbaDao.insertTeamsList(teams)
+    }
+
+    fun getTeamsList() : List<SplashTeam> {
+        return nbaDao.getTeamsList()
     }
 }

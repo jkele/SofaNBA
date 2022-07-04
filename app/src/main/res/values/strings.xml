@@ -94,6 +94,12 @@
     <string name="ok">OK</string>
     <string name="no_internet_connection">No internet connection, connect to WiFi or mobile data and try again.</string>
     <string name="favorites_list_is_clear">Favorites list is clear</string>
+    <string name="what_are_you_favorite_nba_teams">What are you favorite NBA teams?</string>
+    <string name="you_can_choose_more_than_one">You can choose more than one.</string>
+    <string name="eastern_conference">Eastern Conference</string>
+    <string name="continue_text">Continue</string>
+    <string name="skip">Skip</string>
+    <string name="western_conference">Western conference</string>
 
     <string-array name="seasons">
         <item>2021</item>

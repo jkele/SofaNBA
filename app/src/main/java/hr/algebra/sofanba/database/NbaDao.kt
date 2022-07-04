@@ -3,6 +3,7 @@ package hr.algebra.sofanba.database
 import androidx.room.*
 import hr.algebra.sofanba.database.model.FavoritePlayer
 import hr.algebra.sofanba.database.model.FavoriteTeam
+import hr.algebra.sofanba.database.model.SplashTeam
 
 @Dao
 interface NbaDao {
@@ -48,5 +49,12 @@ interface NbaDao {
     @Query("DELETE FROM favoriteTeams")
     fun deleteFavoriteTeams()
 
+    //Splash screen
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertTeamsList(teams: ArrayList<SplashTeam>)
+
+    @Query("SELECT * FROM splashTeams")
+    fun getTeamsList(): List<SplashTeam>
 
 }

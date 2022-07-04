@@ -1,7 +1,10 @@
 package hr.algebra.sofanba.helpers
 
+import android.app.Activity
 import android.app.Dialog
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
@@ -14,8 +17,10 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.getSystemService
+import androidx.preference.PreferenceManager
 import com.google.android.material.textfield.TextInputEditText
 import hr.algebra.sofanba.R
+import hr.algebra.sofanba.network.model.Team
 
 fun TextInputEditText.customValidate(context: Context): Boolean {
     val valid = true
@@ -76,6 +81,31 @@ fun Context.isOnline() : Boolean {
     }
     return false
 }
+
+inline fun<reified T : Activity> Context.startActivity()
+        = startActivity(Intent(this, T::class.java).apply {
+    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+})
+
+inline fun<reified T : Activity> Context.startActivity(key: String, value: ArrayList<Team>)
+        = startActivity(Intent(this, T::class.java).apply {
+    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    putExtra(key, value)
+})
+
+inline fun<reified T: BroadcastReceiver> Context.sendBroadcast()
+        = sendBroadcast(Intent(this, T::class.java))
+
+fun Context.setBooleanPreference(key: String, value: Boolean) =
+    PreferenceManager.getDefaultSharedPreferences(this)
+        .edit()
+        .putBoolean(key, value)
+        .apply()
+
+
+fun Context.getBooleanPreference(key: String) =
+    PreferenceManager.getDefaultSharedPreferences(this)
+        .getBoolean(key, false)
 
 fun View.startAnimation(animationId: Int)
     = startAnimation(AnimationUtils.loadAnimation(context, animationId))

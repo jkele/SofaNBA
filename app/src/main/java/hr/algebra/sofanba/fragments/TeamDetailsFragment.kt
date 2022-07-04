@@ -45,7 +45,7 @@ class TeamDetailsFragment : Fragment() {
 
             val divisionTeams = teamsList.filter { it.division == selectedTeam.division } as ArrayList
             divisionTeams.remove(selectedTeam)
-            binding.rvDivisionTeams.setupTeamSequenceView(requireContext(), divisionTeams, false)
+            binding.rvDivisionTeams.setupTeamSequenceView(requireContext(), divisionTeams, false, null)
 
             binding.progressBar.visibility = ProgressBar.GONE
         }
